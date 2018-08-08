@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python,interview," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="interator tips:从Python3.4开始，检查对象x是否迭代，最准确的方法是调用iter(x)函数，如果不可迭代，再处理TypeErro异常。这比isinstance(x, abc.iterable)更准确，因为iter(x)函数会考虑到__getitem__方法，而abc.Iterable类不考虑。 检查对象x是否是迭代器最好的方式是调用isinstance(x, abc.Iter">
+<meta name="keywords" content="Python,interview">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python interview">
+<meta property="og:url" content="http://darktiantian.github.io.git/2018/08/08/Python-interview/index.html">
+<meta property="og:site_name" content="xiaoliji&#39;s blog">
+<meta property="og:description" content="interator tips:从Python3.4开始，检查对象x是否迭代，最准确的方法是调用iter(x)函数，如果不可迭代，再处理TypeErro异常。这比isinstance(x, abc.iterable)更准确，因为iter(x)函数会考虑到__getitem__方法，而abc.Iterable类不考虑。 检查对象x是否是迭代器最好的方式是调用isinstance(x, abc.Iter">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-08T16:15:52.405Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python interview">
+<meta name="twitter:description" content="interator tips:从Python3.4开始，检查对象x是否迭代，最准确的方法是调用iter(x)函数，如果不可迭代，再处理TypeErro异常。这比isinstance(x, abc.iterable)更准确，因为iter(x)函数会考虑到__getitem__方法，而abc.Iterable类不考虑。 检查对象x是否是迭代器最好的方式是调用isinstance(x, abc.Iter">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://darktiantian.github.io.git/2018/08/08/Python-interview/"/>
+
+
+
+
+
+  <title>Python interview | xiaoliji's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xiaoliji's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">小里脊的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://darktiantian.github.io.git/2018/08/08/Python-interview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaoliji">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xiaoliji's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python interview</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-08T23:05:59+08:00">
+                2018-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/08/Python-interview/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/08/Python-interview/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="interator-tips"><a href="#interator-tips" class="headerlink" title="interator tips:"></a>interator tips:</h3><p><em>从Python3.4开始，检查对象x是否迭代，最准确的方法是调用iter(x)函数，如果不可迭代，再处理TypeErro异常。这比isinstance(x, abc.iterable)更准确，因为iter(x)函数会考虑到<code>__getitem__</code>方法，而abc.Iterable类不考虑。</em></p>
+<p><em>检查对象x是否是迭代器最好的方式是调用isinstance(x, abc.Iterator)</em></p>
+<a id="more"></a>
+<h3 id="Iterables-vs-Iterators"><a href="#Iterables-vs-Iterators" class="headerlink" title="Iterables vs Iterators"></a>Iterables vs Iterators</h3><p><em>如果对象实现了能返回迭代器的<code>__iter__</code>方法，那么对象就是可迭代的。序列都可以迭代，因为实现了<code>__getitem__</code>方法, 而且其参数是从零开始的索引，这种对象也可以迭代。</em></p>
+<p><em>迭代器是这样的对象，实现了无参数的<code>__next__</code>方法，返回序列中的下一个元素，如果没有元素了，就抛出StopIteration异常，Python中的迭代器还实现了<code>__iter__</code>方法（必须return self），因此迭代器也可以迭代。</em></p>
+<p><em>可迭代对象和迭代器之间的关系：Python从可迭代的对象中获取迭代器。</em></p>
+<h3 id="generator-生成器"><a href="#generator-生成器" class="headerlink" title="generator 生成器"></a>generator 生成器</h3><p><em>只要Python函数中的定义体中有yield关键字，该函数就是生成器函数。调用生成器函数，会返回一个生成器对象。也就是说，生成器函数是生成器工厂。</em></p>
+<p><em>所有的生成器都是迭代器，因为生成器完全实现了迭代器接口。</em></p>
+<h3 id="ArithmeticProgression-Generator"><a href="#ArithmeticProgression-Generator" class="headerlink" title="ArithmeticProgression Generator"></a>ArithmeticProgression Generator</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">aritprog_gen</span><span class="params">(begin, step, end=None)</span>:</span></span><br><span class="line">    result = type(begin + step)(begin)</span><br><span class="line">    forever = end <span class="keyword">is</span> <span class="keyword">None</span></span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> forever <span class="keyword">or</span> result &lt; end:</span><br><span class="line">        <span class="keyword">yield</span> result</span><br><span class="line">        index += <span class="number">1</span></span><br><span class="line">        result = begin + step * index</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line">gen = itertools.takewhile(<span class="keyword">lambda</span> n: n &lt; <span class="number">3</span>, itertools.count(<span class="number">1</span>, <span class="number">.5</span>))</span><br><span class="line">list(gen)</span><br></pre></td></tr></table></figure>
+<pre><code>[1, 1.5, 2.0, 2.5]
+</code></pre><h3 id="Generator-Functions-n-The-Standard-Library-filter"><a href="#Generator-Functions-n-The-Standard-Library-filter" class="headerlink" title="Generator Functions n The Standard Library (filter)"></a>Generator Functions n The Standard Library (filter)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">vowel</span><span class="params">(c)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> c.lower() <span class="keyword">in</span> <span class="string">'aeiou'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.filterfalse(vowel, <span class="string">'Aardvark'</span>)) <span class="comment"># filter内置函数的反用</span></span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;r&apos;, &apos;d&apos;, &apos;v&apos;, &apos;r&apos;, &apos;k&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.dropwhile(vowel, <span class="string">'Aardvark'</span>)) <span class="comment"># 在条件为false之后的第一次, 返回迭代器中剩下来的项</span></span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;r&apos;, &apos;d&apos;, &apos;v&apos;, &apos;a&apos;, &apos;r&apos;, &apos;k&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.takewhile(vowel, <span class="string">'Aardvark'</span>)) <span class="comment"># 在vowel返回False时停止</span></span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;A&apos;, &apos;a&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.compress(<span class="string">'Aardvark'</span>, (<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>)))  <span class="comment"># 并行比较两个可迭代对象，如果后者元素为True, 产出前者的值</span></span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;A&apos;, &apos;r&apos;, &apos;d&apos;, &apos;a&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.islice(<span class="string">'Aardvark'</span>, <span class="number">1</span>, <span class="number">7</span>, <span class="number">2</span>))  <span class="comment"># 产出前者的切片，主要是惰性操作</span></span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;a&apos;, &apos;d&apos;, &apos;a&apos;]
+</code></pre><h3 id="Generator-Functions-map"><a href="#Generator-Functions-map" class="headerlink" title="Generator Functions (map)"></a>Generator Functions (map)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sample = [<span class="number">5</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">9</span>,<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.accumulate(sample))</span><br></pre></td></tr></table></figure>
+<pre><code>[5, 9, 11, 19, 26, 32, 35, 35, 44, 45]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.accumulate(sample, min))</span><br></pre></td></tr></table></figure>
+<pre><code>[5, 4, 2, 2, 2, 2, 2, 0, 0, 0]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> operator</span><br><span class="line">list(itertools.accumulate(sample, operator.mul))</span><br></pre></td></tr></table></figure>
+<pre><code>[5, 20, 40, 320, 2240, 13440, 40320, 0, 0, 0]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(map(operator.mul, range(<span class="number">11</span>), [<span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>]))</span><br></pre></td></tr></table></figure>
+<pre><code>[0, 4, 16]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(map(<span class="keyword">lambda</span> a, b: (a, b), range(<span class="number">11</span>), [<span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>])) <span class="comment"># zip built-in  function does</span></span><br></pre></td></tr></table></figure>
+<pre><code>[(0, 2), (1, 4), (2, 8)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.starmap(operator.mul, enumerate(<span class="string">'albatroz'</span>, <span class="number">1</span>))) <span class="comment"># [operator.mul(*('a', 1))]</span></span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;a&apos;, &apos;ll&apos;, &apos;bbb&apos;, &apos;aaaa&apos;, &apos;ttttt&apos;, &apos;rrrrrr&apos;, &apos;ooooooo&apos;, &apos;zzzzzzzz&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.starmap(<span class="keyword">lambda</span> a, b: b/a, enumerate(itertools.accumulate(sample), <span class="number">1</span>))) <span class="comment"># average</span></span><br></pre></td></tr></table></figure>
+<pre><code>[5.0,
+ 4.5,
+ 3.6666666666666665,
+ 4.75,
+ 5.2,
+ 5.333333333333333,
+ 5.0,
+ 4.375,
+ 4.888888888888889,
+ 4.5]
+</code></pre><h3 id="Generator-Functions-merging"><a href="#Generator-Functions-merging" class="headerlink" title="Generator Functions (merging)"></a>Generator Functions (merging)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.chain(<span class="string">'ABC'</span>, range(<span class="number">2</span>)))</span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;A&apos;, &apos;B&apos;, &apos;C&apos;, 0, 1]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.chain(enumerate(<span class="string">'ABC'</span>)))  <span class="comment"># 传入一个参数，没什么卵用</span></span><br></pre></td></tr></table></figure>
+<pre><code>[(0, &apos;A&apos;), (1, &apos;B&apos;), (2, &apos;C&apos;)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.chain.from_iterable(enumerate(<span class="string">'ABC'</span>)))</span><br></pre></td></tr></table></figure>
+<pre><code>[0, &apos;A&apos;, 1, &apos;B&apos;, 2, &apos;C&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(zip(<span class="string">'ABC'</span>, range(<span class="number">5</span>), [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>]))</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;A&apos;, 0, 10), (&apos;B&apos;, 1, 20), (&apos;C&apos;, 2, 30)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.zip_longest(<span class="string">'ABC'</span>, range(<span class="number">5</span>), fillvalue=<span class="string">'?'</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;A&apos;, 0), (&apos;B&apos;, 1), (&apos;C&apos;, 2), (&apos;?&apos;, 3), (&apos;?&apos;, 4)]
+</code></pre><h3 id="Generator-FUnctions-Cartesian-笛卡尔积"><a href="#Generator-FUnctions-Cartesian-笛卡尔积" class="headerlink" title="Generator FUnctions (Cartesian)笛卡尔积"></a>Generator FUnctions (Cartesian)笛卡尔积</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.product(<span class="string">'ABC'</span>, range(<span class="number">2</span>)))</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;A&apos;, 0), (&apos;A&apos;, 1), (&apos;B&apos;, 0), (&apos;B&apos;, 1), (&apos;C&apos;, 0), (&apos;C&apos;, 1)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">suits = <span class="string">'spades hearts diamonds clubs'</span>.split()</span><br><span class="line">list(itertools.product(<span class="string">'AK'</span>, suits))</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;A&apos;, &apos;spades&apos;),
+ (&apos;A&apos;, &apos;hearts&apos;),
+ (&apos;A&apos;, &apos;diamonds&apos;),
+ (&apos;A&apos;, &apos;clubs&apos;),
+ (&apos;K&apos;, &apos;spades&apos;),
+ (&apos;K&apos;, &apos;hearts&apos;),
+ (&apos;K&apos;, &apos;diamonds&apos;),
+ (&apos;K&apos;, &apos;clubs&apos;)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.product(<span class="string">'ABC'</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;A&apos;,), (&apos;B&apos;,), (&apos;C&apos;,)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.product(<span class="string">'ABC'</span>, repeat=<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;A&apos;, &apos;A&apos;),
+ (&apos;A&apos;, &apos;B&apos;),
+ (&apos;A&apos;, &apos;C&apos;),
+ (&apos;B&apos;, &apos;A&apos;),
+ (&apos;B&apos;, &apos;B&apos;),
+ (&apos;B&apos;, &apos;C&apos;),
+ (&apos;C&apos;, &apos;A&apos;),
+ (&apos;C&apos;, &apos;B&apos;),
+ (&apos;C&apos;, &apos;C&apos;)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.product(<span class="string">'AB'</span>, range(<span class="number">2</span>), repeat=<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;A&apos;, 0, &apos;A&apos;, 0),
+ (&apos;A&apos;, 0, &apos;A&apos;, 1),
+ (&apos;A&apos;, 0, &apos;B&apos;, 0),
+ (&apos;A&apos;, 0, &apos;B&apos;, 1),
+ (&apos;A&apos;, 1, &apos;A&apos;, 0),
+ (&apos;A&apos;, 1, &apos;A&apos;, 1),
+ (&apos;A&apos;, 1, &apos;B&apos;, 0),
+ (&apos;A&apos;, 1, &apos;B&apos;, 1),
+ (&apos;B&apos;, 0, &apos;A&apos;, 0),
+ (&apos;B&apos;, 0, &apos;A&apos;, 1),
+ (&apos;B&apos;, 0, &apos;B&apos;, 0),
+ (&apos;B&apos;, 0, &apos;B&apos;, 1),
+ (&apos;B&apos;, 1, &apos;A&apos;, 0),
+ (&apos;B&apos;, 1, &apos;A&apos;, 1),
+ (&apos;B&apos;, 1, &apos;B&apos;, 0),
+ (&apos;B&apos;, 1, &apos;B&apos;, 1)]
+</code></pre><h3 id="一个元素产出多个值"><a href="#一个元素产出多个值" class="headerlink" title="一个元素产出多个值"></a>一个元素产出多个值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.islice(itertools.count(<span class="number">1</span>, <span class="number">.3</span>), <span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>[1, 1.3, 1.6]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cy = itertools.cycle(<span class="string">'ABC'</span>)</span><br><span class="line">next(cy)</span><br></pre></td></tr></table></figure>
+<pre><code>&apos;A&apos;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.islice(cy, <span class="number">7</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;B&apos;, &apos;C&apos;, &apos;A&apos;, &apos;B&apos;, &apos;C&apos;, &apos;A&apos;, &apos;B&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rp = itertools.repeat(<span class="number">7</span>)</span><br><span class="line">next(rp), next(rp)</span><br></pre></td></tr></table></figure>
+<pre><code>(7, 7)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.repeat(<span class="number">8</span>, <span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>[8, 8, 8, 8]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(map(operator.mul, range(<span class="number">11</span>), itertools.repeat(<span class="number">5</span>)))  <span class="comment"># 为map函数提供固定参数5</span></span><br></pre></td></tr></table></figure>
+<pre><code>[0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.combinations(<span class="string">'ABC'</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;A&apos;, &apos;B&apos;), (&apos;A&apos;, &apos;C&apos;), (&apos;B&apos;, &apos;C&apos;)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.combinations_with_replacement(<span class="string">'ABC'</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;A&apos;, &apos;A&apos;), (&apos;A&apos;, &apos;B&apos;), (&apos;A&apos;, &apos;C&apos;), (&apos;B&apos;, &apos;B&apos;), (&apos;B&apos;, &apos;C&apos;), (&apos;C&apos;, &apos;C&apos;)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.permutations(<span class="string">'ABC'</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;A&apos;, &apos;B&apos;), (&apos;A&apos;, &apos;C&apos;), (&apos;B&apos;, &apos;A&apos;), (&apos;B&apos;, &apos;C&apos;), (&apos;C&apos;, &apos;A&apos;), (&apos;C&apos;, &apos;B&apos;)]
+</code></pre><h3 id="用于重新排列元素的生成器函数"><a href="#用于重新排列元素的生成器函数" class="headerlink" title="用于重新排列元素的生成器函数"></a>用于重新排列元素的生成器函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.groupby(<span class="string">'LLLLAAGGG'</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;L&apos;, &lt;itertools._grouper at 0x108ad79e8&gt;),
+ (&apos;A&apos;, &lt;itertools._grouper at 0x108ad7550&gt;),
+ (&apos;G&apos;, &lt;itertools._grouper at 0x108ad7978&gt;)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> char, group <span class="keyword">in</span> itertools.groupby(<span class="string">'LLLLAAGGG'</span>):</span><br><span class="line">    print(char, <span class="string">'-&gt;'</span>, list(group))</span><br></pre></td></tr></table></figure>
+<pre><code>L -&gt; [&apos;L&apos;, &apos;L&apos;, &apos;L&apos;, &apos;L&apos;]
+A -&gt; [&apos;A&apos;, &apos;A&apos;]
+G -&gt; [&apos;G&apos;, &apos;G&apos;, &apos;G&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">animals = [<span class="string">'duck'</span>, <span class="string">'eagle'</span>, <span class="string">'rat'</span>, <span class="string">'giraffe'</span>, <span class="string">'bear'</span>, <span class="string">'bat'</span>, <span class="string">'dolphin'</span>, <span class="string">'shark'</span>, <span class="string">'lion'</span>]</span><br><span class="line">animals.sort(key=len)</span><br><span class="line">animals</span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;rat&apos;, &apos;bat&apos;, &apos;duck&apos;, &apos;bear&apos;, &apos;lion&apos;, &apos;eagle&apos;, &apos;shark&apos;, &apos;giraffe&apos;, &apos;dolphin&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> length, group <span class="keyword">in</span> itertools.groupby(animals, len):</span><br><span class="line">    print(length, <span class="string">'-&gt;'</span>, list(group))</span><br></pre></td></tr></table></figure>
+<pre><code>3 -&gt; [&apos;rat&apos;, &apos;bat&apos;]
+4 -&gt; [&apos;duck&apos;, &apos;bear&apos;, &apos;lion&apos;]
+5 -&gt; [&apos;eagle&apos;, &apos;shark&apos;]
+7 -&gt; [&apos;giraffe&apos;, &apos;dolphin&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> length, group <span class="keyword">in</span> itertools.groupby(reversed(animals), len):</span><br><span class="line">    print(length, <span class="string">'-&gt;'</span>, list(group))</span><br></pre></td></tr></table></figure>
+<pre><code>7 -&gt; [&apos;dolphin&apos;, &apos;giraffe&apos;]
+5 -&gt; [&apos;shark&apos;, &apos;eagle&apos;]
+4 -&gt; [&apos;lion&apos;, &apos;bear&apos;, &apos;duck&apos;]
+3 -&gt; [&apos;bat&apos;, &apos;rat&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(itertools.tee(<span class="string">'ABC'</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>[&lt;itertools._tee at 0x108ad22c8&gt;, &lt;itertools._tee at 0x108ae4cc8&gt;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g1, g2 = itertools.tee(<span class="string">'ABC'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">next(g1)</span><br></pre></td></tr></table></figure>
+<pre><code>&apos;A&apos;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">next(g2)</span><br></pre></td></tr></table></figure>
+<pre><code>&apos;A&apos;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">next(g2)</span><br></pre></td></tr></table></figure>
+<pre><code>&apos;B&apos;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(g1)</span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;B&apos;, &apos;C&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(zip(*itertools.tee(<span class="string">'ABC'</span>)))</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;A&apos;, &apos;A&apos;), (&apos;B&apos;, &apos;B&apos;), (&apos;C&apos;, &apos;C&apos;)]
+</code></pre><h3 id="New-Syntax-in-Python3-3-yield-from"><a href="#New-Syntax-in-Python3-3-yield-from" class="headerlink" title="New Syntax in Python3.3: yield from"></a>New Syntax in Python3.3: yield from</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">chain</span><span class="params">(*iterables)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> iterables:</span><br><span class="line">        <span class="keyword">yield</span> <span class="keyword">from</span> i</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(chain(<span class="string">'ABBC'</span>, range(<span class="number">3</span>)))</span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;A&apos;, &apos;B&apos;, &apos;B&apos;, &apos;C&apos;, 0, 1, 2]
+</code></pre><p><em>yiled from 除了可以代替循环， 还会创建通道，把内层生成器直接与外层生成器的客户端联系起来。把生成器当成协程使用时，这个通道特别重要，不仅能为客户端代码生成值，还能使用客户端代码提供的值。</em></p>
+<h3 id="Iterable-Reducing-Functions-可迭代规约函数"><a href="#Iterable-Reducing-Functions-可迭代规约函数" class="headerlink" title="Iterable Reducing Functions (可迭代规约函数)"></a>Iterable Reducing Functions (可迭代规约函数)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">all([<span class="number">1</span>, <span class="number">0</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>False
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">all([])</span><br></pre></td></tr></table></figure>
+<pre><code>True
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">any([<span class="number">1</span>, <span class="number">0</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>True
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">any([])</span><br></pre></td></tr></table></figure>
+<pre><code>False
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g = (n <span class="keyword">for</span> n <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">0.0</span>, <span class="number">7</span>, <span class="number">8</span>])</span><br><span class="line">any(g)</span><br></pre></td></tr></table></figure>
+<pre><code>True
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">next(g)</span><br></pre></td></tr></table></figure>
+<pre><code>8
+</code></pre><h3 id="iter-一个鲜为人知的用法"><a href="#iter-一个鲜为人知的用法" class="headerlink" title="iter 一个鲜为人知的用法"></a>iter 一个鲜为人知的用法</h3><p><em>传入两个参数，使用常规的函数或任何可调用的对象创建迭代器。第一个参数必须是可调用对象，用于不断调用产出各个值；第二个值是哨符，这个是标记值，当可调用的对象返回这个值时，出发迭代器抛出StropIteration异常</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">d6</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> randint(<span class="number">1</span>, <span class="number">6</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d6_iter = iter(d6, <span class="number">1</span>)  <span class="comment"># 但是不会输出1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> roll <span class="keyword">in</span> d6_iter:</span><br><span class="line">    print(roll)</span><br></pre></td></tr></table></figure>
+<pre><code>3
+4
+2
+</code></pre><h3 id="有个实用的例子，逐行读取文件，直到遇到空行或达文件末尾为止："><a href="#有个实用的例子，逐行读取文件，直到遇到空行或达文件末尾为止：" class="headerlink" title="有个实用的例子，逐行读取文件，直到遇到空行或达文件末尾为止："></a>有个实用的例子，逐行读取文件，直到遇到空行或达文件末尾为止：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">'mydata.txt'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> iter(fp.readline, <span class="string">''</span>):</span><br><span class="line">        process_line(line)</span><br></pre></td></tr></table></figure>
+<h3 id="Iterator-vs-Generator"><a href="#Iterator-vs-Generator" class="headerlink" title="Iterator vs Generator"></a>Iterator vs Generator</h3><ul>
+<li>从接口上来看，迭代器协议定义了两个方法：<code>__next__</code>和<code>__iter__</code>。生成器对象实现了这两个方法，因此从这方面来看，所有的生成器都是迭代器。</li>
+<li>从实现方式来看，生成器可以用yield或是生成器表达式。</li>
+<li>从概念上来说，迭代器用于遍历集合，从中产出元素。生成器可能无需遍历集合就能生成值，如range函数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci</span><span class="params">()</span>:</span></span><br><span class="line">    a, b = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        <span class="keyword">yield</span> a</span><br><span class="line">        a, b = b, a+b</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/interview/" rel="tag"># interview</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/08/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="xiaoliji" />
+          <p class="site-author-name" itemprop="name">xiaoliji</p>
+           
+              <p class="site-description motion-element" itemprop="description">小里脊的个人博客，python成长之路</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#interator-tips"><span class="nav-number">1.</span> <span class="nav-text">interator tips:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterables-vs-Iterators"><span class="nav-number">2.</span> <span class="nav-text">Iterables vs Iterators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#generator-生成器"><span class="nav-number">3.</span> <span class="nav-text">generator 生成器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ArithmeticProgression-Generator"><span class="nav-number">4.</span> <span class="nav-text">ArithmeticProgression Generator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generator-Functions-n-The-Standard-Library-filter"><span class="nav-number">5.</span> <span class="nav-text">Generator Functions n The Standard Library (filter)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generator-Functions-map"><span class="nav-number">6.</span> <span class="nav-text">Generator Functions (map)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generator-Functions-merging"><span class="nav-number">7.</span> <span class="nav-text">Generator Functions (merging)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generator-FUnctions-Cartesian-笛卡尔积"><span class="nav-number">8.</span> <span class="nav-text">Generator FUnctions (Cartesian)笛卡尔积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个元素产出多个值"><span class="nav-number">9.</span> <span class="nav-text">一个元素产出多个值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用于重新排列元素的生成器函数"><span class="nav-number">10.</span> <span class="nav-text">用于重新排列元素的生成器函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#New-Syntax-in-Python3-3-yield-from"><span class="nav-number">11.</span> <span class="nav-text">New Syntax in Python3.3: yield from</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterable-Reducing-Functions-可迭代规约函数"><span class="nav-number">12.</span> <span class="nav-text">Iterable Reducing Functions (可迭代规约函数)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iter-一个鲜为人知的用法"><span class="nav-number">13.</span> <span class="nav-text">iter 一个鲜为人知的用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有个实用的例子，逐行读取文件，直到遇到空行或达文件末尾为止："><span class="nav-number">14.</span> <span class="nav-text">有个实用的例子，逐行读取文件，直到遇到空行或达文件末尾为止：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterator-vs-Generator"><span class="nav-number">15.</span> <span class="nav-text">Iterator vs Generator</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaoliji</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://darktiantian.github.io.git/2018/08/08/Python-interview/';
+          this.page.identifier = '2018/08/08/Python-interview/';
+          this.page.title = 'Python interview';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
