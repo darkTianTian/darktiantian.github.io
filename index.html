@@ -327,6 +327,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://darktiantian.github.io.git/LeetCode算法题整理（链表篇）LinkedList/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaoliji">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xiaoliji's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/LeetCode算法题整理（链表篇）LinkedList/" itemprop="url">LeetCode算法题整理（链表篇）LinkedList</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-09T20:32:51+08:00">
+                2018-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/LeetCode算法题整理（链表篇）LinkedList/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="LeetCode算法题整理（链表篇）LinkedList/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/LeetCode算法题整理（链表篇）LinkedList/" class="leancloud_visitors" data-flag-title="LeetCode算法题整理（链表篇）LinkedList">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="链表的定义"><a href="#链表的定义" class="headerlink" title="链表的定义"></a>链表的定义</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="keyword">None</span></span><br></pre></td></tr></table></figure>
+<h3 id="两个链表相加"><a href="#两个链表相加" class="headerlink" title="两个链表相加"></a>两个链表相加</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</span><br><span class="line">Output: 7 -&gt; 0 -&gt; 8</span><br><span class="line">Explanation: 342 + 465 = 807.</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addTwoNumbers</span><span class="params">(l1, l2)</span>:</span></span><br><span class="line">    l = head = ListNode(<span class="number">0</span>)</span><br><span class="line">    carry = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> l1 <span class="keyword">or</span> l2 <span class="keyword">or</span> carry:</span><br><span class="line">        v1 = v2 = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> l1:</span><br><span class="line">            v1 = l1.val</span><br><span class="line">            l1 = l1.next</span><br><span class="line">        <span class="keyword">if</span> l2:</span><br><span class="line">            v2 = l2.val</span><br><span class="line">            l2 = l2.next</span><br><span class="line">        carry, val = divmod(sum(v1+v2+carry), <span class="number">10</span>)</span><br><span class="line">        l.next = ListNode(val)</span><br><span class="line">        l = l.next</span><br><span class="line">    <span class="keyword">return</span> head.next</span><br></pre></td></tr></table></figure>
+<h3 id="合并两个有序链表"><a href="#合并两个有序链表" class="headerlink" title="合并两个有序链表"></a>合并两个有序链表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4</span><br><span class="line">Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</span><br></pre></td></tr></table></figure>
+<p>方法1：iteratively 迭代</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mergeTwoLists</span><span class="params">(l1, l2)</span>:</span></span><br><span class="line">    l = head = ListNode(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">while</span> l1 <span class="keyword">and</span> l2:</span><br><span class="line">        <span class="keyword">if</span> l1.val &lt;= l2.val:</span><br><span class="line">            l.next = l1</span><br><span class="line">            l1 = l1.next</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            l.next = l2</span><br><span class="line">            l2= l2.next</span><br><span class="line">        l = l.next</span><br><span class="line">    l.next = l1 <span class="keyword">or</span> l2</span><br><span class="line">    <span class="keyword">return</span> head.next</span><br></pre></td></tr></table></figure>
+<p>方法2：recursively 递归</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mergeTwoLists</span><span class="params">(l1, l2)</span>:</span></span><br><span class="line">    <span class="comment"># 判断是否存在None</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> l1 <span class="keyword">or</span> <span class="keyword">not</span> l2:</span><br><span class="line">        <span class="keyword">return</span> l1 <span class="keyword">or</span> l2</span><br><span class="line">    <span class="keyword">if</span> l1.val &lt; l2.val:</span><br><span class="line">        l1.next = mergeTwoLists(l1.next, l2)</span><br><span class="line">        <span class="keyword">return</span> l1</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        l2.next = mergeTwoLists(l1, l2.next)</span><br><span class="line">        <span class="keyword">return</span> l2</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+    
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://darktiantian.github.io.git/hexo搭建遇到的问题及优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -682,7 +867,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -693,7 +878,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -704,7 +889,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -799,7 +984,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共2.5k字</span>
+  <span class="post-count">博客全站共2.8k字</span>
 </div>
         
 
