@@ -4,8 +4,23 @@
 
     
   <url>
+    <loc>http://darktiantian.github.io.git/hello-world/</loc>
+    <lastmod>2018-08-09T12:04:21.696Z</lastmod>
+    <data>
+        <display>
+        <title>Hello World</title>
+        <pubTime>2018-08-08T12:36:35.746Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://darktiantian.github.io.git/hexo%E6%90%AD%E5%BB%BA%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E4%BC%98%E5%8C%96/</loc>
-    <lastmod>2018-08-09T11:44:58.171Z</lastmod>
+    <lastmod>2018-08-09T12:02:58.278Z</lastmod>
     <data>
         <display>
         <title>hexo搭建遇到的问题及优化</title>
@@ -26,43 +41,6 @@
 
     
     
-    
-  <url>
-    <loc>http://darktiantian.github.io.git/hello-world/</loc>
-    <lastmod>2018-08-09T08:23:42.741Z</lastmod>
-    <data>
-        <display>
-        <title>Hello World</title>
-        <pubTime>2018-08-08T12:36:35.746Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://darktiantian.github.io.git/Python-interview/</loc>
-    <lastmod>2018-08-08T16:15:52.405Z</lastmod>
-    <data>
-        <display>
-        <title>Python interview</title>
-        <pubTime>2018-08-08T15:05:59.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>interview</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python" url="http://darktiantian.github.io.git/categories/Python/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
     
     
