@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo,next," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="前言终于有了一个整理自己学习笔记的地方了，之前用过印象笔记，觉得它的markdown格式处理得不是很完美，复制粘贴出来总是格式不对。后来又用过jupyter_nootboke，但是不方便在其它客户端查看。折腾了半天终于弄好了期间遇到过不少坑，发现hexo有时候同一样的问题总是对应着集中不同的解决方法，在此整理一下以便之后遇到问题。">
+<meta name="keywords" content="Hexo,next">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo搭建遇到的问题及优化">
+<meta property="og:url" content="http://darktiantian.github.io.git/2018/08/09/hexo搭建遇到的问题及优化/index.html">
+<meta property="og:site_name" content="xiaoliji&#39;s blog">
+<meta property="og:description" content="前言终于有了一个整理自己学习笔记的地方了，之前用过印象笔记，觉得它的markdown格式处理得不是很完美，复制粘贴出来总是格式不对。后来又用过jupyter_nootboke，但是不方便在其它客户端查看。折腾了半天终于弄好了期间遇到过不少坑，发现hexo有时候同一样的问题总是对应着集中不同的解决方法，在此整理一下以便之后遇到问题。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://darktiantian.github.io.git/2018/08/09/hexo搭建遇到的问题及优化/a.png">
+<meta property="og:image" content="http://darktiantian.github.io.git/2018/08/09/hexo搭建遇到的问题及优化/a.png">
+<meta property="og:updated_time" content="2018-08-09T05:56:59.348Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo搭建遇到的问题及优化">
+<meta name="twitter:description" content="前言终于有了一个整理自己学习笔记的地方了，之前用过印象笔记，觉得它的markdown格式处理得不是很完美，复制粘贴出来总是格式不对。后来又用过jupyter_nootboke，但是不方便在其它客户端查看。折腾了半天终于弄好了期间遇到过不少坑，发现hexo有时候同一样的问题总是对应着集中不同的解决方法，在此整理一下以便之后遇到问题。">
+<meta name="twitter:image" content="http://darktiantian.github.io.git/2018/08/09/hexo搭建遇到的问题及优化/a.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://darktiantian.github.io.git/2018/08/09/hexo搭建遇到的问题及优化/"/>
+
+
+
+
+
+  <title>hexo搭建遇到的问题及优化 | xiaoliji's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="https://your-url" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xiaoliji's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">小里脊的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://darktiantian.github.io.git/2018/08/09/hexo搭建遇到的问题及优化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaoliji">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xiaoliji's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hexo搭建遇到的问题及优化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-09T11:05:24+08:00">
+                2018-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/09/hexo搭建遇到的问题及优化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/09/hexo搭建遇到的问题及优化/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>终于有了一个整理自己学习笔记的地方了，之前用过印象笔记，觉得它的markdown格式处理得不是很完美，复制粘贴出来总是格式不对。后来又用过jupyter_nootboke，但是不方便在其它客户端查看。折腾了半天终于弄好了期间遇到过不少坑，发现hexo有时候同一样的问题总是对应着集中不同的解决方法，在此整理一下以便之后遇到问题。</p>
+<a id="more"></a>
+<h3 id="关于问题"><a href="#关于问题" class="headerlink" title="关于问题"></a>关于问题</h3><p><a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">NexT</a>这里使用了next主题，这个主题特别简洁，还有很多易用性的扩展，尤其侧边栏的快速定位，让我爱不释手。</p>
+<h4 id="头像不显示"><a href="#头像不显示" class="headerlink" title="头像不显示"></a>头像不显示</h4><p>开始按照<code>_config.yml</code>中所说把<code>avatar.gif</code>放到<code>blog-site/source/</code>下，没有任何的作用。后来发现是主题的原因，放到<code>themes/next/source/images/</code>下就好了，默认的头像是正方形的，这里修改了一下代码把它改成圆形，文件位置在<br><code>themes/next/source/css_common_components/sidebar/sidebar-author.styl</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.site-author-image &#123;</span><br><span class="line">  display: block;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">  max-width: 96px;</span><br><span class="line">  height: auto;</span><br><span class="line">  border: 2px solid #333;</span><br><span class="line">  padding: 2px;  </span><br><span class="line">  /* start*/</span><br><span class="line">  border-radius: 90%</span><br><span class="line">  webkit-transition: 1.4s all;</span><br><span class="line">  moz-transition: 1.4s all;</span><br><span class="line">  ms-transition: 1.4s all;</span><br><span class="line">  transition: 1.4s all;</span><br><span class="line">  /* end */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="网页图标favicon-ico不显示"><a href="#网页图标favicon-ico不显示" class="headerlink" title="网页图标favicon.ico不显示"></a>网页图标favicon.ico不显示</h4><p>这里也是因为Next的原因，把<code>favicon.ico</code>放到<code>themes/next/source/images/</code>下，然后修改<code>_config.yml</code>中<code>favicon: /images/favicon.ico</code>解决了问题。这里介绍一个很方便转换ico的网站<a href="http://tool.lu/favicon/]" target="_blank" rel="noopener">favicon在线制作</a>。</p>
+<h4 id="没有建立资源文件夹"><a href="#没有建立资源文件夹" class="headerlink" title="没有建立资源文件夹"></a>没有建立资源文件夹</h4><ul>
+<li><p>设置<code>post_asset_foler: true</code>之后执行<code>hexo new post_name</code>后没有建立资源文件夹。搜索没有查到相关记录，后来想到之前next主题设置时，把配置文件拆分了出来，这样每次执行<code>hexo clean/generate</code>的时候在后面加了参数<code>--config</code>指定了配置文件。但是这样修改的文件对于<code>hexo new post_name</code>来说是没有修过的，所以要在<code>source/_config.yml</code>修改这项参数。</p>
+</li>
+<li><p>之后没有选择官方的标签插件是因为，在编辑markdown时无法看到预览效果所以安装<code>npm install https://github.com/CodeFalling/hexo-asset-image --save</code>，在文章中使用markdown语法引用<code>![logo](&lt;title_name&gt;/a.png)</code>使用。</p>
+</li>
+</ul>
+<h3 id="关于优化"><a href="#关于优化" class="headerlink" title="关于优化"></a>关于优化</h3><h4 id="在右上角或者左上角实现fork-me-on-github"><a href="#在右上角或者左上角实现fork-me-on-github" class="headerlink" title="在右上角或者左上角实现fork me on github"></a>在右上角或者左上角实现fork me on github</h4><p>在<a href="http://tholman.com/github-corners/" target="_blank" rel="noopener">这里</a>选择喜欢的样式。这里选择的是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;https://your-url&quot; class=&quot;github-corner&quot; aria-label=&quot;View source on Github&quot;&gt;&lt;svg width=&quot;80&quot; height=&quot;80&quot; viewBox=&quot;0 0 250 250&quot; style=&quot;fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z&quot;&gt;&lt;/path&gt;&lt;path d=&quot;M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2&quot; fill=&quot;currentColor&quot; style=&quot;transform-origin: 130px 106px;&quot; class=&quot;octo-arm&quot;&gt;&lt;/path&gt;&lt;path d=&quot;M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z&quot; fill=&quot;currentColor&quot; class=&quot;octo-body&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;style&gt;.github-corner:hover .octo-arm&#123;animation:octocat-wave 560ms ease-in-out&#125;@keyframes octocat-wave&#123;0%,100%&#123;transform:rotate(0)&#125;20%,60%&#123;transform:rotate(-25deg)&#125;40%,80%&#123;transform:rotate(10deg)&#125;&#125;@media (max-width:500px)&#123;.github-corner:hover .octo-arm&#123;animation:none&#125;.github-corner .octo-arm&#123;animation:octocat-wave 560ms ease-in-out&#125;&#125;&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>将其粘贴到<code>themes/next/layout/_layout.swig</code>中，放在<code>div class=&quot;headhand&quot;&gt;&lt;/div&gt;</code>下面。</p>
+<h4 id="修改文章底部的那个带-号的标签"><a href="#修改文章底部的那个带-号的标签" class="headerlink" title="修改文章底部的那个带#号的标签"></a>修改文章底部的那个带#号的标签</h4><p>修改模板<code>/themes/next/layout/_macro/post.swig</code>，搜索<code>rel=&quot;tag&quot;&gt;#</code>，将#换成<code>&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;</code></p>
+<h4 id="侧边栏社交小图标设置"><a href="#侧边栏社交小图标设置" class="headerlink" title="侧边栏社交小图标设置"></a>侧边栏社交小图标设置</h4><p>在配置文件搜索<code>social_icons</code>，把值换成喜欢的图标名字<br>，这里列出了<a href="http://fontawesome.io/icons/" target="_blank" rel="noopener">图标库</a></p>
+<h4 id="在网站底部加上访问量"><a href="#在网站底部加上访问量" class="headerlink" title="在网站底部加上访问量"></a>在网站底部加上访问量</h4><p>打开<code>/themes/next/layout/_partials/footer.swig</code>文件添加红框内的代码<br><img src="/2018/08/09/hexo搭建遇到的问题及优化/a.png" alt="logo"><br><img src="/2018/08/09/hexo搭建遇到的问题及优化/a.png" title="This is an example image"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag">
+            <i class="fa fa-tag"></i> Hexo</a>
+          
+            <a href="/tags/next/" rel="tag">
+            <i class="fa fa-tag"></i> next</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/08/Python-interview/" rel="next" title="Python interview">
+                <i class="fa fa-chevron-left"></i> Python interview
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="xiaoliji" />
+          <p class="site-author-name" itemprop="name">xiaoliji</p>
+           
+              <p class="site-description motion-element" itemprop="description">小里脊的个人博客，python成长之路</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/darkTianTian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于问题"><span class="nav-number">2.</span> <span class="nav-text">关于问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#头像不显示"><span class="nav-number">2.1.</span> <span class="nav-text">头像不显示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网页图标favicon-ico不显示"><span class="nav-number">2.2.</span> <span class="nav-text">网页图标favicon.ico不显示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#没有建立资源文件夹"><span class="nav-number">2.3.</span> <span class="nav-text">没有建立资源文件夹</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于优化"><span class="nav-number">3.</span> <span class="nav-text">关于优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在右上角或者左上角实现fork-me-on-github"><span class="nav-number">3.1.</span> <span class="nav-text">在右上角或者左上角实现fork me on github</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改文章底部的那个带-号的标签"><span class="nav-number">3.2.</span> <span class="nav-text">修改文章底部的那个带#号的标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#侧边栏社交小图标设置"><span class="nav-number">3.3.</span> <span class="nav-text">侧边栏社交小图标设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在网站底部加上访问量"><span class="nav-number">3.4.</span> <span class="nav-text">在网站底部加上访问量</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaoliji</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://darktiantian.github.io.git/2018/08/09/hexo搭建遇到的问题及优化/';
+          this.page.identifier = '2018/08/09/hexo搭建遇到的问题及优化/';
+          this.page.title = 'hexo搭建遇到的问题及优化';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
