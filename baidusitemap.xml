@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E9%93%BE%E8%A1%A8%E7%AF%87%EF%BC%89LinkedList/</loc>
-    <lastmod>2018-08-09T13:25:13.625Z</lastmod>
+    <lastmod>2018-08-09T13:33:57.334Z</lastmod>
     <data>
         <display>
         <title>LeetCode算法题整理（链表篇）LinkedList</title>
@@ -15,13 +15,14 @@
          
         <tag>LeetCode</tag>
          
+        <tag>Python</tag>
+         
+        <tag>algorithm</tag>
+         
          
            
              
-              <breadCrumb title="Python" url="http://darktiantian.github.io.git/categories/Python/"/>
-          
-             
-              <breadCrumb title="算法" url="http://darktiantian.github.io.git/categories/Python/%E7%AE%97%E6%B3%95/"/>
+              <breadCrumb title="算法" url="http://darktiantian.github.io.git/categories/%E7%AE%97%E6%B3%95/"/>
           
         </display>
     </data>

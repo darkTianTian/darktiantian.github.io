@@ -5,12 +5,13 @@
     <url>%2FLeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E9%93%BE%E8%A1%A8%E7%AF%87%EF%BC%89LinkedList%2F</url>
     <content type="text"><![CDATA[链表的定义1234class ListNode: def __init__(self, x): self.val = x self.next = None 两个链表相加123Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)Output: 7 -&gt; 0 -&gt; 8Explanation: 342 + 465 = 807. 123456789101112131415def addTwoNumbers(l1, l2): l = head = ListNode(0) carry = 0 while l1 or l2 or carry: v1 = v2 = 0 if l1: v1 = l1.val l1 = l1.next if l2: v2 = l2.val l2 = l2.next carry, val = divmod(sum(v1+v2+carry), 10) l.next = ListNode(val) l = l.next return head.next 合并两个有序链表12Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4 方法1：iteratively 迭代 123456789101112def mergeTwoLists(l1, l2): l = head = ListNode(0) while l1 and l2: if l1.val &lt;= l2.val: l.next = l1 l1 = l1.next else: l.next = l2 l2= l2.next l = l.next l.next = l1 or l2 return head.next 方法2：recursively 递归 12345678910def mergeTwoLists(l1, l2): # 判断是否存在None if not l1 or not l2: return l1 or l2 if l1.val &lt; l2.val: l1.next = mergeTwoLists(l1.next, l2) return l1 else: l2.next = mergeTwoLists(l1, l2.next) return l2]]></content>
       <categories>
-        <category>Python</category>
         <category>算法</category>
       </categories>
       <tags>
         <tag>Linked List</tag>
         <tag>LeetCode</tag>
+        <tag>Python</tag>
+        <tag>algorithm</tag>
       </tags>
   </entry>
   <entry>
