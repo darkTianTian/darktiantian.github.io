@@ -1,17 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[LeetCode算法题整理（链表篇）LinkedList]]></title>
-    <url>%2FLeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E9%93%BE%E8%A1%A8%E7%AF%87%EF%BC%89LinkedList%2F</url>
-    <content type="text"><![CDATA[链表的定义1234class ListNode: def __init__(self, x): self.val = x self.next = None 两个链表相加123Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)Output: 7 -&gt; 0 -&gt; 8Explanation: 342 + 465 = 807. 123456789101112131415def addTwoNumbers(l1, l2): l = head = ListNode(0) carry = 0 while l1 or l2 or carry: v1 = v2 = 0 if l1: v1 = l1.val l1 = l1.next if l2: v2 = l2.val l2 = l2.next carry, val = divmod(sum(v1+v2+carry), 10) l.next = ListNode(val) l = l.next return head.next 合并两个有序链表12Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4 方法1：iteratively 迭代 123456789101112def mergeTwoLists(l1, l2): l = head = ListNode(0) while l1 and l2: if l1.val &lt;= l2.val: l.next = l1 l1 = l1.next else: l.next = l2 l2= l2.next l = l.next l.next = l1 or l2 return head.next 方法2：recursively 递归 12345678910def mergeTwoLists(l1, l2): # 判断是否存在None if not l1 or not l2: return l1 or l2 if l1.val &lt; l2.val: l1.next = mergeTwoLists(l1.next, l2) return l1 else: l2.next = mergeTwoLists(l1, l2.next) return l2 在链表中删除节点12Input: head = [4,5,1,9], node = 5Output: [4,1,9] 开始看到这题的思路是，要是能拿到父节点就好了，然后这道题需要别的思路，其关键在于复制 123def deleteNode(self, node): node.val = node.next.val # 4-&gt;1-&gt;1-&gt;9 node.next = nede.next.next # 4-&gt;1-&gt;9 判断一个链表是否有环经典的一道题，看成两个人在赛跑，如果有环，快的人会和慢的人相遇 12345678def hasCycle(self, head): slow = fast = head: while fast and fast.next: fast = fast.next.next slow = slow.next if fast is slow: return True return False 倒置一个链表12Input: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULLOutput: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL 方法一： iteratively12345678def reverseList(head): prev = None while head: cur = head head = head.next cur.next = prev prev = cur return prev 方法二：使用一行赋值 12345def reverseList(self, head): prev = None while head: head.next, prev, head = prev, head, head.next return prev 这个方法有些不明白的地方，后续会更新一篇文章研究它。]]></content>
+    <title><![CDATA[LeetCode算法题整理（字符串篇）String]]></title>
+    <url>%2FLeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AF%87%EF%BC%89String%2F</url>
+    <content type="text"><![CDATA[14. Longest Common Prefix返回最长公共前缀字符串原题 12Input: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]Output: &quot;fl&quot; 123456def longest_common_prefix(strs): if not strs: return '' from itertools import takewhile max_pre_len = len(list(takewhile(lambda x: len(set(x))==1, zip(*strs)))) return strs[0][:max_pre_len] 20. Valid Parentheses判断括号是否成对出现，并且嵌套正确原题 1234Input: &quot;()[]&#123;&#125;&quot;Output: trueInput: &quot;&#123;[]&#125;&quot;Output: true 12345678910111213def is_valid(s): pairs = &#123;')': '(', '&#125;': '&#123;', ']': '['&#125; stack = [] for paren in s: if paren in pairs.values(): stack.append(paren) elif paren in pairs.keys(): if stack == [] or stack.pop() != pairs[paren]: return False else: return False return stack == [] 28. Implement strStr()实现index原题12Input: haystack = &quot;hello&quot;, needle = &quot;ll&quot;Output: 2 12345678def str_index(haystack, needle): h = len(haystack) n = len(needle) for i in range(h-n+1): if haystack[i:i+n] == needle: return i else: return -1 38. Count and Say原题123451. 12. 113. 214. 12115. 111221 12345678910def count_and_say(n): from itertools import groupby result = '1' for _ in range(n-1): v = '' for digit, group in groupby(result): count = len(list(group)) v += '&#123;:d&#125;&#123;:s&#125;'.format(count, digit) result = v return result]]></content>
       <categories>
         <category>算法</category>
       </categories>
       <tags>
-        <tag>Linked List</tag>
+        <tag>String</tag>
         <tag>LeetCode</tag>
         <tag>Python</tag>
         <tag>algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode算法题整理（数学篇）Math]]></title>
+    <url>%2FLeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E6%95%B0%E5%AD%A6%E7%AF%87%EF%BC%89Math%2F</url>
+    <content type="text"><![CDATA[7. Reverse Integer倒置一个整数， 此答案忽略了原题中的范围判断12Input: -123Output: -321 方法一：str 12345def reverse_int(x): if x &gt;= 0: return int(str(x)[::-1]) else: return -int(str(x)[:0:-1]) 方法二：math 1234567891011def reverse_int(x): if x &gt;= 0: fill_symbol = 1 else: fill_symbol = -1 result = 0 tail = abs(x) while tail: result = result*10 + tail%10 tail //= 10 return result * fill_symbol 9. Palindrome Number判断一个数是否是回文数，这里把负数认为是不符合条件的方法一：str 12def is_palindrome(x): return str(x) == str(x)[::-1] 方法二：math 123456def is_palindrome(x): l, r = x, 0 while l &gt; 0: r = r*10 + l%10 l //= 10 return r == x 13. Roman to Integer罗马数字转换整型 详细题目12345678910def roman_to_int(s): roman = &#123;'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000&#125; total = 0 for i in range(len(s)): if i == len(s)-1 or roman[s[i]] &gt;= roman[s[i+1]] total += roman[s[i]] else: total -= roman[s[i]] return total 69. Sqrt(x)实现开方，返回整数部分原题1234Input: 8Output: 2Explanation: The square root of 8 is 2.82842..., and since the decimal part is truncated, 2 is returned. 牛顿迭代法 12345def my_sqrt(x): r = x while r**2 &gt; x: r = (r+x/r) // 2 return r]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+        <tag>algorithm</tag>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode算法题整理（数组篇）Array]]></title>
+    <url>%2FLeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E6%95%B0%E7%BB%84%E7%AF%87%EF%BC%89Array%2F</url>
+    <content type="text"><![CDATA[1. Two Sum给定一个数组，找出数组两个元素相加为目标值，假定只有唯一解。123Given nums = [2, 7, 11, 15], target = 9,Because nums[0] + nums[1] = 2 + 7 = 9,return [0, 1]. 1234567def two_sum(nums, target): buff_dict = &#123;&#125; for i, num in enumerate(nums): if num not in buff_dict: buff_dict[target-num] = i else: return [buff_dict[num], i] 26. Remove Duplicates from Sorted Array删除排序数组中重复的元素, 使用build-in在原数组上操作，返回一个长度，标识前n个元素为目标数组12345Given nums = [0,0,1,1,1,2,2,3,3,4],Your function should return length = 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4 respectively.It doesn&apos;t matter what values are set beyond the returned length. 1234567def remove_duplicates(nums): index = 1 for i in range(len(nums)-1): if nums[i] != nums[i+1] nums[index] = nums[i+1] index += 1 return index 35. Search Insert Position给定一个target，插入到一个有序数组中，假定数组中无重复元素原题12Input: [1,3,5,6], 5Output: 2 1234567891011def binary_insert(nums, target): l, r = 0, len(nums)-1 while l &lt;= r: mid = (l+r) // 2 if nums[mid] &gt; target: r = mid - 1 elif nums[mid] &lt; target: l = mid + 1 else: return mid return l 66. Plus One给数组加一，元素为非负整数，不以0开头原题123Input: [4,3,2,1]Output: [4,3,2,2]Explanation: The array represents the integer 4321. 方法一：转成字符串再转成数字 1234def plus_one(digits): str_digits = ''.join(map(str, digits)) plused = int(str_digits) + 1 return [int(x) for x in str(plused)] 方法二：Math 进位 123456789101112def plus_one(digits): d = digits[:] plused = [] carry = 1 while d or carry: if d: v = d.pop() else: v = 0 carry, val = divmod(carry+v, 10) plused.append(val) return plused[::-1]]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+        <tag>algorithm</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode算法题整理（链表篇）LinkedList]]></title>
+    <url>%2FLeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E9%93%BE%E8%A1%A8%E7%AF%87%EF%BC%89LinkedList%2F</url>
+    <content type="text"><![CDATA[链表的定义1234class ListNode: def __init__(self, x): self.val = x self.next = None 2. Add Two Numbers两个链表相加123Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)Output: 7 -&gt; 0 -&gt; 8Explanation: 342 + 465 = 807. 123456789101112131415def addTwoNumbers(l1, l2): l = head = ListNode(0) carry = 0 while l1 or l2 or carry: v1 = v2 = 0 if l1: v1 = l1.val l1 = l1.next if l2: v2 = l2.val l2 = l2.next carry, val = divmod(sum(v1+v2+carry), 10) l.next = ListNode(val) l = l.next return head.next 21. Merge Two Sorted Lists合并两个有序链表原题12Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4 方法1：iteratively 迭代 123456789101112def mergeTwoLists(l1, l2): l = head = ListNode(0) while l1 and l2: if l1.val &lt;= l2.val: l.next = l1 l1 = l1.next else: l.next = l2 l2= l2.next l = l.next l.next = l1 or l2 return head.next 方法2：recursively 递归 12345678910def mergeTwoLists(l1, l2): # 判断是否存在None if not l1 or not l2: return l1 or l2 if l1.val &lt; l2.val: l1.next = mergeTwoLists(l1.next, l2) return l1 else: l2.next = mergeTwoLists(l1, l2.next) return l2 在链表中删除节点12Input: head = [4,5,1,9], node = 5Output: [4,1,9] 开始看到这题的思路是，要是能拿到父节点就好了，然后这道题需要别的思路，其关键在于复制 123def deleteNode(self, node): node.val = node.next.val # 4-&gt;1-&gt;1-&gt;9 node.next = nede.next.next # 4-&gt;1-&gt;9 判断一个链表是否有环经典的一道题，看成两个人在赛跑，如果有环，快的人会和慢的人相遇 12345678def hasCycle(self, head): slow = fast = head: while fast and fast.next: fast = fast.next.next slow = slow.next if fast is slow: return True return False 倒置一个链表12Input: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULLOutput: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL 方法一： iteratively12345678def reverseList(head): prev = None while head: cur = head head = head.next cur.next = prev prev = cur return prev 方法二：使用一行赋值 12345def reverseList(self, head): prev = None while head: head.next, prev, head = prev, head, head.next return prev 这个方法有些不明白的地方，后续会更新一篇文章研究它。]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+        <tag>algorithm</tag>
+        <tag>Linked List</tag>
       </tags>
   </entry>
   <entry>
