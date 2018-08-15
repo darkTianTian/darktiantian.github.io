@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="String,LeetCode,Python,algorithm," />
+  <meta name="keywords" content="LeetCode,Python,algorithm,String," />
 
 
 
@@ -102,14 +102,14 @@
 
 
 <meta name="description" content="14. Longest Common Prefix返回最长公共前缀字符串原题 12Input: [&amp;quot;flower&amp;quot;,&amp;quot;flow&amp;quot;,&amp;quot;flight&amp;quot;]Output: &amp;quot;fl&amp;quot;">
-<meta name="keywords" content="String,LeetCode,Python,algorithm">
+<meta name="keywords" content="LeetCode,Python,algorithm,String">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode算法题整理（字符串篇）String">
 <meta property="og:url" content="http://darktiantian.github.io.git/LeetCode算法题整理（字符串篇）String/index.html">
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="14. Longest Common Prefix返回最长公共前缀字符串原题 12Input: [&amp;quot;flower&amp;quot;,&amp;quot;flow&amp;quot;,&amp;quot;flight&amp;quot;]Output: &amp;quot;fl&amp;quot;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-14T04:26:30.995Z">
+<meta property="og:updated_time" content="2018-08-15T07:19:44.071Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（字符串篇）String">
 <meta name="twitter:description" content="14. Longest Common Prefix返回最长公共前缀字符串原题 12Input: [&amp;quot;flower&amp;quot;,&amp;quot;flow&amp;quot;,&amp;quot;flight&amp;quot;]Output: &amp;quot;fl&amp;quot;">
@@ -448,6 +448,16 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">str_index</span><span class="params">(haystack, needle)</span>:</span></span><br><span class="line">    h = len(haystack)</span><br><span class="line">    n = len(needle)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(h-n+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> haystack[i:i+n] == needle:</span><br><span class="line">            <span class="keyword">return</span> i</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
 <h3 id="38-Count-and-Say"><a href="#38-Count-and-Say" class="headerlink" title="38. Count and Say"></a>38. Count and Say</h3><h4 id="原题"><a href="#原题" class="headerlink" title="原题"></a><a href="https://leetcode.com/problems/count-and-say/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.     1</span><br><span class="line">2.     11</span><br><span class="line">3.     21</span><br><span class="line">4.     1211</span><br><span class="line">5.     111221</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_and_say</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">from</span> itertools <span class="keyword">import</span> groupby</span><br><span class="line">    result = <span class="string">'1'</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(n<span class="number">-1</span>):</span><br><span class="line">        v = <span class="string">''</span></span><br><span class="line">        <span class="keyword">for</span> digit, group <span class="keyword">in</span> groupby(result):</span><br><span class="line">            count = len(list(group))</span><br><span class="line">            v += <span class="string">'&#123;:d&#125;&#123;:s&#125;'</span>.format(count, digit)</span><br><span class="line">        result = v</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+<h3 id="125-Valid-Palindrome"><a href="#125-Valid-Palindrome" class="headerlink" title="125. Valid Palindrome"></a>125. Valid Palindrome</h3><h4 id="验证回文字符串，只判断字母数字，忽略大小写原题"><a href="#验证回文字符串，只判断字母数字，忽略大小写原题" class="headerlink" title="验证回文字符串，只判断字母数字，忽略大小写原题"></a>验证回文字符串，只判断字母数字，忽略大小写<a href="https://leetcode.com/problems/valid-palindrome/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;A man, a plan, a canal: Panama&quot;</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
+<p>方法一：切片</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_palindrome</span><span class="params">(s)</span>:</span></span><br><span class="line">    s_filtered = <span class="string">''</span>.join(filter(str.isalnum, s.lower()))</span><br><span class="line">    <span class="keyword">return</span> s_filtered == s_filtered[::<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<p>方法二：双指针</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_palindrome</span><span class="params">(s)</span>:</span></span><br><span class="line">    l, r = <span class="number">0</span>, len(s)<span class="number">-1</span></span><br><span class="line">    <span class="keyword">while</span> l &lt; r:</span><br><span class="line">        <span class="keyword">while</span> l &lt; r <span class="keyword">and</span> <span class="keyword">not</span> s[l].isalnum():</span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> l &lt; r <span class="keyword">and</span> <span class="keyword">not</span> s[r].isalnum():</span><br><span class="line">            r -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> s[l].lower() != s[r].lower():</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        l += <span class="number">1</span></span><br><span class="line">        r -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<h3 id="151-Reverse-Words-in-a-String"><a href="#151-Reverse-Words-in-a-String" class="headerlink" title="151. Reverse Words in a String"></a>151. Reverse Words in a String</h3><h4 id="倒置一句话中的单词原题"><a href="#倒置一句话中的单词原题" class="headerlink" title="倒置一句话中的单词原题"></a>倒置一句话中的单词<a href="https://leetcode.com/problems/reverse-words-in-a-string/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;the sky is blue&quot;,</span><br><span class="line">Output: &quot;blue is sky the&quot;.</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverse_words</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">' '</span>.join(s.split()[::<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="344-Reverse-String"><a href="#344-Reverse-String" class="headerlink" title="344. Reverse String"></a>344. Reverse String</h3><h4 id="倒置字符串原题"><a href="#倒置字符串原题" class="headerlink" title="倒置字符串原题"></a>倒置字符串<a href="https://leetcode.com/problems/reverse-string/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;A man, a plan, a canal: Panama&quot;</span><br><span class="line">Output: &quot;amanaP :lanac a ,nalp a ,nam A&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverse_str</span><span class="params">(s)</span>:</span></span><br><span class="line">    n = len(s)</span><br><span class="line">    res = list(s)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n//<span class="number">2</span>):</span><br><span class="line">        res[i], res[n-i<span class="number">-1</span>] = res[n-i<span class="number">-1</span>], res[i]</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(res)</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -470,9 +480,6 @@
       
         <div class="post-tags">
           
-            <a href="/tags/String/" rel="tag">
-            <i class="fa fa-tag"></i> String</a>
-          
             <a href="/tags/LeetCode/" rel="tag">
             <i class="fa fa-tag"></i> LeetCode</a>
           
@@ -481,6 +488,9 @@
           
             <a href="/tags/algorithm/" rel="tag">
             <i class="fa fa-tag"></i> algorithm</a>
+          
+            <a href="/tags/String/" rel="tag">
+            <i class="fa fa-tag"></i> String</a>
           
         </div>
       
@@ -502,6 +512,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/LeetCode算法题整理（动态规划篇）Danymic-Programming/" rel="prev" title="LeetCode算法题整理（动态规划篇）Danymic Programming">
+                LeetCode算法题整理（动态规划篇）Danymic Programming <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -585,7 +599,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -607,7 +621,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -666,7 +680,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#14-Longest-Common-Prefix"><span class="nav-number">1.</span> <span class="nav-text">14. Longest Common Prefix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-Valid-Parentheses"><span class="nav-number">2.</span> <span class="nav-text">20. Valid Parentheses</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28-Implement-strStr"><span class="nav-number">3.</span> <span class="nav-text">28. Implement strStr()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现index原题"><span class="nav-number">3.1.</span> <span class="nav-text">实现index原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#38-Count-and-Say"><span class="nav-number">4.</span> <span class="nav-text">38. Count and Say</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原题"><span class="nav-number">4.1.</span> <span class="nav-text">原题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#14-Longest-Common-Prefix"><span class="nav-number">1.</span> <span class="nav-text">14. Longest Common Prefix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-Valid-Parentheses"><span class="nav-number">2.</span> <span class="nav-text">20. Valid Parentheses</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28-Implement-strStr"><span class="nav-number">3.</span> <span class="nav-text">28. Implement strStr()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现index原题"><span class="nav-number">3.1.</span> <span class="nav-text">实现index原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#38-Count-and-Say"><span class="nav-number">4.</span> <span class="nav-text">38. Count and Say</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原题"><span class="nav-number">4.1.</span> <span class="nav-text">原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#125-Valid-Palindrome"><span class="nav-number">5.</span> <span class="nav-text">125. Valid Palindrome</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#验证回文字符串，只判断字母数字，忽略大小写原题"><span class="nav-number">5.1.</span> <span class="nav-text">验证回文字符串，只判断字母数字，忽略大小写原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#151-Reverse-Words-in-a-String"><span class="nav-number">6.</span> <span class="nav-text">151. Reverse Words in a String</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#倒置一句话中的单词原题"><span class="nav-number">6.1.</span> <span class="nav-text">倒置一句话中的单词原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#344-Reverse-String"><span class="nav-number">7.</span> <span class="nav-text">344. Reverse String</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#倒置字符串原题"><span class="nav-number">7.1.</span> <span class="nav-text">倒置字符串原题</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -718,7 +732,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共4.1k字</span>
+  <span class="post-count">博客全站共5.8k字</span>
 </div>
         
 
