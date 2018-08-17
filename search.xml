@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Python排序算法]]></title>
+    <url>%2FPython%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[快速排序 12345678910111213def quick_sorted(nums): if nums &lt; 2: return nums pivot = nums[0] small, medium, large = [], [], [] for num in nums: if num &lt; pivot: small.append(num) elif num &gt; pivot: large.append(num) else: medium.append(num) return quick_sort(small) + medium + quick_sort(large) 冒泡排序123456789101112def bubble_sorted(nums): res = list(nums) n = len(res) for i in range(n-1, 0, -1): flag = True for j in range(0, i): if res[j] &gt; res[j+1]: res[j], res[j+1] = res[j+1], res[j] flag = False if flag: return res return res 选择排序12345678910def select_sorted(nums): res = list(nums) n = len(res) for i in range(n-1): min_i = i for j in range(i+1, n): if res[min_i] &gt; res[j]: min_i = j res[min_i], res[i] = res[i], res[min_i] return res 插入排序 1234567891011121314def inset_sorted(nums): res = list(nums) n = len(res) for i in range(1, n): val = res[i] # 待插入值 index = i # 待插入下标 for j in range(i-1, -1, -1): if res[j] &gt; val: res[j+1] = res[j] index = j else: break res[index] = val return res]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>algorithm</tag>
+        <tag>sort</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode算法题整理（设计篇）Design]]></title>
     <url>%2FLeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E8%AE%BE%E8%AE%A1%E7%AF%87%EF%BC%89Design%2F</url>
     <content type="text"><![CDATA[155. Min Stack设计一个栈，要求在常数时间复杂度取出最小值。原题 12345678MinStack minStack = new MinStack();minStack.push(-2);minStack.push(0);minStack.push(-3);minStack.getMin(); --&gt; Returns -3.minStack.pop();minStack.top(); --&gt; Returns 0.minStack.getMin(); --&gt; Returns -2. 12345678910111213141516171819202122232425262728293031323334353637383940414243444546class MinStack: def __init__(self): """ initialize your data structure here. """ self._stack = [] def push(self, x): """ :type x: int :rtype: void """ prev = self.getMin() if prev is None or x &lt; prev: prev = x self._stack.append((x, prev)) def pop(self): """ :rtype: void """ self._stack.pop() def top(self): """ :rtype: int """ if len(self._stack) == 0: return None return self._stack[-1][0] def getMin(self): """ :rtype: int """ if len(self._stack) == 0: return None return self._stack[-1][1] # Your MinStack object will be instantiated and called as such:# obj = MinStack()# obj.push(x)# obj.pop()# param_3 = obj.top()# param_4 = obj.getMin()]]></content>
