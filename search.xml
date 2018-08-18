@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Python排序算法]]></title>
     <url>%2FPython%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[快速排序 12345678910111213def quick_sorted(nums): if nums &lt; 2: return nums pivot = nums[0] small, medium, large = [], [], [] for num in nums: if num &lt; pivot: small.append(num) elif num &gt; pivot: large.append(num) else: medium.append(num) return quick_sort(small) + medium + quick_sort(large) 冒泡排序123456789101112def bubble_sorted(nums): res = list(nums) n = len(res) for i in range(n-1, 0, -1): flag = True for j in range(0, i): if res[j] &gt; res[j+1]: res[j], res[j+1] = res[j+1], res[j] flag = False if flag: return res return res 选择排序12345678910def select_sorted(nums): res = list(nums) n = len(res) for i in range(n-1): min_i = i for j in range(i+1, n): if res[min_i] &gt; res[j]: min_i = j res[min_i], res[i] = res[i], res[min_i] return res 插入排序 1234567891011121314def inset_sorted(nums): res = list(nums) n = len(res) for i in range(1, n): val = res[i] # 待插入值 index = i # 待插入下标 for j in range(i-1, -1, -1): if res[j] &gt; val: res[j+1] = res[j] index = j else: break res[index] = val return res]]></content>
+    <content type="text"><![CDATA[快速排序 12345678910111213def quick_sorted(nums): if nums &lt; 2: return nums pivot = nums[0] small, medium, large = [], [], [] for num in nums: if num &lt; pivot: small.append(num) elif num &gt; pivot: large.append(num) else: medium.append(num) return quick_sort(small) + medium + quick_sort(large) 冒泡排序123456789101112def bubble_sorted(nums): res = list(nums) n = len(res) for i in range(n-1, 0, -1): flag = True for j in range(0, i): if res[j] &gt; res[j+1]: res[j], res[j+1] = res[j+1], res[j] flag = False if flag: return res return res 选择排序12345678910def select_sorted(nums): res = list(nums) n = len(res) for i in range(n-1): min_i = i for j in range(i+1, n): if res[min_i] &gt; res[j]: min_i = j res[min_i], res[i] = res[i], res[min_i] return res 插入排序 1234567891011121314def inset_sorted(nums): res = list(nums) n = len(res) for i in range(1, n): val = res[i] # 待插入值 index = i # 待插入下标 for j in range(i-1, -1, -1): if res[j] &gt; val: res[j+1] = res[j] index = j else: break res[index] = val return res 希尔排序一直觉得网上的希尔排序方式不够pythonic，这里写了一个调用插入排序的方法。 123456789def shell_sorted(nums): res = list(nums) n = len(res) step = round(n/2) while step &gt; 0: for i in range(step): res[i:n:step] = insert_sorted(res[i:n:step]) step = round(step/2) return res]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -35,10 +35,10 @@
         <category>算法</category>
       </categories>
       <tags>
+        <tag>Tree</tag>
         <tag>LeetCode</tag>
         <tag>Python</tag>
         <tag>algorithm</tag>
-        <tag>Tree</tag>
       </tags>
   </entry>
   <entry>
@@ -49,10 +49,10 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>LeetCode</tag>
         <tag>Python</tag>
         <tag>algorithm</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
