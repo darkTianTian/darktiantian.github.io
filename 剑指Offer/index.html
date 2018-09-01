@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="2. 实现Singleton模式使用__new__控制实例创建过程12345678class Singleton:    def __new__(cls, *args, **kw):        if not hasattr(cls, &apos;_instance&apos;):            cls._instance = super(Singleton, cls).__new__(cls, **arg">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-29T17:55:31.343Z">
+<meta property="og:updated_time" content="2018-08-30T07:21:11.294Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="剑指Offer">
 <meta name="twitter:description" content="2. 实现Singleton模式使用__new__控制实例创建过程12345678class Singleton:    def __new__(cls, *args, **kw):        if not hasattr(cls, &apos;_instance&apos;):            cls._instance = super(Singleton, cls).__new__(cls, **arg">
@@ -444,9 +444,11 @@
 <h3 id="4-二维数组中的查找"><a href="#4-二维数组中的查找" class="headerlink" title="4. 二维数组中的查找"></a>4. 二维数组中的查找</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find</span><span class="params">(target, array)</span>:</span></span><br><span class="line">    row = <span class="number">0</span></span><br><span class="line">    col = len(array[<span class="number">0</span>]) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> col &gt;= <span class="number">0</span> <span class="keyword">and</span> row &lt;= len(array)<span class="number">-1</span>:</span><br><span class="line">        <span class="keyword">if</span> array[row][col] &gt; target:</span><br><span class="line">            col -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> array[row][col] &lt; target:</span><br><span class="line">            row += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
 <h3 id="5-替换空格"><a href="#5-替换空格" class="headerlink" title="5.替换空格"></a>5.替换空格</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">replaceSpace</span><span class="params">(self, s)</span>:</span></span><br><span class="line">    chars = list(s)</span><br><span class="line">    <span class="keyword">for</span> i, char <span class="keyword">in</span> enumerate(chars):</span><br><span class="line">        <span class="keyword">if</span> char == <span class="string">' '</span>:</span><br><span class="line">            chars[i] = <span class="string">'%20'</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(chars)</span><br></pre></td></tr></table></figure>
 <h3 id="6-从尾到头打印链表"><a href="#6-从尾到头打印链表" class="headerlink" title="6.从尾到头打印链表"></a>6.从尾到头打印链表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printListFromTailToHead</span><span class="params">(self, listNode)</span>:</span></span><br><span class="line">    stack = []</span><br><span class="line">    <span class="keyword">while</span> listNode:</span><br><span class="line">        stack.append(listNode.val)</span><br><span class="line">        listNode = listNode.next</span><br><span class="line">    <span class="keyword">return</span> stack[::<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
-<h3 id="7-重建二叉树"><a href="#7-重建二叉树" class="headerlink" title="7.重建二叉树"></a>7.重建二叉树</h3><p>说明：根据前序遍历和中序遍历重建二叉树，假设遍历结果中不包含重复的数字。</p>
-<a href="/LeetCode算法题整理（二叉树篇）Tree/" title="105. Construct Binary Tree from Preorder and Inorder Traversal">105. Construct Binary Tree from Preorder and Inorder Traversal</a>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">buildTree</span><span class="params">(preorder, inorder)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> preorder == []:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">    root_val = preorder[<span class="number">0</span>]</span><br><span class="line">    root = TreeNode(root_val)</span><br><span class="line">    cut = inorder.index(root_val)</span><br><span class="line">    root.left = buildTree(preorder[<span class="number">1</span>:cut+<span class="number">1</span>], inorder[:cut])</span><br><span class="line">    root.right = buildTree(preorder[cut+<span class="number">1</span>:], inorder[cut+<span class="number">1</span>:])</span><br><span class="line">    <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+<h3 id="7-重建二叉树"><a href="#7-重建二叉树" class="headerlink" title="7.重建二叉树"></a>7.重建二叉树</h3><p>说明：根据前序遍历和中序遍历重建二叉树，假设遍历结果中不包含重复的数字。<br><a href="/LeetCode算法题整理（二叉树篇）Tree/" title="105. Construct Binary Tree from Preorder and Inorder Traversal">105. Construct Binary Tree from Preorder and Inorder Traversal</a></p>
+<h3 id="9-用两个栈实现队列"><a href="#9-用两个栈实现队列" class="headerlink" title="9.用两个栈实现队列"></a>9.用两个栈实现队列</h3><a href="/LeetCode算法题整理（设计篇）Design/" title="232. Implement Queue using Stacks">232. Implement Queue using Stacks</a>
+<h3 id="9-1用两个队列实现栈"><a href="#9-1用两个队列实现栈" class="headerlink" title="9.1用两个队列实现栈"></a>9.1用两个队列实现栈</h3><a href="/LeetCode算法题整理（设计篇）Design/" title="225. Implement Stack using Queues">225. Implement Stack using Queues</a>
+<h3 id="10-斐波那契数列"><a href="#10-斐波那契数列" class="headerlink" title="10.斐波那契数列"></a>10.斐波那契数列</h3><p>说明：爬楼梯问题的抽象<br><a href="/LeetCode算法题整理（动态规划篇）Danymic-Programming/" title="70. Climbing Stairs">70. Climbing Stairs</a></p>
+<h3 id="11-旋转数组的最小数字"><a href="#11-旋转数组的最小数字" class="headerlink" title="11.旋转数组的最小数字"></a>11.旋转数组的最小数字</h3><p>说明：通过一个递增数组旋转后的数组，找出最小元素。<br><a href="/LeetCode算法题整理（二分法篇）Binary-Search/" title="153. Find Minimum in Rotated Sorted Array">153. Find Minimum in Rotated Sorted Array</a></p>
 
       
     </div>
@@ -499,6 +501,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/LeetCode算法题整理（二分法篇）Binary-Search/" rel="prev" title="LeetCode算法题整理（二分法篇）Binary Search">
+                LeetCode算法题整理（二分法篇）Binary Search <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -582,7 +588,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -604,7 +610,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -663,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-实现Singleton模式"><span class="nav-number">1.</span> <span class="nav-text">2. 实现Singleton模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-new-控制实例创建过程"><span class="nav-number">1.1.</span> <span class="nav-text">使用__new__控制实例创建过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用decorator"><span class="nav-number">1.2.</span> <span class="nav-text">使用decorator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用元类"><span class="nav-number">1.3.</span> <span class="nav-text">使用元类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-二维数组中的查找"><span class="nav-number">2.</span> <span class="nav-text">4. 二维数组中的查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-替换空格"><span class="nav-number">3.</span> <span class="nav-text">5.替换空格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-从尾到头打印链表"><span class="nav-number">4.</span> <span class="nav-text">6.从尾到头打印链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-重建二叉树"><span class="nav-number">5.</span> <span class="nav-text">7.重建二叉树</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-实现Singleton模式"><span class="nav-number">1.</span> <span class="nav-text">2. 实现Singleton模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-new-控制实例创建过程"><span class="nav-number">1.1.</span> <span class="nav-text">使用__new__控制实例创建过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用decorator"><span class="nav-number">1.2.</span> <span class="nav-text">使用decorator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用元类"><span class="nav-number">1.3.</span> <span class="nav-text">使用元类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-二维数组中的查找"><span class="nav-number">2.</span> <span class="nav-text">4. 二维数组中的查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-替换空格"><span class="nav-number">3.</span> <span class="nav-text">5.替换空格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-从尾到头打印链表"><span class="nav-number">4.</span> <span class="nav-text">6.从尾到头打印链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-重建二叉树"><span class="nav-number">5.</span> <span class="nav-text">7.重建二叉树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-用两个栈实现队列"><span class="nav-number">6.</span> <span class="nav-text">9.用两个栈实现队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1用两个队列实现栈"><span class="nav-number">7.</span> <span class="nav-text">9.1用两个队列实现栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-斐波那契数列"><span class="nav-number">8.</span> <span class="nav-text">10.斐波那契数列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-旋转数组的最小数字"><span class="nav-number">9.</span> <span class="nav-text">11.旋转数组的最小数字</span></a></li></ol></div>
             
 
           </div>
@@ -715,7 +721,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共7.3k字</span>
+  <span class="post-count">博客全站共8.2k字</span>
 </div>
         
 

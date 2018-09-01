@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="70. Climbing Stairs爬楼梯，一次可以爬一阶或两阶楼梯，爬上n阶楼梯有多少种方法？原题">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-16T10:31:40.412Z">
+<meta property="og:updated_time" content="2018-08-29T18:33:09.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（动态规划篇）Danymic Programming">
 <meta name="twitter:description" content="70. Climbing Stairs爬楼梯，一次可以爬一阶或两阶楼梯，爬上n阶楼梯有多少种方法？原题">
@@ -438,7 +438,8 @@
 
       
         <h3 id="70-Climbing-Stairs"><a href="#70-Climbing-Stairs" class="headerlink" title="70. Climbing Stairs"></a>70. Climbing Stairs</h3><h4 id="爬楼梯，一次可以爬一阶或两阶楼梯，爬上n阶楼梯有多少种方法？原题"><a href="#爬楼梯，一次可以爬一阶或两阶楼梯，爬上n阶楼梯有多少种方法？原题" class="headerlink" title="爬楼梯，一次可以爬一阶或两阶楼梯，爬上n阶楼梯有多少种方法？原题"></a>爬楼梯，一次可以爬一阶或两阶楼梯，爬上n阶楼梯有多少种方法？<a href="https://leetcode.com/problems/climbing-stairs/description/" target="_blank" rel="noopener">原题</a></h4><a id="more"></a>
-<p>斐波那契问题<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci</span><span class="params">(n)</span>:</span></span><br><span class="line">    a = b = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(n<span class="number">-1</span>):</span><br><span class="line">        a, b = b, a+b</span><br><span class="line">    <span class="keyword">return</span> b</span><br></pre></td></tr></table></figure></p>
+<p>斐波那契问题</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci</span><span class="params">(n)</span>:</span></span><br><span class="line">    a = b = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(n<span class="number">-1</span>):</span><br><span class="line">        a, b = b, a+b</span><br><span class="line">    <span class="keyword">return</span> b</span><br></pre></td></tr></table></figure>
 <h3 id="121-Best-Time-to-Buy-and-Sell-Stock"><a href="#121-Best-Time-to-Buy-and-Sell-Stock" class="headerlink" title="121. Best Time to Buy and Sell Stock"></a>121. Best Time to Buy and Sell Stock</h3><h4 id="买入卖出最大收益。原题"><a href="#买入卖出最大收益。原题" class="headerlink" title="买入卖出最大收益。原题"></a>买入卖出最大收益。<a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [7,1,5,3,6,4]</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.</span><br><span class="line">             Not 7-1 = 6, as selling price needs to be larger than buying price.</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_profit</span><span class="params">(prices)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> prices:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    max_profit = <span class="number">0</span></span><br><span class="line">    n = len(prices)</span><br><span class="line">    min_buy = prices[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">        cur_profit = prices[i] - min_buy</span><br><span class="line">        max_profit = max(cur_profit, max_profit)</span><br><span class="line">        <span class="keyword">if</span> prices[i] &lt; min_buy:</span><br><span class="line">            min_buy = prices[i]</span><br><span class="line">    <span class="keyword">return</span> max_profit</span><br></pre></td></tr></table></figure>
 <h3 id="122-Best-Time-to-Buy-and-Sell-Stock-II"><a href="#122-Best-Time-to-Buy-and-Sell-Stock-II" class="headerlink" title="122. Best Time to Buy and Sell Stock II"></a>122. Best Time to Buy and Sell Stock II</h3><h4 id="买入卖出，允许多次交易。原题"><a href="#买入卖出，允许多次交易。原题" class="headerlink" title="买入卖出，允许多次交易。原题"></a>买入卖出，允许多次交易。<a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [7,1,5,3,6,4]</span><br><span class="line">Output: 7</span><br><span class="line">Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.</span><br><span class="line">             Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.</span><br></pre></td></tr></table></figure>
@@ -586,7 +587,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -608,7 +609,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -719,7 +720,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共7.3k字</span>
+  <span class="post-count">博客全站共8.2k字</span>
 </div>
         
 

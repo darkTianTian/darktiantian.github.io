@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Tree,LeetCode,Python,algorithm," />
+  <meta name="keywords" content="LeetCode,Python,algorithm,Tree," />
 
 
 
@@ -102,14 +102,14 @@
 
 
 <meta name="description" content="树的定义12345class TreeNode:    def __init__(self, x):        self.val = x        self.left = None        self.right = None">
-<meta name="keywords" content="Tree,LeetCode,Python,algorithm">
+<meta name="keywords" content="LeetCode,Python,algorithm,Tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode算法题整理（二叉树篇）Tree">
 <meta property="og:url" content="http://darktiantian.github.io.git/LeetCode算法题整理（二叉树篇）Tree/index.html">
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="树的定义12345class TreeNode:    def __init__(self, x):        self.val = x        self.left = None        self.right = None">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-29T18:21:58.694Z">
+<meta property="og:updated_time" content="2018-08-29T18:26:54.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（二叉树篇）Tree">
 <meta name="twitter:description" content="树的定义12345class TreeNode:    def __init__(self, x):        self.val = x        self.left = None        self.right = None">
@@ -458,7 +458,8 @@
 <h3 id="104-Maximum-Depth-of-Binary-Tree"><a href="#104-Maximum-Depth-of-Binary-Tree" class="headerlink" title="104. Maximum Depth of Binary Tree"></a>104. Maximum Depth of Binary Tree</h3><h4 id="二叉树最大深度。原题"><a href="#二叉树最大深度。原题" class="headerlink" title="二叉树最大深度。原题"></a>二叉树最大深度。<a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line">  9  20</span><br><span class="line">    /  \</span><br><span class="line">   15   7</span><br><span class="line">return 3</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_depth</span><span class="params">(root)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> max(max_depth(root.left), max_depth(root.right)) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <h3 id="105-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal"><a href="#105-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal" class="headerlink" title="105. Construct Binary Tree from Preorder and Inorder Traversal"></a>105. Construct Binary Tree from Preorder and Inorder Traversal</h3><h4 id="根据前序遍历和中序遍历重建二叉树。原题"><a href="#根据前序遍历和中序遍历重建二叉树。原题" class="headerlink" title="根据前序遍历和中序遍历重建二叉树。原题"></a>根据前序遍历和中序遍历重建二叉树。<a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">preorder = [3,9,20,15,7]</span><br><span class="line">inorder = [9,3,15,20,7]</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">buildTree</span><span class="params">(preorder, inorder)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> preorder == []:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">    root_val = preorder[<span class="number">0</span>]</span><br><span class="line">    root = TreeNode(root_val)</span><br><span class="line">    cut = inorder.index(root_val)</span><br><span class="line">    root.left = buildTree(preorder[<span class="number">1</span>:cut+<span class="number">1</span>], inorder[:cut])</span><br><span class="line">    root.right = buildTree(preorder[cut+<span class="number">1</span>:], inorder[cut+<span class="number">1</span>:])</span><br><span class="line">    <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -481,9 +482,6 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Tree/" rel="tag">
-            <i class="fa fa-tag"></i> Tree</a>
-          
             <a href="/tags/LeetCode/" rel="tag">
             <i class="fa fa-tag"></i> LeetCode</a>
           
@@ -492,6 +490,9 @@
           
             <a href="/tags/algorithm/" rel="tag">
             <i class="fa fa-tag"></i> algorithm</a>
+          
+            <a href="/tags/Tree/" rel="tag">
+            <i class="fa fa-tag"></i> Tree</a>
           
         </div>
       
@@ -600,7 +601,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -622,7 +623,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -733,7 +734,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共7.3k字</span>
+  <span class="post-count">博客全站共8.2k字</span>
 </div>
         
 
