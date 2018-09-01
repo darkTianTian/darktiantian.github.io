@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="链表的定义1234class ListNode:    def __init__(self, x):        self.val = x        self.next = None">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-18T08:55:23.319Z">
+<meta property="og:updated_time" content="2018-08-31T06:32:50.662Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（链表篇）LinkedList">
 <meta name="twitter:description" content="链表的定义1234class ListNode:    def __init__(self, x):        self.val = x        self.next = None">
@@ -458,7 +458,29 @@
 <p>这个方法有些不明白的地方，后续会更新一篇文章研究它。</p>
 <h3 id="160-Intersection-of-Two-Linked-Lists"><a href="#160-Intersection-of-Two-Linked-Lists" class="headerlink" title="160. Intersection of Two Linked Lists"></a>160. Intersection of Two Linked Lists</h3><h4 id="两个链表求相交。原题"><a href="#两个链表求相交。原题" class="headerlink" title="两个链表求相交。原题"></a>两个链表求相交。<a href="https://leetcode.com/problems/intersection-of-two-linked-lists/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getIntersectionNode</span><span class="params">(self, headA, headB)</span>:</span></span><br><span class="line">    p1 = headA</span><br><span class="line">    p2 = headB</span><br><span class="line">    <span class="keyword">while</span> p1 <span class="keyword">is</span> <span class="keyword">not</span> p2:</span><br><span class="line">        p1 = p1.next <span class="keyword">if</span> p1 <span class="keyword">else</span> headB</span><br><span class="line">        p2 = p2.next <span class="keyword">if</span> p2 <span class="keyword">else</span> headA</span><br><span class="line">    <span class="keyword">return</span> p1</span><br></pre></td></tr></table></figure>
 <h3 id="83-Remove-Duplicates-from-Sorted-List"><a href="#83-Remove-Duplicates-from-Sorted-List" class="headerlink" title="83. Remove Duplicates from Sorted List"></a>83. Remove Duplicates from Sorted List</h3><h4 id="删除有序链表中重复的节点。原题"><a href="#删除有序链表中重复的节点。原题" class="headerlink" title="删除有序链表中重复的节点。原题"></a>删除有序链表中重复的节点。<a href="https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete_duplicates</span><span class="params">(head)</span>:</span></span><br><span class="line">    root = head</span><br><span class="line">    <span class="keyword">while</span> head <span class="keyword">and</span> head.next:</span><br><span class="line">        <span class="keyword">if</span> head.val == head.next.val:</span><br><span class="line">            head.next = head.next.next</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            head = head.next</span><br><span class="line">    <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
-
+<h3 id="142-Linked-List-Cycle-II"><a href="#142-Linked-List-Cycle-II" class="headerlink" title="142. Linked List Cycle II"></a>142. Linked List Cycle II</h3><h4 id="求链表中环的入口节点。原题"><a href="#求链表中环的入口节点。原题" class="headerlink" title="求链表中环的入口节点。原题"></a>求链表中环的入口节点。<a href="https://leetcode.com/problems/linked-list-cycle-ii/description/" target="_blank" rel="noopener">原题</a></h4><ul>
+<li>首先判断此链表是否有环。</li>
+<li>然后在相交点和头结点一起走，一定会在入口相遇。</li>
+</ul>
+<blockquote>
+<pre><code>Consider the following linked list, where E is the cylce entry and X, the crossing point of fast and slow.
+H: distance from head to cycle entry E
+D: distance from E to X
+L: cycle length
+                  _____
+                 /     \
+head_____H______E       \
+                \       /
+                 X_____/   
+</code></pre></blockquote>
+<blockquote>
+<pre><code>   If fast and slow both start at head, when fast catches slow, slow has traveled H+D and fast 2(H+D). 
+Assume fast has traveled n loops in the cycle, we have:
+2H + 2D = H + D + L  --&gt;  H + D = nL  --&gt; H = nL - D
+Thus if two pointers start from head and X, respectively, one first reaches E, the other also reaches E. 
+In my solution, since fast starts at head.next, we need to move slow one step forward in the beginning of part 2
+</code></pre></blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detectCycle</span><span class="params">(self, head)</span>:</span>        </span><br><span class="line">        fast = slow = head</span><br><span class="line">        <span class="comment"># 检测是否有环</span></span><br><span class="line">        <span class="keyword">while</span> fast <span class="keyword">and</span> fast.next:</span><br><span class="line">            slow = slow.next</span><br><span class="line">            fast = fast.next.next</span><br><span class="line">            <span class="keyword">if</span> slow <span class="keyword">is</span> fast:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="comment"># 找出入口节点</span></span><br><span class="line">        <span class="keyword">while</span> head <span class="keyword">is</span> <span class="keyword">not</span> slow:</span><br><span class="line">            head = head.next</span><br><span class="line">            slow = slow.next</span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -600,7 +622,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -611,7 +633,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -622,7 +644,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -681,7 +703,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#链表的定义"><span class="nav-number">1.</span> <span class="nav-text">链表的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Add-Two-Numbers"><span class="nav-number">1.1.</span> <span class="nav-text">2. Add Two Numbers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#两个链表相加"><span class="nav-number">1.1.1.</span> <span class="nav-text">两个链表相加</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-Merge-Two-Sorted-Lists"><span class="nav-number">1.2.</span> <span class="nav-text">21. Merge Two Sorted Lists</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#合并两个有序链表。原题"><span class="nav-number">1.2.1.</span> <span class="nav-text">合并两个有序链表。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#237-Delete-Node-in-a-Linked-List"><span class="nav-number">1.3.</span> <span class="nav-text">237. Delete Node in a Linked List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在链表中删除节点。给定的节点不是尾节点。原题"><span class="nav-number">1.3.1.</span> <span class="nav-text">在链表中删除节点。给定的节点不是尾节点。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#141-Linked-List-Cycle"><span class="nav-number">1.4.</span> <span class="nav-text">141. Linked List Cycle</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#判断一个链表是否有环。原题"><span class="nav-number">1.4.1.</span> <span class="nav-text">判断一个链表是否有环。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#206-Reverse-Linked-List"><span class="nav-number">1.5.</span> <span class="nav-text">206. Reverse Linked List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#倒置一个链表。原题"><span class="nav-number">1.5.1.</span> <span class="nav-text">倒置一个链表。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#160-Intersection-of-Two-Linked-Lists"><span class="nav-number">1.6.</span> <span class="nav-text">160. Intersection of Two Linked Lists</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#两个链表求相交。原题"><span class="nav-number">1.6.1.</span> <span class="nav-text">两个链表求相交。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#83-Remove-Duplicates-from-Sorted-List"><span class="nav-number">1.7.</span> <span class="nav-text">83. Remove Duplicates from Sorted List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#删除有序链表中重复的节点。原题"><span class="nav-number">1.7.1.</span> <span class="nav-text">删除有序链表中重复的节点。原题</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#链表的定义"><span class="nav-number">1.</span> <span class="nav-text">链表的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Add-Two-Numbers"><span class="nav-number">1.1.</span> <span class="nav-text">2. Add Two Numbers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#两个链表相加"><span class="nav-number">1.1.1.</span> <span class="nav-text">两个链表相加</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-Merge-Two-Sorted-Lists"><span class="nav-number">1.2.</span> <span class="nav-text">21. Merge Two Sorted Lists</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#合并两个有序链表。原题"><span class="nav-number">1.2.1.</span> <span class="nav-text">合并两个有序链表。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#237-Delete-Node-in-a-Linked-List"><span class="nav-number">1.3.</span> <span class="nav-text">237. Delete Node in a Linked List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在链表中删除节点。给定的节点不是尾节点。原题"><span class="nav-number">1.3.1.</span> <span class="nav-text">在链表中删除节点。给定的节点不是尾节点。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#141-Linked-List-Cycle"><span class="nav-number">1.4.</span> <span class="nav-text">141. Linked List Cycle</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#判断一个链表是否有环。原题"><span class="nav-number">1.4.1.</span> <span class="nav-text">判断一个链表是否有环。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#206-Reverse-Linked-List"><span class="nav-number">1.5.</span> <span class="nav-text">206. Reverse Linked List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#倒置一个链表。原题"><span class="nav-number">1.5.1.</span> <span class="nav-text">倒置一个链表。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#160-Intersection-of-Two-Linked-Lists"><span class="nav-number">1.6.</span> <span class="nav-text">160. Intersection of Two Linked Lists</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#两个链表求相交。原题"><span class="nav-number">1.6.1.</span> <span class="nav-text">两个链表求相交。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#83-Remove-Duplicates-from-Sorted-List"><span class="nav-number">1.7.</span> <span class="nav-text">83. Remove Duplicates from Sorted List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#删除有序链表中重复的节点。原题"><span class="nav-number">1.7.1.</span> <span class="nav-text">删除有序链表中重复的节点。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#142-Linked-List-Cycle-II"><span class="nav-number">1.8.</span> <span class="nav-text">142. Linked List Cycle II</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#求链表中环的入口节点。原题"><span class="nav-number">1.8.1.</span> <span class="nav-text">求链表中环的入口节点。原题</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -733,7 +755,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共8.2k字</span>
+  <span class="post-count">博客全站共11.5k字</span>
 </div>
         
 

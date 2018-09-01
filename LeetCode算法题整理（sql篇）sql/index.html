@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python, xiaoliji" />
+  <meta name="keywords" content="LeetCode,Mysql," />
 
 
 
@@ -101,18 +101,18 @@
 
 
 
-<meta name="description" content="小里脊的个人博客，python成长之路">
-<meta name="keywords" content="Python, xiaoliji">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://darktiantian.github.io.git/about/index.html">
+<meta name="description" content="595. Big Countries查询’大城市’。原题">
+<meta name="keywords" content="LeetCode,Mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode算法题整理（sql篇）sql">
+<meta property="og:url" content="http://darktiantian.github.io.git/LeetCode算法题整理（sql篇）sql/index.html">
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
-<meta property="og:description" content="小里脊的个人博客，python成长之路">
+<meta property="og:description" content="595. Big Countries查询’大城市’。原题">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-08T15:02:58.229Z">
+<meta property="og:updated_time" content="2018-08-31T16:33:19.845Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="小里脊的个人博客，python成长之路">
+<meta name="twitter:title" content="LeetCode算法题整理（sql篇）sql">
+<meta name="twitter:description" content="595. Big Countries查询’大城市’。原题">
 
 
 
@@ -141,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="http://darktiantian.github.io.git/about/"/>
+  <link rel="canonical" href="http://darktiantian.github.io.git/LeetCode算法题整理（sql篇）sql/"/>
 
 
 
 
 
-  <title>about | Xiaoliji's Blog</title>
+  <title>LeetCode算法题整理（sql篇）sql | Xiaoliji's Blog</title>
   
 
 
@@ -314,33 +314,245 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://darktiantian.github.io.git/LeetCode算法题整理（sql篇）sql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaoliji">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaoliji's Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h2 class="post-title" itemprop="name headline">about</h2>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h2 class="post-title" itemprop="name headline">LeetCode算法题整理（sql篇）sql</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-31T21:58:01+08:00">
+                2018-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sql/" itemprop="url" rel="index">
+                    <span itemprop="name">sql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/LeetCode算法题整理（sql篇）sql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="LeetCode算法题整理（sql篇）sql/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/LeetCode算法题整理（sql篇）sql/" class="leancloud_visitors" data-flag-title="LeetCode算法题整理（sql篇）sql">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h3 id="595-Big-Countries"><a href="#595-Big-Countries" class="headerlink" title="595. Big Countries"></a>595. Big Countries</h3><h4 id="查询’大城市’。原题"><a href="#查询’大城市’。原题" class="headerlink" title="查询’大城市’。原题"></a>查询’大城市’。<a href="https://leetcode.com/problems/big-countries/description/" target="_blank" rel="noopener">原题</a></h4><a id="more"></a>
+<ul>
+<li><p>使用<code>where OR</code></p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>, population, area </span><br><span class="line"><span class="keyword">from</span> World </span><br><span class="line"><span class="keyword">where</span> area &gt; <span class="number">3000000</span> <span class="keyword">or</span> population &gt; <span class="number">25000000</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>UNION</code></p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>, population, area </span><br><span class="line"><span class="keyword">from</span> World </span><br><span class="line"><span class="keyword">where</span> area &gt; <span class="number">3000000</span></span><br><span class="line"><span class="keyword">union</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>, population, area</span><br><span class="line"><span class="keyword">from</span> World</span><br><span class="line"><span class="keyword">where</span> population &gt; <span class="number">25000000</span></span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>补充说明：Solution中解释道，使用<code>UNION</code>会比<code>OR</code>快上一丢丢。</p>
+<blockquote>
+<p>Suppose we are searching population and area, Given that MySQL usually uses one one index per table in a given query, so when it uses the 1st index rather than 2nd index, it would still have to do a table-scan to find rows that fit the 2nd index.</p>
+</blockquote>
+<p>因为前者查询的时候只用到第一个索引，对第二个条件查询时，也就是<code>population</code>，使用的是全表扫描，于是浪费了一些时间。但是想想背后的代价，想必是以空间来换时间。</p>
+<h3 id="627-Swap-Salary"><a href="#627-Swap-Salary" class="headerlink" title="627. Swap Salary"></a>627. Swap Salary</h3><h4 id="转换性别。原题"><a href="#转换性别。原题" class="headerlink" title="转换性别。原题"></a>转换性别。<a href="https://leetcode.com/problems/swap-salary/description/" target="_blank" rel="noopener">原题</a></h4><ul>
+<li><p>使用<code>if</code></p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> salary</span><br><span class="line"><span class="keyword">SET</span> sex=<span class="keyword">IF</span>(sex=<span class="string">'m'</span>, <span class="string">'f'</span>, <span class="string">'m'</span>)</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>CASE</code></p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> salary</span><br><span class="line"><span class="keyword">set</span> </span><br><span class="line">    sex = <span class="keyword">CASE</span> sex</span><br><span class="line">    <span class="keyword">when</span> <span class="string">'m'</span> <span class="keyword">Then</span> <span class="string">'f'</span></span><br><span class="line">    <span class="keyword">else</span> <span class="string">'m'</span></span><br><span class="line">    <span class="keyword">END</span></span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>XOR</code></p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> salary</span><br><span class="line"><span class="keyword">set</span> sex = <span class="built_in">CHAR</span>(<span class="keyword">ASCII</span>(<span class="string">'f'</span>) ^ <span class="keyword">ASCII</span>(<span class="string">'m'</span>) ^ <span class="keyword">ASCII</span>(sex))</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="620-Not-Boring-Movies"><a href="#620-Not-Boring-Movies" class="headerlink" title="620. Not Boring Movies"></a>620. Not Boring Movies</h3><h4 id="使用MOD替代-。原题"><a href="#使用MOD替代-。原题" class="headerlink" title="使用MOD替代%。原题"></a>使用<code>MOD</code>替代<code>%</code>。<a href="https://leetcode.com/problems/not-boring-movies/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> cinema</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">mod</span>(<span class="keyword">id</span>, <span class="number">2</span>) = <span class="number">1</span> <span class="keyword">and</span> description != <span class="string">'boring'</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> rating <span class="keyword">DESC</span></span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+<h3 id="182-Duplicate-Emails"><a href="#182-Duplicate-Emails" class="headerlink" title="182. Duplicate Emails"></a>182. Duplicate Emails</h3><h4 id="查询多余的重复值。原题"><a href="#查询多余的重复值。原题" class="headerlink" title="查询多余的重复值。原题"></a>查询多余的重复值。<a href="https://leetcode.com/problems/duplicate-emails/description/" target="_blank" rel="noopener">原题</a></h4><p>思考：开始陷入了误区，以为要将重复的id也查出来。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> email</span><br><span class="line"><span class="keyword">FROM</span>   Person</span><br><span class="line"><span class="keyword">GROUP</span>  <span class="keyword">BY</span> email</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">Count</span>(*) &gt; <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="175-Combine-Two-Tables"><a href="#175-Combine-Two-Tables" class="headerlink" title="175. Combine Two Tables"></a>175. Combine Two Tables</h3><h4 id="左链接。过于简单。原题"><a href="#左链接。过于简单。原题" class="headerlink" title="左链接。过于简单。原题"></a>左链接。过于简单。<a href="https://leetcode.com/problems/combine-two-tables/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> p.FirstName, p.LastName,</span><br><span class="line">    ad.City, ad.State</span><br><span class="line"><span class="keyword">FROM</span> Person p</span><br><span class="line">    <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> Address ad</span><br><span class="line">        <span class="keyword">ON</span> p.PersonId = ad.PersonId</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+<h3 id="181-Employees-Earning-More-Than-Their-Managers"><a href="#181-Employees-Earning-More-Than-Their-Managers" class="headerlink" title="181. Employees Earning More Than Their Managers"></a>181. Employees Earning More Than Their Managers</h3><h4 id="自链接。原题"><a href="#自链接。原题" class="headerlink" title="自链接。原题"></a>自链接。<a href="https://leetcode.com/problems/employees-earning-more-than-their-managers/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> e.name Employee</span><br><span class="line"><span class="keyword">from</span> Employee e</span><br><span class="line">    <span class="keyword">inner</span> <span class="keyword">join</span> Employee m</span><br><span class="line">        <span class="keyword">on</span> e.ManagerId = m.Id</span><br><span class="line"><span class="keyword">where</span> e.Salary &gt; m.Salary</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+<h3 id="183-Customers-Who-Never-Order"><a href="#183-Customers-Who-Never-Order" class="headerlink" title="183. Customers Who Never Order"></a>183. Customers Who Never Order</h3><h4 id="没有订单的顾客。原题"><a href="#没有订单的顾客。原题" class="headerlink" title="没有订单的顾客。原题"></a>没有订单的顾客。<a href="https://leetcode.com/problems/customers-who-never-order/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> c.name Customers</span><br><span class="line"><span class="keyword">from</span> Customers c</span><br><span class="line">    <span class="keyword">left</span> <span class="keyword">join</span> Orders o</span><br><span class="line">        <span class="keyword">on</span> c.id = o.CustomerId</span><br><span class="line"><span class="keyword">where</span> o.CustomerId <span class="keyword">is</span> <span class="literal">Null</span></span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> customers.name <span class="keyword">as</span> <span class="string">'Customers'</span></span><br><span class="line"><span class="keyword">from</span> customers</span><br><span class="line"><span class="keyword">where</span> customers.id <span class="keyword">not</span> <span class="keyword">in</span></span><br><span class="line">(</span><br><span class="line">    <span class="keyword">select</span> customerid <span class="keyword">from</span> orders</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="596-Classes-More-Than-5-Students"><a href="#596-Classes-More-Than-5-Students" class="headerlink" title="596. Classes More Than 5 Students"></a>596. Classes More Than 5 Students</h3><h4 id="超过5个学生的班级。原题"><a href="#超过5个学生的班级。原题" class="headerlink" title="超过5个学生的班级。原题"></a>超过5个学生的班级。<a href="https://leetcode.com/problems/classes-more-than-5-students/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">class</span></span><br><span class="line"><span class="keyword">from</span> courses</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">class</span></span><br><span class="line"><span class="keyword">having</span> <span class="keyword">count</span>(<span class="keyword">distinct</span> student) &gt;= <span class="number">5</span></span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+<h3 id="197-Rising-Temperature"><a href="#197-Rising-Temperature" class="headerlink" title="197. Rising Temperature"></a>197. Rising Temperature</h3><h4 id="这个挺有意思，开始天真地想用id作为条件，测试用例教做人。原题"><a href="#这个挺有意思，开始天真地想用id作为条件，测试用例教做人。原题" class="headerlink" title="这个挺有意思，开始天真地想用id作为条件，测试用例教做人。原题"></a>这个挺有意思，开始天真地想用id作为条件，测试用例教做人。<a href="https://leetcode.com/problems/rising-temperature/description/" target="_blank" rel="noopener">原题</a></h4><ul>
+<li><p>我的答案</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> today.Id</span><br><span class="line"><span class="keyword">FROM</span>   Weather yest</span><br><span class="line">       <span class="keyword">INNER</span> <span class="keyword">JOIN</span> Weather today</span><br><span class="line">              <span class="keyword">ON</span> today.RecordDate = <span class="keyword">DATE_ADD</span>(yest.RecordDate, <span class="built_in">INTERVAL</span> <span class="number">1</span> <span class="keyword">day</span>)</span><br><span class="line"><span class="keyword">WHERE</span>  today.Temperature &gt; yest.Temperature</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>标准答案</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    weather.id <span class="keyword">AS</span> <span class="string">'Id'</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    weather</span><br><span class="line">        <span class="keyword">JOIN</span></span><br><span class="line">    weather w <span class="keyword">ON</span> <span class="keyword">DATEDIFF</span>(weather.date, w.date) = <span class="number">1</span></span><br><span class="line">        <span class="keyword">AND</span> weather.Temperature &gt; w.Temperature</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>查看Mysql文档：</p>
+<blockquote>
+<p>DATEDIFF(expr1,expr2)</p>
+<p>DATEDIFF() returns expr1 − expr2 expressed as a value in days from one date to the other. expr1 and expr2 are date or date-and-time expressions. Only the date parts of the values are used in the calculation.</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span> SELECT DATEDIFF('2007-12-31 23:59:59','2007-12-30');</span><br><span class="line">        -&gt; 1</span><br><span class="line"><span class="meta">mysql&gt;</span> SELECT DATEDIFF('2010-11-30 23:59:59','2010-12-31');</span><br><span class="line">        -&gt; -31</span><br></pre></td></tr></table></figure>
+<p>### </p>
+
       
     </div>
     
     
     
+
+    <div>
+      
+        
+      
+    </div>
+    
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/" rel="tag">
+            <i class="fa fa-tag"></i> LeetCode</a>
+          
+            <a href="/tags/Mysql/" rel="tag">
+            <i class="fa fa-tag"></i> Mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/LeetCode算法题整理（位运算篇）Bit-Manipulation/" rel="next" title="LeetCode算法题整理（位运算篇）Bit Manipulation">
+                <i class="fa fa-chevron-left"></i> LeetCode算法题整理（位运算篇）Bit Manipulation
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -380,8 +592,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -467,6 +688,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#595-Big-Countries"><span class="nav-number">1.</span> <span class="nav-text">595. Big Countries</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询’大城市’。原题"><span class="nav-number">1.1.</span> <span class="nav-text">查询’大城市’。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#627-Swap-Salary"><span class="nav-number">2.</span> <span class="nav-text">627. Swap Salary</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#转换性别。原题"><span class="nav-number">2.1.</span> <span class="nav-text">转换性别。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#620-Not-Boring-Movies"><span class="nav-number">3.</span> <span class="nav-text">620. Not Boring Movies</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用MOD替代-。原题"><span class="nav-number">3.1.</span> <span class="nav-text">使用MOD替代%。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#182-Duplicate-Emails"><span class="nav-number">4.</span> <span class="nav-text">182. Duplicate Emails</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询多余的重复值。原题"><span class="nav-number">4.1.</span> <span class="nav-text">查询多余的重复值。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#175-Combine-Two-Tables"><span class="nav-number">5.</span> <span class="nav-text">175. Combine Two Tables</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#左链接。过于简单。原题"><span class="nav-number">5.1.</span> <span class="nav-text">左链接。过于简单。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#181-Employees-Earning-More-Than-Their-Managers"><span class="nav-number">6.</span> <span class="nav-text">181. Employees Earning More Than Their Managers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自链接。原题"><span class="nav-number">6.1.</span> <span class="nav-text">自链接。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#183-Customers-Who-Never-Order"><span class="nav-number">7.</span> <span class="nav-text">183. Customers Who Never Order</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#没有订单的顾客。原题"><span class="nav-number">7.1.</span> <span class="nav-text">没有订单的顾客。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#596-Classes-More-Than-5-Students"><span class="nav-number">8.</span> <span class="nav-text">596. Classes More Than 5 Students</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#超过5个学生的班级。原题"><span class="nav-number">8.1.</span> <span class="nav-text">超过5个学生的班级。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#197-Rising-Temperature"><span class="nav-number">9.</span> <span class="nav-text">197. Rising Temperature</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这个挺有意思，开始天真地想用id作为条件，测试用例教做人。原题"><span class="nav-number">9.1.</span> <span class="nav-text">这个挺有意思，开始天真地想用id作为条件，测试用例教做人。原题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -591,10 +828,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
@@ -615,9 +852,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://darktiantian.github.io.git/about/index.html';
-          this.page.identifier = 'about/index.html';
-          this.page.title = 'about';
+          this.page.url = 'http://darktiantian.github.io.git/LeetCode算法题整理（sql篇）sql/';
+          this.page.identifier = 'LeetCode算法题整理（sql篇）sql/';
+          this.page.title = 'LeetCode算法题整理（sql篇）sql';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
