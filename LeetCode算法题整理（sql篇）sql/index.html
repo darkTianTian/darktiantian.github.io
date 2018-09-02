@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,Mysql," />
+  <meta name="keywords" content="Mysql,LeetCode," />
 
 
 
@@ -102,14 +102,14 @@
 
 
 <meta name="description" content="595. Big Countries查询’大城市’。原题">
-<meta name="keywords" content="LeetCode,Mysql">
+<meta name="keywords" content="Mysql,LeetCode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode算法题整理（sql篇）sql">
 <meta property="og:url" content="http://darktiantian.github.io.git/LeetCode算法题整理（sql篇）sql/index.html">
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="595. Big Countries查询’大城市’。原题">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-31T16:33:19.845Z">
+<meta property="og:updated_time" content="2018-09-01T14:28:55.760Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（sql篇）sql">
 <meta name="twitter:description" content="595. Big Countries查询’大城市’。原题">
@@ -361,6 +361,15 @@
             
 
             
+              <span class="post-updated">
+                &nbsp; | &nbsp; Updated on
+                <time itemprop="dateUpdated" datetime="2018-09-01T22:28:55+08:00" content="2018-09-01">
+                  2018-09-01
+                </time>
+              </span>
+            
+
+            
 
             
           </span>
@@ -484,8 +493,37 @@
 <p>DATEDIFF() returns expr1 − expr2 expressed as a value in days from one date to the other. expr1 and expr2 are date or date-and-time expressions. Only the date parts of the values are used in the calculation.</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span> SELECT DATEDIFF('2007-12-31 23:59:59','2007-12-30');</span><br><span class="line">        -&gt; 1</span><br><span class="line"><span class="meta">mysql&gt;</span> SELECT DATEDIFF('2010-11-30 23:59:59','2010-12-31');</span><br><span class="line">        -&gt; -31</span><br></pre></td></tr></table></figure>
-<p>### </p>
-
+<h3 id="196-Delete-Duplicate-Emails"><a href="#196-Delete-Duplicate-Emails" class="headerlink" title="196. Delete Duplicate Emails"></a>196. Delete Duplicate Emails</h3><h4 id="删除重复的邮件。原题"><a href="#删除重复的邮件。原题" class="headerlink" title="删除重复的邮件。原题"></a>删除重复的邮件。<a href="https://leetcode.com/problems/delete-duplicate-emails/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> p1 </span><br><span class="line"><span class="keyword">from</span> Person p1, Person p2</span><br><span class="line"><span class="keyword">where</span> p1.email=p2.email <span class="keyword">and</span> p1.Id &gt; p2.Id</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+<h3 id="176-Second-Highest-Salary"><a href="#176-Second-Highest-Salary" class="headerlink" title="176. Second Highest Salary"></a>176. Second Highest Salary</h3><h4 id="返回第二高的salary。原题"><a href="#返回第二高的salary。原题" class="headerlink" title="返回第二高的salary。原题"></a>返回第二高的salary。<a href="https://leetcode.com/problems/second-highest-salary/description/" target="_blank" rel="noopener">原题</a></h4><p>PS：奇怪的题，没有记录非要人返回Null，只能再套一层查询或者使用<code>IFNULL</code>也可以。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    (<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span></span><br><span class="line">            Salary</span><br><span class="line">        <span class="keyword">FROM</span></span><br><span class="line">            Employee</span><br><span class="line">        <span class="keyword">ORDER</span> <span class="keyword">BY</span> Salary <span class="keyword">DESC</span></span><br><span class="line">        <span class="keyword">LIMIT</span> <span class="number">1</span> <span class="keyword">OFFSET</span> <span class="number">1</span>) <span class="keyword">AS</span> SecondHighestSalary</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+<h3 id="626-Exchange-Seats"><a href="#626-Exchange-Seats" class="headerlink" title="626. Exchange Seats"></a>626. Exchange Seats</h3><h4 id="交换相邻两行的值。原题"><a href="#交换相邻两行的值。原题" class="headerlink" title="交换相邻两行的值。原题"></a>交换相邻两行的值。<a href="https://leetcode.com/problems/exchange-seats/description/" target="_blank" rel="noopener">原题</a></h4><p>开始理解错了，以为要update。</p>
+<ul>
+<li><p><code>CASE</code></p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ( <span class="keyword">CASE</span></span><br><span class="line">           <span class="keyword">WHEN</span> <span class="keyword">MOD</span>(<span class="keyword">id</span>, <span class="number">2</span>) != <span class="number">0</span></span><br><span class="line">                <span class="keyword">AND</span> counts != <span class="keyword">id</span> <span class="keyword">THEN</span> <span class="keyword">id</span> + <span class="number">1</span></span><br><span class="line">           <span class="keyword">WHEN</span> <span class="keyword">MOD</span>(<span class="keyword">id</span>, <span class="number">2</span>) != <span class="number">0</span></span><br><span class="line">                <span class="keyword">AND</span> counts = <span class="keyword">id</span> <span class="keyword">THEN</span> <span class="keyword">id</span></span><br><span class="line">           <span class="keyword">ELSE</span> <span class="keyword">id</span> - <span class="number">1</span></span><br><span class="line">         <span class="keyword">end</span> ) <span class="keyword">AS</span> <span class="keyword">id</span>,</span><br><span class="line">       student</span><br><span class="line"><span class="keyword">FROM</span>   seat,</span><br><span class="line">       (<span class="keyword">SELECT</span> <span class="keyword">Count</span>(*) <span class="keyword">AS</span> counts</span><br><span class="line">        <span class="keyword">FROM</span>   seat) <span class="keyword">AS</span> seat_counts</span><br><span class="line"><span class="keyword">ORDER</span>  <span class="keyword">BY</span> <span class="keyword">id</span> <span class="keyword">ASC</span>;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>COALESCE()</code></p>
+<ul>
+<li><p>第一步：使用<code>XOR</code>，但是不能直接使用排序因为id为5的被换成了6。</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>, (<span class="keyword">id</span>+<span class="number">1</span>)^<span class="number">1</span><span class="number">-1</span>, student <span class="keyword">FROM</span> seat;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+------+------+----------+------------+---------+</span><br><span class="line">| id   | id+1 | (id+1)^1 | (id+1)^1-1 | student |</span><br><span class="line">+------+------+----------+------------+---------+</span><br><span class="line">|    1 |    2 |        3 |          2 | Abbot   |</span><br><span class="line">|    2 |    3 |        2 |          1 | Doris   |</span><br><span class="line">|    3 |    4 |        5 |          4 | Emerson |</span><br><span class="line">|    4 |    5 |        4 |          3 | Green   |</span><br><span class="line">|    5 |    6 |        7 |          6 | Jeame   |</span><br><span class="line">+------+------+----------+------------+---------+</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>第二步：使用<code>LEFT JOIN</code>链接。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span>   seat s1</span><br><span class="line">       <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> seat s2</span><br><span class="line">              <span class="keyword">ON</span> ( s1.id + <span class="number">1</span> )^<span class="number">1</span> - <span class="number">1</span> = s2.id</span><br><span class="line"><span class="keyword">ORDER</span>  <span class="keyword">BY</span> s1.id;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+------+---------+------+---------+</span><br><span class="line">| id   | student | id   | student |</span><br><span class="line">+------+---------+------+---------+</span><br><span class="line">|    1 | Abbot   |    2 | Doris   |</span><br><span class="line">|    2 | Doris   |    1 | Abbot   |</span><br><span class="line">|    3 | Emerson |    4 | Green   |</span><br><span class="line">|    4 | Green   |    3 | Emerson |</span><br><span class="line">|    5 | Jeame   | NULL | NULL    |</span><br><span class="line">+------+---------+------+---------+</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>第三步：使用<code>COALESCE()</code></p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> s1.id,</span><br><span class="line">       <span class="keyword">Coalesce</span>(s2.student, s1.student) <span class="keyword">as</span> student</span><br><span class="line"><span class="keyword">FROM</span>   seat s1</span><br><span class="line">       <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> seat s2</span><br><span class="line">              <span class="keyword">ON</span> ( s1.id + <span class="number">1</span> )^<span class="number">1</span> - <span class="number">1</span> = s2.id</span><br><span class="line"><span class="keyword">ORDER</span>  <span class="keyword">BY</span> s1.id</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>参考：Mysql文档</p>
+<blockquote>
+<p>Returns the first non-NULL value in the list, or NULL if there are no non-NULL values.<br>The return type of COALESCE() is the aggregated type of the argument types.</p>
+</blockquote>
+<h3 id="178-Rank-Scores"><a href="#178-Rank-Scores" class="headerlink" title="178. Rank Scores"></a>178. Rank Scores</h3>
       
     </div>
     
@@ -497,7 +535,7 @@
         
       
     </div>
-    
+
     
 
     
@@ -508,11 +546,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/LeetCode/" rel="tag">
-            <i class="fa fa-tag"></i> LeetCode</a>
-          
             <a href="/tags/Mysql/" rel="tag">
             <i class="fa fa-tag"></i> Mysql</a>
+          
+            <a href="/tags/LeetCode/" rel="tag">
+            <i class="fa fa-tag"></i> LeetCode</a>
           
         </div>
       
@@ -698,7 +736,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#595-Big-Countries"><span class="nav-number">1.</span> <span class="nav-text">595. Big Countries</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询’大城市’。原题"><span class="nav-number">1.1.</span> <span class="nav-text">查询’大城市’。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#627-Swap-Salary"><span class="nav-number">2.</span> <span class="nav-text">627. Swap Salary</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#转换性别。原题"><span class="nav-number">2.1.</span> <span class="nav-text">转换性别。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#620-Not-Boring-Movies"><span class="nav-number">3.</span> <span class="nav-text">620. Not Boring Movies</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用MOD替代-。原题"><span class="nav-number">3.1.</span> <span class="nav-text">使用MOD替代%。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#182-Duplicate-Emails"><span class="nav-number">4.</span> <span class="nav-text">182. Duplicate Emails</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询多余的重复值。原题"><span class="nav-number">4.1.</span> <span class="nav-text">查询多余的重复值。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#175-Combine-Two-Tables"><span class="nav-number">5.</span> <span class="nav-text">175. Combine Two Tables</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#左链接。过于简单。原题"><span class="nav-number">5.1.</span> <span class="nav-text">左链接。过于简单。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#181-Employees-Earning-More-Than-Their-Managers"><span class="nav-number">6.</span> <span class="nav-text">181. Employees Earning More Than Their Managers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自链接。原题"><span class="nav-number">6.1.</span> <span class="nav-text">自链接。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#183-Customers-Who-Never-Order"><span class="nav-number">7.</span> <span class="nav-text">183. Customers Who Never Order</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#没有订单的顾客。原题"><span class="nav-number">7.1.</span> <span class="nav-text">没有订单的顾客。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#596-Classes-More-Than-5-Students"><span class="nav-number">8.</span> <span class="nav-text">596. Classes More Than 5 Students</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#超过5个学生的班级。原题"><span class="nav-number">8.1.</span> <span class="nav-text">超过5个学生的班级。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#197-Rising-Temperature"><span class="nav-number">9.</span> <span class="nav-text">197. Rising Temperature</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这个挺有意思，开始天真地想用id作为条件，测试用例教做人。原题"><span class="nav-number">9.1.</span> <span class="nav-text">这个挺有意思，开始天真地想用id作为条件，测试用例教做人。原题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#595-Big-Countries"><span class="nav-number">1.</span> <span class="nav-text">595. Big Countries</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询’大城市’。原题"><span class="nav-number">1.1.</span> <span class="nav-text">查询’大城市’。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#627-Swap-Salary"><span class="nav-number">2.</span> <span class="nav-text">627. Swap Salary</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#转换性别。原题"><span class="nav-number">2.1.</span> <span class="nav-text">转换性别。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#620-Not-Boring-Movies"><span class="nav-number">3.</span> <span class="nav-text">620. Not Boring Movies</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用MOD替代-。原题"><span class="nav-number">3.1.</span> <span class="nav-text">使用MOD替代%。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#182-Duplicate-Emails"><span class="nav-number">4.</span> <span class="nav-text">182. Duplicate Emails</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询多余的重复值。原题"><span class="nav-number">4.1.</span> <span class="nav-text">查询多余的重复值。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#175-Combine-Two-Tables"><span class="nav-number">5.</span> <span class="nav-text">175. Combine Two Tables</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#左链接。过于简单。原题"><span class="nav-number">5.1.</span> <span class="nav-text">左链接。过于简单。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#181-Employees-Earning-More-Than-Their-Managers"><span class="nav-number">6.</span> <span class="nav-text">181. Employees Earning More Than Their Managers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自链接。原题"><span class="nav-number">6.1.</span> <span class="nav-text">自链接。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#183-Customers-Who-Never-Order"><span class="nav-number">7.</span> <span class="nav-text">183. Customers Who Never Order</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#没有订单的顾客。原题"><span class="nav-number">7.1.</span> <span class="nav-text">没有订单的顾客。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#596-Classes-More-Than-5-Students"><span class="nav-number">8.</span> <span class="nav-text">596. Classes More Than 5 Students</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#超过5个学生的班级。原题"><span class="nav-number">8.1.</span> <span class="nav-text">超过5个学生的班级。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#197-Rising-Temperature"><span class="nav-number">9.</span> <span class="nav-text">197. Rising Temperature</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这个挺有意思，开始天真地想用id作为条件，测试用例教做人。原题"><span class="nav-number">9.1.</span> <span class="nav-text">这个挺有意思，开始天真地想用id作为条件，测试用例教做人。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#196-Delete-Duplicate-Emails"><span class="nav-number">10.</span> <span class="nav-text">196. Delete Duplicate Emails</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#删除重复的邮件。原题"><span class="nav-number">10.1.</span> <span class="nav-text">删除重复的邮件。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#176-Second-Highest-Salary"><span class="nav-number">11.</span> <span class="nav-text">176. Second Highest Salary</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#返回第二高的salary。原题"><span class="nav-number">11.1.</span> <span class="nav-text">返回第二高的salary。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#626-Exchange-Seats"><span class="nav-number">12.</span> <span class="nav-text">626. Exchange Seats</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#交换相邻两行的值。原题"><span class="nav-number">12.1.</span> <span class="nav-text">交换相邻两行的值。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#178-Rank-Scores"><span class="nav-number">13.</span> <span class="nav-text">178. Rank Scores</span></a></li></ol></div>
             
 
           </div>
@@ -750,7 +788,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共11.5k字</span>
+  <span class="post-count">博客全站共13.9k字</span>
 </div>
         
 
