@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="2. 实现Singleton模式使用__new__控制实例创建过程12345678class Singleton:    def __new__(cls, *args, **kw):        if not hasattr(cls, &apos;_instance&apos;):            cls._instance = super(Singleton, cls).__new__(cls, **arg">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-02T05:32:14.699Z">
+<meta property="og:updated_time" content="2018-09-02T13:21:36.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="剑指Offer">
 <meta name="twitter:description" content="2. 实现Singleton模式使用__new__控制实例创建过程12345678class Singleton:    def __new__(cls, *args, **kw):        if not hasattr(cls, &apos;_instance&apos;):            cls._instance = super(Singleton, cls).__new__(cls, **arg">
@@ -363,7 +363,7 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2018-09-02T13:32:14+08:00" content="2018-09-02">
+                <time itemprop="dateUpdated" datetime="2018-09-02T21:21:36+08:00" content="2018-09-02">
                   2018-09-02
                 </time>
               </span>
@@ -513,8 +513,8 @@
 <h3 id="34-二叉树和为某一值的路径"><a href="#34-二叉树和为某一值的路径" class="headerlink" title="34.二叉树和为某一值的路径"></a>34.二叉树和为某一值的路径</h3><a href="/LeetCode算法题整理（二叉树篇）Tree/" title="113. Path Sum II">113. Path Sum II</a>
 <h3 id="35-复杂链表的复制"><a href="#35-复杂链表的复制" class="headerlink" title="35.复杂链表的复制"></a>35.复杂链表的复制</h3><a href="/LeetCode算法题整理（链表篇）LinkedList/" title="138. Copy List with Random Pointer">138. Copy List with Random Pointer</a>
 <h3 id="36-二叉搜索树与双向链表"><a href="#36-二叉搜索树与双向链表" class="headerlink" title="36.二叉搜索树与双向链表"></a>36.二叉搜索树与双向链表</h3><p>此题留坑。</p>
-<h3 id="37-序列化二叉树"><a href="#37-序列化二叉树" class="headerlink" title="37.序列化二叉树"></a>37.序列化二叉树</h3>
-<h3 id="38-字符串的排列"><a href="#38-字符串的排列" class="headerlink" title="38.字符串的排列"></a>38.字符串的排列</h3><a href="/LeetCode算法题整理（数组篇）Array/" title="54. Spiral Matrix">54. Spiral Matrix</a>
+<h3 id="37-序列化二叉树"><a href="#37-序列化二叉树" class="headerlink" title="37.序列化二叉树"></a>37.序列化二叉树</h3><a href="/LeetCode算法题整理（二叉树篇）Tree/" title="297. Serialize and Deserialize Binary Tree">297. Serialize and Deserialize Binary Tree</a>
+<h3 id="38-字符串的排列"><a href="#38-字符串的排列" class="headerlink" title="38.字符串的排列"></a>38.字符串的排列</h3><a href="/LeetCode算法题整理（数组篇）Array/" title="46. Permutations II">46. Permutations II</a>
 <ul>
 <li><p>使用itertools</p>
   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Permutation</span><span class="params">(self, ss)</span>:</span></span><br><span class="line">    <span class="comment"># write code here</span></span><br><span class="line">    <span class="keyword">from</span> itertools <span class="keyword">import</span> permutations</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> ss:</span><br><span class="line">        <span class="keyword">return</span> []</span><br><span class="line">    <span class="keyword">return</span> sorted(list(set([<span class="string">''</span>.join(x) <span class="keyword">for</span> x <span class="keyword">in</span> permutations(ss)])))</span><br></pre></td></tr></table></figure>
@@ -671,7 +671,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -804,7 +804,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共13.9k字</span>
+  <span class="post-count">博客全站共15.0k字</span>
 </div>
         
 
