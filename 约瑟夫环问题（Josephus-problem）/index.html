@@ -101,18 +101,18 @@
 
 
 
-<meta name="description" content="小里脊的个人博客，python成长之路">
+<meta name="description" content="问题：0，1，…，n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求这个圆圈里剩下的最后一个数字。">
 <meta name="keywords" content="Python,algorithm,剑指Offer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="约瑟夫环问题（Josephus problem）">
 <meta property="og:url" content="http://darktiantian.github.io.git/约瑟夫环问题（Josephus-problem）/index.html">
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
-<meta property="og:description" content="小里脊的个人博客，python成长之路">
+<meta property="og:description" content="问题：0，1，…，n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求这个圆圈里剩下的最后一个数字。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-06T14:22:27.144Z">
+<meta property="og:updated_time" content="2018-09-06T15:00:55.201Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="约瑟夫环问题（Josephus problem）">
-<meta name="twitter:description" content="小里脊的个人博客，python成长之路">
+<meta name="twitter:description" content="问题：0，1，…，n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求这个圆圈里剩下的最后一个数字。">
 
 
 
@@ -363,7 +363,7 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2018-09-06T22:22:27+08:00" content="2018-09-06">
+                <time itemprop="dateUpdated" datetime="2018-09-06T23:00:55+08:00" content="2018-09-06">
                   2018-09-06
                 </time>
               </span>
@@ -446,7 +446,46 @@
       
 
       
-        
+        <h3 id="问题：0，1，…，n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求这个圆圈里剩下的最后一个数字。"><a href="#问题：0，1，…，n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求这个圆圈里剩下的最后一个数字。" class="headerlink" title="问题：0，1，…，n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求这个圆圈里剩下的最后一个数字。"></a>问题：0，1，…，n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求这个圆圈里剩下的最后一个数字。</h3><a id="more"></a>
+<p>注意到，一开始有 n 个人，报到 m 的人出局后，如果我们从刚才出局的那人的下一位开始重新从 1 开始编号，原问题就转化为了一个 n–1 人的问题。如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>原始编号(i)</th>
+<th>第一个人出局后的编号(j)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td>0</td>
+</tr>
+<tr>
+<td>m+1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>m+2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>m-2</td>
+<td>n-2 （n为出局前的总人数）</td>
+</tr>
+<tr>
+<td>m-1</td>
+<td>OUT</td>
+</tr>
+</tbody>
+</table>
+<p>可以看出老编号i和新编号j的关系为：<code>i = (j+m) % n</code>，于是总结递推公式：</p>
+<p><code>f(n) = (f(n-1) + m) % n</code>   (n &gt; 1)，其中f(n)为当场上还有n个人时在场的人的编号。<br>当最后只剩下一个人的时候，这个人的编号只能是0，即<code>f(1)=0</code>，现在根据上面的公式反推，推导出当n个人在场时这个最后幸存者的编号。例如：<code>f(2)=(f(1)+m) % 2</code>，所以<code>range</code>范围从2开始，执行<code>n-1</code>次，也就是<code>range(2, n+1)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LastRemaining_Solution</span><span class="params">(self, n, m)</span>:</span></span><br><span class="line">    <span class="comment"># write code here</span></span><br><span class="line">    <span class="keyword">if</span> n&lt;=<span class="number">0</span> <span class="keyword">or</span> m&lt;=<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    last_num = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, n+<span class="number">1</span>):</span><br><span class="line">        last_num = (last_num+m) % i</span><br><span class="line">    <span class="keyword">return</span> last_num</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -556,8 +595,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -655,6 +703,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题：0，1，…，n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求这个圆圈里剩下的最后一个数字。"><span class="nav-number">1.</span> <span class="nav-text">问题：0，1，…，n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求这个圆圈里剩下的最后一个数字。</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -700,7 +764,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共19.9k字</span>
+  <span class="post-count">博客全站共20.3k字</span>
 </div>
         
 
