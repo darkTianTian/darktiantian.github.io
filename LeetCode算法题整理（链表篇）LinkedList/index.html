@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="链表的定义1234class ListNode:    def __init__(self, x):        self.val = x        self.next = None">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-02T15:48:34.575Z">
+<meta property="og:updated_time" content="2018-09-04T17:05:38.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（链表篇）LinkedList">
 <meta name="twitter:description" content="链表的定义1234class ListNode:    def __init__(self, x):        self.val = x        self.next = None">
@@ -363,8 +363,8 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2018-09-02T23:48:34+08:00" content="2018-09-02">
-                  2018-09-02
+                <time itemprop="dateUpdated" datetime="2018-09-05T01:05:38+08:00" content="2018-09-05">
+                  2018-09-05
                 </time>
               </span>
             
@@ -461,7 +461,8 @@
 <h3 id="141-Linked-List-Cycle"><a href="#141-Linked-List-Cycle" class="headerlink" title="141. Linked List Cycle"></a>141. Linked List Cycle</h3><h4 id="判断一个链表是否有环。原题"><a href="#判断一个链表是否有环。原题" class="headerlink" title="判断一个链表是否有环。原题"></a>判断一个链表是否有环。<a href="https://leetcode.com/problems/linked-list-cycle/description/" target="_blank" rel="noopener">原题</a></h4><p>经典的一道题，看成两个人在赛跑，如果有环，快的人会和慢的人相遇</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hasCycle</span><span class="params">(self, head)</span>:</span></span><br><span class="line">    slow = fast = head:</span><br><span class="line">    <span class="keyword">while</span> fast <span class="keyword">and</span> fast.next:</span><br><span class="line">        fast = fast.next.next</span><br><span class="line">        slow = slow.next</span><br><span class="line">        <span class="keyword">if</span> fast <span class="keyword">is</span> slow:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
 <h3 id="206-Reverse-Linked-List"><a href="#206-Reverse-Linked-List" class="headerlink" title="206. Reverse Linked List"></a>206. Reverse Linked List</h3><h4 id="倒置一个链表。原题"><a href="#倒置一个链表。原题" class="headerlink" title="倒置一个链表。原题"></a>倒置一个链表。<a href="https://leetcode.com/problems/reverse-linked-list/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</span><br><span class="line">Output: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</span><br></pre></td></tr></table></figure>
-<p>方法一： iteratively<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverseList</span><span class="params">(head)</span>:</span></span><br><span class="line">    prev = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">while</span> head:</span><br><span class="line">        cur = head</span><br><span class="line">        head = head.next</span><br><span class="line">        cur.next = prev</span><br><span class="line">        prev = cur</span><br><span class="line">    <span class="keyword">return</span> prev</span><br></pre></td></tr></table></figure></p>
+<p>方法一： iteratively</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverseList</span><span class="params">(head)</span>:</span></span><br><span class="line">    prev = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">while</span> head:</span><br><span class="line">        cur = head</span><br><span class="line">        head = head.next</span><br><span class="line">        cur.next = prev</span><br><span class="line">        prev = cur</span><br><span class="line">    <span class="keyword">return</span> prev</span><br></pre></td></tr></table></figure>
 <p>方法二：使用一行赋值</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverseList</span><span class="params">(self, head)</span>:</span></span><br><span class="line">    prev = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">while</span> head:</span><br><span class="line">        head.next, prev, head = prev, head, head.next</span><br><span class="line">    <span class="keyword">return</span> prev</span><br></pre></td></tr></table></figure>
 <p>这个方法有些不明白的地方，后续会更新一篇文章研究它。</p>
@@ -642,7 +643,7 @@ In my solution, since fast starts at head.next, we need to move slow one step fo
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -786,7 +787,7 @@ In my solution, since fast starts at head.next, we need to move slow one step fo
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共16.9k字</span>
+  <span class="post-count">博客全站共19.9k字</span>
 </div>
         
 
