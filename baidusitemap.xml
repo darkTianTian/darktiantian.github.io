@@ -4,6 +4,110 @@
 
     
   <url>
+    <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E6%95%B0%E5%AD%A6%E7%AF%87%EF%BC%89Math/</loc>
+    <lastmod>2018-10-19T10:16:16.845Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode算法题整理（数学篇）Math</title>
+        <pubTime>2018-08-12T11:19:47.000Z</pubTime>
+        
+        <tag>LeetCode</tag>
+         
+        <tag>Python</tag>
+         
+        <tag>Algorithm</tag>
+         
+        <tag>Math</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://darktiantian.github.io.git/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AF%87%EF%BC%89Bit-Manipulation/</loc>
+    <lastmod>2018-10-17T12:43:53.908Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode算法题整理（位运算篇）Bit Manipulation</title>
+        <pubTime>2018-08-30T13:22:30.000Z</pubTime>
+        
+        <tag>LeetCode</tag>
+         
+        <tag>Python</tag>
+         
+        <tag>Algorithm</tag>
+         
+        <tag>Bit Manipulation</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://darktiantian.github.io.git/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AF%87%EF%BC%89String/</loc>
+    <lastmod>2018-10-16T15:50:47.330Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode算法题整理（字符串篇）String</title>
+        <pubTime>2018-08-12T13:28:29.000Z</pubTime>
+        
+        <tag>LeetCode</tag>
+         
+        <tag>Python</tag>
+         
+        <tag>Algorithm</tag>
+         
+        <tag>String</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://darktiantian.github.io.git/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E4%BA%8C%E5%88%86%E6%B3%95%E7%AF%87%EF%BC%89Binary-Search/</loc>
+    <lastmod>2018-10-15T15:27:16.861Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode算法题整理（二分法篇）Binary Search</title>
+        <pubTime>2018-08-30T07:05:47.000Z</pubTime>
+        
+        <tag>Binary Search</tag>
+         
+        <tag>LeetCode</tag>
+         
+        <tag>Python</tag>
+         
+        <tag>Algorithm</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://darktiantian.github.io.git/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E6%95%B0%E7%BB%84%E7%AF%87%EF%BC%89Array/</loc>
     <lastmod>2018-10-14T07:46:12.877Z</lastmod>
     <data>
@@ -30,58 +134,6 @@
 
     
   <url>
-    <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AF%87%EF%BC%89String/</loc>
-    <lastmod>2018-10-14T04:45:35.872Z</lastmod>
-    <data>
-        <display>
-        <title>LeetCode算法题整理（字符串篇）String</title>
-        <pubTime>2018-08-12T13:28:29.000Z</pubTime>
-        
-        <tag>LeetCode</tag>
-         
-        <tag>Python</tag>
-         
-        <tag>Algorithm</tag>
-         
-        <tag>String</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="http://darktiantian.github.io.git/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E6%95%B0%E5%AD%A6%E7%AF%87%EF%BC%89Math/</loc>
-    <lastmod>2018-10-13T10:14:23.968Z</lastmod>
-    <data>
-        <display>
-        <title>LeetCode算法题整理（数学篇）Math</title>
-        <pubTime>2018-08-12T11:19:47.000Z</pubTime>
-        
-        <tag>LeetCode</tag>
-         
-        <tag>Python</tag>
-         
-        <tag>Algorithm</tag>
-         
-        <tag>Math</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="http://darktiantian.github.io.git/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%AF%87%EF%BC%89Danymic-Programming/</loc>
     <lastmod>2018-10-09T14:54:19.155Z</lastmod>
     <data>
@@ -96,32 +148,6 @@
         <tag>Algorithm</tag>
          
         <tag>Dynamic Programming</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="http://darktiantian.github.io.git/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E4%BA%8C%E5%88%86%E6%B3%95%E7%AF%87%EF%BC%89Binary-Search/</loc>
-    <lastmod>2018-10-07T12:02:53.650Z</lastmod>
-    <data>
-        <display>
-        <title>LeetCode算法题整理（二分法篇）Binary Search</title>
-        <pubTime>2018-08-30T07:05:47.000Z</pubTime>
-        
-        <tag>LeetCode</tag>
-         
-        <tag>Python</tag>
-         
-        <tag>Algorithm</tag>
-         
-        <tag>Binary Search</tag>
          
          
            
@@ -212,32 +238,6 @@
 
     
   <url>
-    <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AF%87%EF%BC%89Bit-Manipulation/</loc>
-    <lastmod>2018-09-30T14:46:36.800Z</lastmod>
-    <data>
-        <display>
-        <title>LeetCode算法题整理（位运算篇）Bit Manipulation</title>
-        <pubTime>2018-08-30T13:22:30.000Z</pubTime>
-        
-        <tag>Bit Manipulation</tag>
-         
-        <tag>LeetCode</tag>
-         
-        <tag>Python</tag>
-         
-        <tag>Algorithm</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="http://darktiantian.github.io.git/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E8%AE%BE%E8%AE%A1%E7%AF%87%EF%BC%89Design/</loc>
     <lastmod>2018-09-12T02:20:57.000Z</lastmod>
     <data>
@@ -289,13 +289,13 @@
         <title>371. Sum of Two Integers - Python</title>
         <pubTime>2018-09-07T04:31:18.000Z</pubTime>
         
-        <tag>Bit Manipulation</tag>
-         
         <tag>LeetCode</tag>
          
         <tag>Python</tag>
          
         <tag>Algorithm</tag>
+         
+        <tag>Bit Manipulation</tag>
          
          
            
