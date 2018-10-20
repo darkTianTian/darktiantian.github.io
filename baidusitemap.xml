@@ -4,6 +4,32 @@
 
     
   <url>
+    <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AF%87%EF%BC%89Bit-Manipulation/</loc>
+    <lastmod>2018-10-20T07:02:38.504Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode算法题整理（位运算篇）Bit Manipulation</title>
+        <pubTime>2018-08-30T13:22:30.000Z</pubTime>
+        
+        <tag>Bit Manipulation</tag>
+         
+        <tag>LeetCode</tag>
+         
+        <tag>Python</tag>
+         
+        <tag>Algorithm</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://darktiantian.github.io.git/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E6%95%B0%E5%AD%A6%E7%AF%87%EF%BC%89Math/</loc>
     <lastmod>2018-10-19T10:16:16.845Z</lastmod>
     <data>
@@ -18,32 +44,6 @@
         <tag>Algorithm</tag>
          
         <tag>Math</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="http://darktiantian.github.io.git/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AF%87%EF%BC%89Bit-Manipulation/</loc>
-    <lastmod>2018-10-17T12:43:53.908Z</lastmod>
-    <data>
-        <display>
-        <title>LeetCode算法题整理（位运算篇）Bit Manipulation</title>
-        <pubTime>2018-08-30T13:22:30.000Z</pubTime>
-        
-        <tag>LeetCode</tag>
-         
-        <tag>Python</tag>
-         
-        <tag>Algorithm</tag>
-         
-        <tag>Bit Manipulation</tag>
          
          
            
@@ -89,13 +89,13 @@
         <title>LeetCode算法题整理（二分法篇）Binary Search</title>
         <pubTime>2018-08-30T07:05:47.000Z</pubTime>
         
-        <tag>Binary Search</tag>
-         
         <tag>LeetCode</tag>
          
         <tag>Python</tag>
          
         <tag>Algorithm</tag>
+         
+        <tag>Binary Search</tag>
          
          
            
@@ -289,13 +289,13 @@
         <title>371. Sum of Two Integers - Python</title>
         <pubTime>2018-09-07T04:31:18.000Z</pubTime>
         
+        <tag>Bit Manipulation</tag>
+         
         <tag>LeetCode</tag>
          
         <tag>Python</tag>
          
         <tag>Algorithm</tag>
-         
-        <tag>Bit Manipulation</tag>
          
          
            
@@ -365,9 +365,9 @@
         
         <tag>Python</tag>
          
-        <tag>algorithm</tag>
-         
         <tag>剑指Offer</tag>
+         
+        <tag>algorithm</tag>
          
          
            
