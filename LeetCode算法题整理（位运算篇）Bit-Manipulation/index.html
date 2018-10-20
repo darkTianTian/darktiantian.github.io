@@ -109,10 +109,12 @@
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="191. Number of 1 Bits计算数字的二进制中有多少个1。原题123Input: 11Output: 3Explanation: Integer 11 has binary representation 00000000000000000000000000001011">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-20T07:02:38.504Z">
+<meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（位运算篇）Bit-Manipulation/Binary_clock_samui_moon.jpg">
+<meta property="og:updated_time" content="2018-10-20T13:39:19.484Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（位运算篇）Bit Manipulation">
 <meta name="twitter:description" content="191. Number of 1 Bits计算数字的二进制中有多少个1。原题123Input: 11Output: 3Explanation: Integer 11 has binary representation 00000000000000000000000000001011">
+<meta name="twitter:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（位运算篇）Bit-Manipulation/Binary_clock_samui_moon.jpg">
 
 
 
@@ -363,7 +365,7 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2018-10-20T15:02:38+08:00" content="2018-10-20">
+                <time itemprop="dateUpdated" datetime="2018-10-20T21:39:19+08:00" content="2018-10-20">
                   2018-10-20
                 </time>
               </span>
@@ -476,7 +478,16 @@
 <font color="#32CD32" size="3"><strong>方法二：使用异或。</strong></font>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findTheDifference</span><span class="params">(self, s, t)</span>:</span></span><br><span class="line">    <span class="keyword">from</span> operator <span class="keyword">import</span> xor</span><br><span class="line">    <span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line">    <span class="keyword">return</span> chr(reduce(xor, map(ord, s+t)))</span><br></pre></td></tr></table></figure>
-<h3 id="401-二进制手表"><a href="#401-二进制手表" class="headerlink" title="401. 二进制手表"></a>401. 二进制手表</h3><h4 id="有这样一个二进制的手表，输入一个n，表示有几个亮着的灯，返回所有可能出现的时间。时间范围为12小时制，即hours-0-11-，minutes-0-59-。原题"><a href="#有这样一个二进制的手表，输入一个n，表示有几个亮着的灯，返回所有可能出现的时间。时间范围为12小时制，即hours-0-11-，minutes-0-59-。原题" class="headerlink" title="有这样一个二进制的手表，输入一个n，表示有几个亮着的灯，返回所有可能出现的时间。时间范围为12小时制，即hours(0-11)，minutes(0-59)。原题"></a>有这样一个二进制的手表，输入一个n，表示有几个亮着的灯，返回所有可能出现的时间。时间范围为12小时制，即hours(0-11)，minutes(0-59)。<a href="https://leetcode.com/problems/binary-watch/description/" target="_blank" rel="noopener">原题</a></h4>
+<h3 id="401-二进制手表"><a href="#401-二进制手表" class="headerlink" title="401. 二进制手表"></a>401. 二进制手表</h3><h4 id="有这样一个二进制的手表，输入一个n，表示有几个亮着的灯，返回所有可能出现的时间。时间范围为12小时制，即hours-0-11-，minutes-0-59-。原题"><a href="#有这样一个二进制的手表，输入一个n，表示有几个亮着的灯，返回所有可能出现的时间。时间范围为12小时制，即hours-0-11-，minutes-0-59-。原题" class="headerlink" title="有这样一个二进制的手表，输入一个n，表示有几个亮着的灯，返回所有可能出现的时间。时间范围为12小时制，即hours(0-11)，minutes(0-59)。原题"></a>有这样一个二进制的手表，输入一个n，表示有几个亮着的灯，返回所有可能出现的时间。时间范围为12小时制，即hours(0-11)，minutes(0-59)。<a href="https://leetcode.com/problems/binary-watch/description/" target="_blank" rel="noopener">原题</a></h4><img src="/LeetCode算法题整理（位运算篇）Bit-Manipulation/Binary_clock_samui_moon.jpg">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 1</span><br><span class="line">Return: [&quot;1:00&quot;, &quot;2:00&quot;, &quot;4:00&quot;, &quot;8:00&quot;, &quot;0:01&quot;, &quot;0:02&quot;, &quot;0:04&quot;, &quot;0:08&quot;, &quot;0:16&quot;, &quot;0:32&quot;]</span><br></pre></td></tr></table></figure>
+<font color="#FF0000" size="3"><strong>一开始的思路：这是个错误的解法，因为分钟的灯不应该超过60分钟，因为要进位。类似的4和8的小时灯也不能同时亮起。</strong></font>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readBinaryWatch</span><span class="params">(self, num)</span>:</span></span><br><span class="line">    <span class="keyword">from</span> itertools <span class="keyword">import</span> combinations</span><br><span class="line">    <span class="comment"># transform hours to minutes</span></span><br><span class="line">    minutes = list(map(<span class="keyword">lambda</span> x: x * <span class="number">60</span>, (<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>))) + [<span class="number">32</span>, <span class="number">16</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>]</span><br><span class="line">    minutes_groups = combinations(minutes, num)</span><br><span class="line">    res = [<span class="string">'&#123;:d&#125;:&#123;:0&gt;2d&#125;'</span>.format(sum(g)//<span class="number">60</span>, sum(g)%<span class="number">60</span>) <span class="keyword">for</span> g <span class="keyword">in</span> minutes_groups]</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p>方法二：正确的写法。需要分开判断小时和分钟，然后再合并。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readBinaryWatch</span><span class="params">(self, num)</span>:</span></span><br><span class="line">    <span class="keyword">from</span> itertools <span class="keyword">import</span> combinations</span><br><span class="line">    <span class="comment"># transform hours to minutes</span></span><br><span class="line">    hours = list(map(<span class="keyword">lambda</span> x: x*<span class="number">60</span>, (<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>)))</span><br><span class="line">    minutes = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>)</span><br><span class="line">    res = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(num+<span class="number">1</span>):</span><br><span class="line">        get_hours = [x <span class="keyword">for</span> x <span class="keyword">in</span> list(combinations(hours, i)) <span class="keyword">if</span> sum(x) &lt; <span class="number">12</span> * <span class="number">60</span>]</span><br><span class="line">        get_minutes = [x <span class="keyword">for</span> x <span class="keyword">in</span> list(combinations(minutes, num-i)) <span class="keyword">if</span> sum(x) &lt; <span class="number">60</span>]</span><br><span class="line">        minutes_groups = [h+m <span class="keyword">for</span> h <span class="keyword">in</span> get_hours <span class="keyword">for</span> m <span class="keyword">in</span> get_minutes]</span><br><span class="line">        res += [<span class="string">'&#123;:d&#125;:&#123;:0&gt;2d&#125;'</span>.format(sum(g)//<span class="number">60</span>, sum(g)%<span class="number">60</span>) <span class="keyword">for</span> g <span class="keyword">in</span> minutes_groups]</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<font color="#32CD32" size="3">方法三：遍历所有可能的时间，找到符合条件的。因为表中的数组都是二进制，所以’1’的个数就是亮灯的个数。</font>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readBinaryWatch</span><span class="params">(self, num)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [<span class="string">'&#123;:d&#125;:&#123;:0&gt;2d&#125;'</span>.format(h, m)</span><br><span class="line">            <span class="keyword">for</span> h <span class="keyword">in</span> range(<span class="number">12</span>) <span class="keyword">for</span> m <span class="keyword">in</span> range(<span class="number">60</span>)</span><br><span class="line">            <span class="keyword">if</span> (bin(h)+bin(m)).count(<span class="string">'1'</span>) == num]</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -763,7 +774,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共27.8k字</span>
+  <span class="post-count">博客全站共28.2k字</span>
 </div>
         
 
