@@ -327,6 +327,196 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://darktiantian.github.io.git/记一次淘宝接口sign签名破解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaoliji">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaoliji's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/记一次淘宝接口sign签名破解/" itemprop="url">记一次淘宝接口sign签名破解</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-07T15:28:14+08:00">
+                2018-12-07
+              </time>
+            
+
+            
+              <span class="post-updated">
+                &nbsp; | &nbsp; Updated on
+                <time itemprop="dateUpdated" datetime="2018-12-07T15:28:14+08:00" content="2018-12-07">
+                  2018-12-07
+                </time>
+              </span>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/逆向工程/" itemprop="url" rel="index">
+                    <span itemprop="name">逆向工程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/记一次淘宝接口sign签名破解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="记一次淘宝接口sign签名破解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/记一次淘宝接口sign签名破解/" class="leancloud_visitors" data-flag-title="记一次淘宝接口sign签名破解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="淘宝H5页面接口Sign签名破解"><a href="#淘宝H5页面接口Sign签名破解" class="headerlink" title="淘宝H5页面接口Sign签名破解"></a>淘宝H5页面接口Sign签名破解</h3><p>前言：由于公司业务需求，需要显示淘宝商品详情页面的图文详情部分。之前原业务逻辑是根据<code>https://world.taobao.com/item/{num_iid}.htm</code>，在得到html文本后全量通过图片前缀名如<code>https://img.alicdn.com/imgextra</code>进行抓取，返回给客户端。</p>
+<!--nomore-->
+<p>由于header中的UA传的一个PC端的UA，所以获取的H5数据中，可能含有一些广告，商家之类自己的布局，从而无法在客户端正常展示。另一方面，该接口为高频接口，打开htm页面每次耗时70~80%，严重影响客户端体验，所以对此将接口进行升级。</p>
+<p>后来发现手机上打开该页面是不显示一些无关的广告的，而且布局也正常。于是将UA改为了手机端的UA，然后通过抓包分析，返回的页面是一个不包含图片的html，图文详情是根据js接口调用动态渲染。接口为<code>https://h5api.m.taobao.com/h5/mtop.wdetail.getitemdescx/4.9/?jsv=2.4.11&amp;appKey=12574478&amp;t=1544165283634&amp;sign=c691925755f2ff429c950f7b00903a23&amp;api=mtop.wdetail.getItemDescx&amp;v=4.9&amp;type=jsonp&amp;dataType=jsonp&amp;callback=mtopjsonp6&amp;data=%7B%22item_num_id%22%3A%22554401452734%22%7D</code>。看到参数中包含了<code>sign</code>，所以是根据某种规则算出来的签名。</p>
+<p>接着就是找到<code>sign</code>的签名算法了，将页面中的js格式化了一下。找到关于sign签名的部分。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line">s.prototype.__processRequestUrl = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    &#123;<span class="keyword">var</span> e = <span class="keyword">this</span>.params,</span><br><span class="line">    r = <span class="keyword">this</span>.options;</span><br><span class="line">    <span class="keyword">if</span> (r.hostSetting &amp;&amp; r.hostSetting[t.location.hostname]) &#123;</span><br><span class="line">        <span class="keyword">var</span> o = r.hostSetting[t.location.hostname];</span><br><span class="line">        o.prefix &amp;&amp; (r.prefix = o.prefix),</span><br><span class="line">        o.subDomain &amp;&amp; (r.subDomain = o.subDomain),</span><br><span class="line">        o.mainDomain &amp;&amp; (r.mainDomain = o.mainDomain)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="number">0</span> === r.H5Request) &#123;</span><br><span class="line">        <span class="keyword">var</span> i = <span class="string">"//"</span> + (r.prefix ? r.prefix + <span class="string">"."</span>: <span class="string">""</span>) + (r.subDomain ? r.subDomain + <span class="string">"."</span>: <span class="string">""</span>) + r.mainDomain + <span class="string">"/h5/"</span> + e.api.toLowerCase() + <span class="string">"/"</span> + e.v.toLowerCase() + <span class="string">"/"</span>,</span><br><span class="line">        a = e.appKey || (<span class="string">"waptest"</span> === r.subDomain ? <span class="string">"4272"</span>: <span class="string">"12574478"</span>),</span><br><span class="line">        c = (<span class="keyword">new</span> <span class="built_in">Date</span>).getTime(),</span><br><span class="line">        u = <span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">            <span class="function"><span class="keyword">function</span> <span class="title">n</span>(<span class="params">t, n</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> t &lt;&lt; n | t &gt;&gt;&gt; <span class="number">32</span> - n</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">function</span> <span class="title">e</span>(<span class="params">t, n</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> e, r, o, i, a;</span><br><span class="line">                <span class="keyword">return</span> o = <span class="number">2147483648</span> &amp; t,</span><br><span class="line">                i = <span class="number">2147483648</span> &amp; n,</span><br><span class="line">                a = (<span class="number">1073741823</span> &amp; t) + (<span class="number">1073741823</span> &amp; n),</span><br><span class="line">                (e = <span class="number">1073741824</span> &amp; t) &amp; (r = <span class="number">1073741824</span> &amp; n) ? <span class="number">2147483648</span> ^ a ^ o ^ i: e | r ? <span class="number">1073741824</span> &amp; a ? <span class="number">3221225472</span> ^ a ^ o ^ i: <span class="number">1073741824</span> ^ a ^ o ^ i: a ^ o ^ i</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">function</span> <span class="title">r</span>(<span class="params">t, r, o, i, a, c, u</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> e(n(t = e(t, e(e(<span class="function"><span class="keyword">function</span>(<span class="params">t, n, e</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> t &amp; n | ~t &amp; e</span><br><span class="line">                &#125; (r, o, i), a), u)), c), r)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">function</span> <span class="title">o</span>(<span class="params">t, r, o, i, a, c, u</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> e(n(t = e(t, e(e(<span class="function"><span class="keyword">function</span>(<span class="params">t, n, e</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> t &amp; e | n &amp; ~e</span><br><span class="line">                &#125; (r, o, i), a), u)), c), r)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">function</span> <span class="title">i</span>(<span class="params">t, r, o, i, a, c, u</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> e(n(t = e(t, e(e(<span class="function"><span class="keyword">function</span>(<span class="params">t, n, e</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> t ^ n ^ e</span><br><span class="line">                &#125; (r, o, i), a), u)), c), r)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">t, r, o, i, a, c, u</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> e(n(t = e(t, e(e(<span class="function"><span class="keyword">function</span>(<span class="params">t, n, e</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> n ^ (t | ~e)</span><br><span class="line">                &#125; (r, o, i), a), u)), c), r)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> n, e = <span class="string">""</span>,</span><br><span class="line">                r = <span class="string">""</span>;</span><br><span class="line">                <span class="keyword">for</span> (n = <span class="number">0</span>; <span class="number">3</span> &gt;= n; n++) e += (r = <span class="string">"0"</span> + (t &gt;&gt;&gt; <span class="number">8</span> * n &amp; <span class="number">255</span>).toString(<span class="number">16</span>)).substr(r.length - <span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line">                <span class="keyword">return</span> e</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">var</span> u, s, f, l, p, d, h, v, m, g;</span><br><span class="line">            <span class="keyword">for</span> (g = <span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> n, e = t.length,</span><br><span class="line">                r = e + <span class="number">8</span>,</span><br><span class="line">                o = <span class="number">16</span> * ((r - r % <span class="number">64</span>) / <span class="number">64</span> + <span class="number">1</span>), i = <span class="keyword">new</span> <span class="built_in">Array</span>(o - <span class="number">1</span>), a = <span class="number">0</span>, c = <span class="number">0</span>; e &gt; c;) a = c % <span class="number">4</span> * <span class="number">8</span>,</span><br><span class="line">                i[n = (c - c % <span class="number">4</span>) / <span class="number">4</span>] = i[n] | t.charCodeAt(c) &lt;&lt; a,</span><br><span class="line">                c++;</span><br><span class="line">                <span class="keyword">return</span> a = c % <span class="number">4</span> * <span class="number">8</span>,</span><br><span class="line">                i[n = (c - c % <span class="number">4</span>) / <span class="number">4</span>] = i[n] | <span class="number">128</span> &lt;&lt; a,</span><br><span class="line">                i[o - <span class="number">2</span>] = e &lt;&lt; <span class="number">3</span>,</span><br><span class="line">                i[o - <span class="number">1</span>] = e &gt;&gt;&gt; <span class="number">29</span>,</span><br><span class="line">                i</span><br><span class="line">            &#125; (t = <span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">                t = t.replace(<span class="regexp">/\r\n/g</span>, <span class="string">"\n"</span>);</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> n = <span class="string">""</span>,</span><br><span class="line">                e = <span class="number">0</span>; e &lt; t.length; e++) &#123;</span><br><span class="line">                    <span class="keyword">var</span> r = t.charCodeAt(e);</span><br><span class="line">                    <span class="number">128</span> &gt; r ? n += <span class="built_in">String</span>.fromCharCode(r) : r &gt; <span class="number">127</span> &amp;&amp; <span class="number">2048</span> &gt; r ? (n += <span class="built_in">String</span>.fromCharCode(r &gt;&gt; <span class="number">6</span> | <span class="number">192</span>), n += <span class="built_in">String</span>.fromCharCode(<span class="number">63</span> &amp; r | <span class="number">128</span>)) : (n += <span class="built_in">String</span>.fromCharCode(r &gt;&gt; <span class="number">12</span> | <span class="number">224</span>), n += <span class="built_in">String</span>.fromCharCode(r &gt;&gt; <span class="number">6</span> &amp; <span class="number">63</span> | <span class="number">128</span>), n += <span class="built_in">String</span>.fromCharCode(<span class="number">63</span> &amp; r | <span class="number">128</span>))</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> n</span><br><span class="line">            &#125; (t)), d = <span class="number">1732584193</span>, h = <span class="number">4023233417</span>, v = <span class="number">2562383102</span>, m = <span class="number">271733878</span>, u = <span class="number">0</span>; u &lt; g.length; u += <span class="number">16</span>) s = d,</span><br><span class="line">            f = h,</span><br><span class="line">            l = v,</span><br><span class="line">            p = m,</span><br><span class="line">            h = a(h = a(h = a(h = a(h = i(h = i(h = i(h = i(h = o(h = o(h = o(h = o(h = r(h = r(h = r(h = r(h, v = r(v, m = r(m, d = r(d, h, v, m, g[u + <span class="number">0</span>], <span class="number">7</span>, <span class="number">3614090360</span>), h, v, g[u + <span class="number">1</span>], <span class="number">12</span>, <span class="number">3905402710</span>), d, h, g[u + <span class="number">2</span>], <span class="number">17</span>, <span class="number">606105819</span>), m, d, g[u + <span class="number">3</span>], <span class="number">22</span>, <span class="number">3250441966</span>), v = r(v, m = r(m, d = r(d, h, v, m, g[u + <span class="number">4</span>], <span class="number">7</span>, <span class="number">4118548399</span>), h, v, g[u + <span class="number">5</span>], <span class="number">12</span>, <span class="number">1200080426</span>), d, h, g[u + <span class="number">6</span>], <span class="number">17</span>, <span class="number">2821735955</span>), m, d, g[u + <span class="number">7</span>], <span class="number">22</span>, <span class="number">4249261313</span>), v = r(v, m = r(m, d = r(d, h, v, m, g[u + <span class="number">8</span>], <span class="number">7</span>, <span class="number">1770035416</span>), h, v, g[u + <span class="number">9</span>], <span class="number">12</span>, <span class="number">2336552879</span>), d, h, g[u + <span class="number">10</span>], <span class="number">17</span>, <span class="number">4294925233</span>), m, d, g[u + <span class="number">11</span>], <span class="number">22</span>, <span class="number">2304563134</span>), v = r(v, m = r(m, d = r(d, h, v, m, g[u + <span class="number">12</span>], <span class="number">7</span>, <span class="number">1804603682</span>), h, v, g[u + <span class="number">13</span>], <span class="number">12</span>, <span class="number">4254626195</span>), d, h, g[u + <span class="number">14</span>], <span class="number">17</span>, <span class="number">2792965006</span>), m, d, g[u + <span class="number">15</span>], <span class="number">22</span>, <span class="number">1236535329</span>), v = o(v, m = o(m, d = o(d, h, v, m, g[u + <span class="number">1</span>], <span class="number">5</span>, <span class="number">4129170786</span>), h, v, g[u + <span class="number">6</span>], <span class="number">9</span>, <span class="number">3225465664</span>), d, h, g[u + <span class="number">11</span>], <span class="number">14</span>, <span class="number">643717713</span>), m, d, g[u + <span class="number">0</span>], <span class="number">20</span>, <span class="number">3921069994</span>), v = o(v, m = o(m, d = o(d, h, v, m, g[u + <span class="number">5</span>], <span class="number">5</span>, <span class="number">3593408605</span>), h, v, g[u + <span class="number">10</span>], <span class="number">9</span>, <span class="number">38016083</span>), d, h, g[u + <span class="number">15</span>], <span class="number">14</span>, <span class="number">3634488961</span>), m, d, g[u + <span class="number">4</span>], <span class="number">20</span>, <span class="number">3889429448</span>), v = o(v, m = o(m, d = o(d, h, v, m, g[u + <span class="number">9</span>], <span class="number">5</span>, <span class="number">568446438</span>), h, v, g[u + <span class="number">14</span>], <span class="number">9</span>, <span class="number">3275163606</span>), d, h, g[u + <span class="number">3</span>], <span class="number">14</span>, <span class="number">4107603335</span>), m, d, g[u + <span class="number">8</span>], <span class="number">20</span>, <span class="number">1163531501</span>), v = o(v, m = o(m, d = o(d, h, v, m, g[u + <span class="number">13</span>], <span class="number">5</span>, <span class="number">2850285829</span>), h, v, g[u + <span class="number">2</span>], <span class="number">9</span>, <span class="number">4243563512</span>), d, h, g[u + <span class="number">7</span>], <span class="number">14</span>, <span class="number">1735328473</span>), m, d, g[u + <span class="number">12</span>], <span class="number">20</span>, <span class="number">2368359562</span>), v = i(v, m = i(m, d = i(d, h, v, m, g[u + <span class="number">5</span>], <span class="number">4</span>, <span class="number">4294588738</span>), h, v, g[u + <span class="number">8</span>], <span class="number">11</span>, <span class="number">2272392833</span>), d, h, g[u + <span class="number">11</span>], <span class="number">16</span>, <span class="number">1839030562</span>), m, d, g[u + <span class="number">14</span>], <span class="number">23</span>, <span class="number">4259657740</span>), v = i(v, m = i(m, d = i(d, h, v, m, g[u + <span class="number">1</span>], <span class="number">4</span>, <span class="number">2763975236</span>), h, v, g[u + <span class="number">4</span>], <span class="number">11</span>, <span class="number">1272893353</span>), d, h, g[u + <span class="number">7</span>], <span class="number">16</span>, <span class="number">4139469664</span>), m, d, g[u + <span class="number">10</span>], <span class="number">23</span>, <span class="number">3200236656</span>), v = i(v, m = i(m, d = i(d, h, v, m, g[u + <span class="number">13</span>], <span class="number">4</span>, <span class="number">681279174</span>), h, v, g[u + <span class="number">0</span>], <span class="number">11</span>, <span class="number">3936430074</span>), d, h, g[u + <span class="number">3</span>], <span class="number">16</span>, <span class="number">3572445317</span>), m, d, g[u + <span class="number">6</span>], <span class="number">23</span>, <span class="number">76029189</span>), v = i(v, m = i(m, d = i(d, h, v, m, g[u + <span class="number">9</span>], <span class="number">4</span>, <span class="number">3654602809</span>), h, v, g[u + <span class="number">12</span>], <span class="number">11</span>, <span class="number">3873151461</span>), d, h, g[u + <span class="number">15</span>], <span class="number">16</span>, <span class="number">530742520</span>), m, d, g[u + <span class="number">2</span>], <span class="number">23</span>, <span class="number">3299628645</span>), v = a(v, m = a(m, d = a(d, h, v, m, g[u + <span class="number">0</span>], <span class="number">6</span>, <span class="number">4096336452</span>), h, v, g[u + <span class="number">7</span>], <span class="number">10</span>, <span class="number">1126891415</span>), d, h, g[u + <span class="number">14</span>], <span class="number">15</span>, <span class="number">2878612391</span>), m, d, g[u + <span class="number">5</span>], <span class="number">21</span>, <span class="number">4237533241</span>), v = a(v, m = a(m, d = a(d, h, v, m, g[u + <span class="number">12</span>], <span class="number">6</span>, <span class="number">1700485571</span>), h, v, g[u + <span class="number">3</span>], <span class="number">10</span>, <span class="number">2399980690</span>), d, h, g[u + <span class="number">10</span>], <span class="number">15</span>, <span class="number">4293915773</span>), m, d, g[u + <span class="number">1</span>], <span class="number">21</span>, <span class="number">2240044497</span>), v = a(v, m = a(m, d = a(d, h, v, m, g[u + <span class="number">8</span>], <span class="number">6</span>, <span class="number">1873313359</span>), h, v, g[u + <span class="number">15</span>], <span class="number">10</span>, <span class="number">4264355552</span>), d, h, g[u + <span class="number">6</span>], <span class="number">15</span>, <span class="number">2734768916</span>), m, d, g[u + <span class="number">13</span>], <span class="number">21</span>, <span class="number">1309151649</span>), v = a(v, m = a(m, d = a(d, h, v, m, g[u + <span class="number">4</span>], <span class="number">6</span>, <span class="number">4149444226</span>), h, v, g[u + <span class="number">11</span>], <span class="number">10</span>, <span class="number">3174756917</span>), d, h, g[u + <span class="number">2</span>], <span class="number">15</span>, <span class="number">718787259</span>), m, d, g[u + <span class="number">9</span>], <span class="number">21</span>, <span class="number">3951481745</span>),</span><br><span class="line">            d = e(d, s),</span><br><span class="line">            h = e(h, f),</span><br><span class="line">            v = e(v, l),</span><br><span class="line">            m = e(m, p);</span><br><span class="line">            <span class="keyword">return</span> (c(d) + c(h) + c(v) + c(m)).toLowerCase()</span><br><span class="line">        &#125; (r.token + <span class="string">"&amp;"</span> + c + <span class="string">"&amp;"</span> + a + <span class="string">"&amp;"</span> + e.data),</span><br><span class="line">        s = &#123;</span><br><span class="line">            jsv: <span class="string">"2.4.11"</span>,</span><br><span class="line">            appKey: a,</span><br><span class="line">            t: c,</span><br><span class="line">            sign: u</span><br><span class="line">        &#125;,</span><br><span class="line">        f = &#123;</span><br><span class="line">            data: e.data,</span><br><span class="line">            ua: e.ua</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="built_in">Object</span>.keys(e).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">            <span class="string">"undefined"</span> == <span class="keyword">typeof</span> s[t] &amp;&amp; <span class="string">"undefined"</span> == <span class="keyword">typeof</span> f[t] &amp;&amp; <span class="string">"headers"</span> !== t &amp;&amp; <span class="string">"ext_headers"</span> !== t &amp;&amp; <span class="string">"ext_querys"</span> !== t &amp;&amp; (s[t] = e[t])</span><br><span class="line">        &#125;),</span><br><span class="line">        e.ext_querys &amp;&amp; <span class="built_in">Object</span>.keys(e.ext_querys).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">            s[t] = e.ext_querys[t]</span><br><span class="line">        &#125;),</span><br><span class="line">        r.getJSONP ? s.type = <span class="string">"jsonp"</span>: r.getOriginalJSONP ? s.type = <span class="string">"originaljsonp"</span>: (r.getJSON || r.postJSON) &amp;&amp; (s.type = <span class="string">"originaljson"</span>),</span><br><span class="line">        <span class="string">"undefined"</span> != <span class="keyword">typeof</span> e.valueType &amp;&amp; (<span class="string">"original"</span> === e.valueType ? r.getJSONP || r.getOriginalJSONP ? s.type = <span class="string">"originaljsonp"</span>: (r.getJSON || r.postJSON) &amp;&amp; (s.type = <span class="string">"originaljson"</span>) : <span class="string">"string"</span> === e.valueType &amp;&amp; (r.getJSONP || r.getOriginalJSONP ? s.type = <span class="string">"jsonp"</span>: (r.getJSON || r.postJSON) &amp;&amp; (s.type = <span class="string">"json"</span>))),</span><br><span class="line">        !<span class="number">0</span> === r.useJsonpResultType &amp;&amp; <span class="string">"originaljson"</span> === s.type &amp;&amp; <span class="keyword">delete</span> s.type,</span><br><span class="line">        r.dangerouslySetProtocol &amp;&amp; (i = r.dangerouslySetProtocol + <span class="string">":"</span> + i),</span><br><span class="line">        r.querystring = s,</span><br><span class="line">        r.postdata = f,</span><br><span class="line">        r.path = i</span><br><span class="line">    &#125;</span><br><span class="line">    n()</span><br><span class="line">&#125;,&#125;</span><br></pre></td></tr></table></figure>
+<p>一开始被这个算法吓到了，差点被劝退，后来找到一篇文章。<a href="https://zhuanlan.zhihu.com/p/42053431" target="_blank" rel="noopener">淘宝sign加密算法</a>。根据抓包的参数，按照公式来计算sign，验证算法是否正确。可能由于时间戳没有取整，或者一些其他的原因如编码问题等，导致sign的值没有和正确值对上，又看到文中贴的代码比我找到的js更加简单，以为淘宝更新了算法。再后来一位知友提示说算法没有问题，（在此特别感谢知友Jaho及文章作者小歪）才又抓包试了一次，这次将毫秒时间戳转为了int，并将字符串进行utf8编码，算出来的sign值和抓包中的匹配。sign生成公式为：<code>md5Hex(token&amp;t&amp;appKey&amp;data)</code>t表示毫秒时间戳，appKey一般为固定值。data为参数。本文中的例子为<code>6b2310e47a950f1c8c3fe6ec792f356a&amp;1544165283634&amp;12574478&amp;{&quot;item_num_id&quot;:&quot;554401452734&quot;}</code>再进行md5转换。</p>
+<p>知道了sign算法，接下来就是token的获取，根据知乎文中作者所说，第一次请求是会设置cookie，于是使用Postman清理cookie后请求，此时sign的值传任何值均无影响，接口会返回</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mtopjsonp2(&#123;</span><br><span class="line">	"api": "mtop.wdetail.getItemDescx",</span><br><span class="line">	"v": "4.9",</span><br><span class="line">	"ret": ["FAIL_SYS_TOKEN_EXOIRED::令牌过期"],</span><br><span class="line">	"data": &#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>并设置两个cookie，一个是<code>_m_h5_tk</code>值为<code>6b2310e47a950f1c8c3fe6ec792f356a_1544173923544</code>，另一个是<code>_m_h5_tk_enc</code>，这个目前用不到，我们要的token就是前者<code>_</code>分割的前部分。这样一来，我们请求两次接口，第一次拿到token，第二次请求拿到数据。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"api"</span>: <span class="string">"mtop.wdetail.getItemDescx"</span>,</span><br><span class="line">  <span class="attr">"data"</span>: &#123;</span><br><span class="line">    <span class="attr">"pages"</span>: [</span><br><span class="line">      <span class="string">"&lt;txt&gt;特别提醒：此款收纳箱尺寸测量方法：（盖上盖子测量长宽高）长度=盖子+把手。手工量的，稍许误差，谢谢谅解！ 注意：不要把本店的L数跟超市的比较，本店的L数是网上笼统的叫法，以箱子实际尺寸为主，介意的亲请勿拍！建议：店长推荐拍套装几个套在一起 可以抗摔 。。10L不建议购买只能装一些小东西人工测量会有2cm左右误差属于正常现象温馨提醒：塑料属于易碎品，为了免去亲的麻烦，请亲在收货时先拆开检查后在签收，如有破损请直接拒收&lt;/txt&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i3/2651141793/TB2kQKqbgsSMeJjSspcXXXjFXXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i1/2651141793/TB2UkPszC8mpuFjSZFMXXaxpVXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i3/2651141793/TB2dJSBzstnpuFjSZFKXXalFFXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i4/2651141793/TB2U3i5zxxmpuFjSZFNXXXrRXXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i1/2651141793/TB22qfEzr4npuFjSZFmXXXl4FXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i2/2651141793/TB2_8HcvbJkpuFjy1zcXXa5FFXa_!!2651141793.jpg&lt;/img&gt;"</span>,</span><br><span class="line">      <span class="string">"&lt;img&gt;https://img.alicdn.com/imgextra/i1/2651141793/TB2f7YszC8mpuFjSZFMXXaxpVXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i3/2651141793/TB2B600zrBnpuFjSZFGXXX51pXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i4/2651141793/TB2C.HmvgFkpuFjSspnXXb4qFXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i3/2651141793/TB25AYszC8mpuFjSZFMXXaxpVXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i3/2651141793/TB2Tt1BzstnpuFjSZFKXXalFFXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i3/2651141793/TB2FNPgvgxlpuFjSszbXXcSVpXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i2/2651141793/TB26j40zrBnpuFjSZFGXXX51pXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i4/2651141793/TB2uDGozCVmpuFjSZFFXXcZApXa_!!2651141793.jpg&lt;/img&gt;"</span>,</span><br><span class="line">      <span class="string">"&lt;img&gt;https://img.alicdn.com/imgextra/i1/2651141793/TB2Bx9ntxRDOuFjSZFzXXcIipXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i2/2651141793/TB2nSblvm0jpuFjy0FlXXc0bpXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i2/2651141793/TB2wtaQvbXlpuFjSszfXXcSGXXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i4/2651141793/TB2k1vfvl4lpuFjy1zjXXcAKpXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i1/2651141793/TB26HbQvbFkpuFjy1XcXXclapXa_!!2651141793.jpg&lt;/img&gt;&lt;img&gt;https://img.alicdn.com/imgextra/i3/2651141793/TB24miYzypnpuFjSZFIXXXh2VXa_!!2651141793.jpg&lt;/img&gt;&lt;txt&gt;.................welcome20160618152824&lt;/txt&gt;"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"images"</span>: [</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i3/2651141793/TB2kQKqbgsSMeJjSspcXXXjFXXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i1/2651141793/TB2UkPszC8mpuFjSZFMXXaxpVXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i3/2651141793/TB2dJSBzstnpuFjSZFKXXalFFXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i4/2651141793/TB2U3i5zxxmpuFjSZFNXXXrRXXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i1/2651141793/TB22qfEzr4npuFjSZFmXXXl4FXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i2/2651141793/TB2_8HcvbJkpuFjy1zcXXa5FFXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i1/2651141793/TB2f7YszC8mpuFjSZFMXXaxpVXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i3/2651141793/TB2B600zrBnpuFjSZFGXXX51pXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i4/2651141793/TB2C.HmvgFkpuFjSspnXXb4qFXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i3/2651141793/TB25AYszC8mpuFjSZFMXXaxpVXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i3/2651141793/TB2Tt1BzstnpuFjSZFKXXalFFXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i3/2651141793/TB2FNPgvgxlpuFjSszbXXcSVpXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i2/2651141793/TB26j40zrBnpuFjSZFGXXX51pXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i4/2651141793/TB2uDGozCVmpuFjSZFFXXcZApXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i1/2651141793/TB2Bx9ntxRDOuFjSZFzXXcIipXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i2/2651141793/TB2nSblvm0jpuFjy0FlXXc0bpXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i2/2651141793/TB2wtaQvbXlpuFjSszfXXcSGXXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i4/2651141793/TB2k1vfvl4lpuFjy1zjXXcAKpXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i1/2651141793/TB26HbQvbFkpuFjy1XcXXclapXa_!!2651141793.jpg"</span>,</span><br><span class="line">      <span class="string">"https://img.alicdn.com/imgextra/i3/2651141793/TB24miYzypnpuFjSZFIXXXh2VXa_!!2651141793.jpg"</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"ret"</span>: [</span><br><span class="line">    <span class="string">"SUCCESS::接口调用成功"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"v"</span>: <span class="string">"4.9"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中的images数组就是我想要的数据，这里返回值不是标准的json，套了一层mtopjsonp2({JSON})，于是获取结果后还要根据正则截取一下json的文本。</p>
+<p>附上部分相关代码，python版本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_images_from_mtop</span><span class="params">(num_iid)</span>:</span></span><br><span class="line"></span><br><span class="line">    APPKEY = <span class="string">'12574478'</span></span><br><span class="line">    DATA = <span class="string">'&#123;"item_num_id":"%s"&#125;'</span> % num_iid</span><br><span class="line">    URL = <span class="string">'https://h5api.m.taobao.com/h5/mtop.wdetail.getitemdescx/4.9/'</span></span><br><span class="line">    params = &#123;<span class="string">'jsv'</span>: <span class="string">'2.4.11'</span>, <span class="string">'appKey'</span>: APPKEY, <span class="string">'t'</span>: int(time.time()*<span class="number">1000</span>),</span><br><span class="line">              <span class="string">'sign'</span>: <span class="string">'FAKE_SIGN_WITH_ANYTHING'</span>, <span class="string">'api'</span>: <span class="string">'mtop.wdetail.getItemDescx'</span>, <span class="string">'v'</span>: <span class="string">'4.9'</span>,</span><br><span class="line">              <span class="string">'type'</span>: <span class="string">'jsonp'</span>, <span class="string">'dataType'</span>: <span class="string">'jsonp'</span>, <span class="string">'callback'</span>: <span class="string">'mtopjsonp2'</span>,</span><br><span class="line">              <span class="string">'data'</span>: DATA&#125;</span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_4 like Mac OS X) AppleWebKit/601.1.46 '</span> + \</span><br><span class="line">                      <span class="string">'(KHTML, like Gecko) Version/9.0 Mobile/13G35 Safari/601.1'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    images = []</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># get token in first request</span></span><br><span class="line">        r1 = requests.get(URL, params=params, headers=headers)</span><br><span class="line">        token_with_time = r1.cookies.get(<span class="string">'_m_h5_tk'</span>)</span><br><span class="line">        token = token_with_time.split(<span class="string">'_'</span>)[<span class="number">0</span>]</span><br><span class="line">        enc_token = r1.cookies.get(<span class="string">'_m_h5_tk_enc'</span>)</span><br><span class="line">        logger.debug(r1.cookies)</span><br><span class="line">        <span class="comment"># get results in second request</span></span><br><span class="line">        t2 = str(int(time.time() * <span class="number">1000</span>))</span><br><span class="line">        c = <span class="string">'&amp;'</span>.join([token, t2, APPKEY, DATA])</span><br><span class="line">        m = hashlib.md5()</span><br><span class="line">        m.update(c.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">        params.update(&#123;<span class="string">'t'</span>: t2, <span class="string">'sign'</span>: m.hexdigest()&#125;)</span><br><span class="line">        cookies = &#123;<span class="string">'_m_h5_tk'</span>: token_with_time, <span class="string">'_m_h5_tk_enc'</span>: enc_token&#125;</span><br><span class="line">        r2 = requests.get(URL, params=params, headers=headers, cookies=cookies)</span><br><span class="line">        logger.debug(r2.text)</span><br><span class="line">        json_text = re.match(<span class="string">r'(.*\()(.*)(\))'</span>, r2.text).group(<span class="number">2</span>)</span><br><span class="line">        images = dict(json.loads(json_text))[<span class="string">'data'</span>][<span class="string">'images'</span>]</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        logger.warning(e)</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="keyword">return</span> images</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://darktiantian.github.io.git/工作中项目优化小记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1945,192 +2135,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://darktiantian.github.io.git/剑指Offer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xiaoliji">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaoliji's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/剑指Offer/" itemprop="url">剑指Offer</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-29T16:35:15+08:00">
-                2018-08-29
-              </time>
-            
-
-            
-              <span class="post-updated">
-                &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2018-09-07T17:17:24+08:00" content="2018-09-07">
-                  2018-09-07
-                </time>
-              </span>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/剑指Offer/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="剑指Offer/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/剑指Offer/" class="leancloud_visitors" data-flag-title="剑指Offer">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="2-实现Singleton模式"><a href="#2-实现Singleton模式" class="headerlink" title="2. 实现Singleton模式"></a>2. 实现Singleton模式</h3><h4 id="使用-new-控制实例创建过程"><a href="#使用-new-控制实例创建过程" class="headerlink" title="使用__new__控制实例创建过程"></a>使用<code>__new__</code>控制实例创建过程</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, *args, **kw)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> hasattr(cls, <span class="string">'_instance'</span>):</span><br><span class="line">            cls._instance = super(Singleton, cls).__new__(cls, **args, **kw)</span><br><span class="line">        <span class="keyword">return</span> cls._instance</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myclass</span><span class="params">(Singleton)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/剑指Offer/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2176,7 +2185,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2187,7 +2196,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -2198,7 +2207,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -2304,7 +2313,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共32.5k字</span>
+  <span class="post-count">博客全站共35.6k字</span>
 </div>
         
 
