@@ -101,18 +101,18 @@
 
 
 
-<meta name="description" content="淘宝H5页面接口Sign签名破解前言：由于公司业务需求，需要显示淘宝商品详情页面的图文详情部分。之前原业务逻辑是根据https://world.taobao.com/item/{num_iid}.htm，在得到html文本后全量通过图片前缀名如https://img.alicdn.com/imgextra进行抓取，返回给客户端。  由于header中的UA传的一个PC端的UA，所以获取的H5数据中">
+<meta name="description" content="淘宝H5页面接口Sign签名破解前言：由于公司业务需求，需要显示淘宝商品详情页面的图文详情部分。之前原业务逻辑是根据https://world.taobao.com/item/{num_iid}.htm，在得到html文本后全量通过图片前缀名如https://img.alicdn.com/imgextra进行抓取，返回给客户端。">
 <meta name="keywords" content="Sign签名">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次淘宝接口sign签名破解">
 <meta property="og:url" content="http://darktiantian.github.io.git/记一次淘宝接口sign签名破解/index.html">
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
-<meta property="og:description" content="淘宝H5页面接口Sign签名破解前言：由于公司业务需求，需要显示淘宝商品详情页面的图文详情部分。之前原业务逻辑是根据https://world.taobao.com/item/{num_iid}.htm，在得到html文本后全量通过图片前缀名如https://img.alicdn.com/imgextra进行抓取，返回给客户端。  由于header中的UA传的一个PC端的UA，所以获取的H5数据中">
+<meta property="og:description" content="淘宝H5页面接口Sign签名破解前言：由于公司业务需求，需要显示淘宝商品详情页面的图文详情部分。之前原业务逻辑是根据https://world.taobao.com/item/{num_iid}.htm，在得到html文本后全量通过图片前缀名如https://img.alicdn.com/imgextra进行抓取，返回给客户端。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-07T07:28:14.177Z">
+<meta property="og:updated_time" content="2018-12-07T07:29:29.496Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次淘宝接口sign签名破解">
-<meta name="twitter:description" content="淘宝H5页面接口Sign签名破解前言：由于公司业务需求，需要显示淘宝商品详情页面的图文详情部分。之前原业务逻辑是根据https://world.taobao.com/item/{num_iid}.htm，在得到html文本后全量通过图片前缀名如https://img.alicdn.com/imgextra进行抓取，返回给客户端。  由于header中的UA传的一个PC端的UA，所以获取的H5数据中">
+<meta name="twitter:description" content="淘宝H5页面接口Sign签名破解前言：由于公司业务需求，需要显示淘宝商品详情页面的图文详情部分。之前原业务逻辑是根据https://world.taobao.com/item/{num_iid}.htm，在得到html文本后全量通过图片前缀名如https://img.alicdn.com/imgextra进行抓取，返回给客户端。">
 
 
 
@@ -363,7 +363,7 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2018-12-07T15:28:14+08:00" content="2018-12-07">
+                <time itemprop="dateUpdated" datetime="2018-12-07T15:29:29+08:00" content="2018-12-07">
                   2018-12-07
                 </time>
               </span>
@@ -447,7 +447,7 @@
 
       
         <h3 id="淘宝H5页面接口Sign签名破解"><a href="#淘宝H5页面接口Sign签名破解" class="headerlink" title="淘宝H5页面接口Sign签名破解"></a>淘宝H5页面接口Sign签名破解</h3><p>前言：由于公司业务需求，需要显示淘宝商品详情页面的图文详情部分。之前原业务逻辑是根据<code>https://world.taobao.com/item/{num_iid}.htm</code>，在得到html文本后全量通过图片前缀名如<code>https://img.alicdn.com/imgextra</code>进行抓取，返回给客户端。</p>
-<!--nomore-->
+<a id="more"></a>
 <p>由于header中的UA传的一个PC端的UA，所以获取的H5数据中，可能含有一些广告，商家之类自己的布局，从而无法在客户端正常展示。另一方面，该接口为高频接口，打开htm页面每次耗时70~80%，严重影响客户端体验，所以对此将接口进行升级。</p>
 <p>后来发现手机上打开该页面是不显示一些无关的广告的，而且布局也正常。于是将UA改为了手机端的UA，然后通过抓包分析，返回的页面是一个不包含图片的html，图文详情是根据js接口调用动态渲染。接口为<code>https://h5api.m.taobao.com/h5/mtop.wdetail.getitemdescx/4.9/?jsv=2.4.11&amp;appKey=12574478&amp;t=1544165283634&amp;sign=c691925755f2ff429c950f7b00903a23&amp;api=mtop.wdetail.getItemDescx&amp;v=4.9&amp;type=jsonp&amp;dataType=jsonp&amp;callback=mtopjsonp6&amp;data=%7B%22item_num_id%22%3A%22554401452734%22%7D</code>。看到参数中包含了<code>sign</code>，所以是根据某种规则算出来的签名。</p>
 <p>接着就是找到<code>sign</code>的签名算法了，将页面中的js格式化了一下。找到关于sign签名的部分。</p>
