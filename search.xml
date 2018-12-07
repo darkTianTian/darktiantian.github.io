@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[《Web API 的设计与开发》读后总结]]></title>
-    <url>%2F%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93%2F</url>
-    <content type="text"><![CDATA[前言此书为[日]水野贵明著，之前已经通读了一遍，收获不少，为了复习与总结，这里便整理一份笔记，以便忘记的时候查找。 第一章：什么是Web APIREST与Web APIREST一词经常以”REST API”的形式出现。一般而言，人们认为它是指”能够通过HTTP协议进行访问，得到XML或JSON格式的返回数据的API”。而REST一词一般是有两种意思： 符合REST架构风格的Web服务系统。 符合RPC风格的XML(or JSON)+HTTP接口的系统（不适用SOAP）。 书中的API设计思想侧重于第2条，旨在API更加亲切易懂，比如搜索操作时，没有在URI中强制使用名词，而是使用search；在URI中添加版本号，而不是Header中。 LSUD vs SSKD LSUD(Large Set of Unknown Developers) SSKD(Small Set of Known Developers)，有时使用REST这种基于资源的思维方式不能完全满足需求，还需要引入策略编排层这样的思维方式。 第二章：端点的设计与请求的形式#####]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-      <tags>
-        <tag>API</tag>
-        <tag>RESTful</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[工作中项目优化小记]]></title>
     <url>%2F%E5%B7%A5%E4%BD%9C%E4%B8%AD%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E5%B0%8F%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[前言博主目前接手了一个项目，该项目代码从某马微店那里买来，社交金融相关。这个项目的代码可以说是逻辑混乱，毫无可重用性，而且又无文档，git message中一堆毫无用处的“update”，PEP8规范？不存在的。使得我每日游走在被代码劝退的边缘。震惊！一次请求1W多条sql。该功能为商品的热销分类表单。之前大概看了一眼，数据是先从redis中取，redis值存的永久有效，没有的话查DB。然后某天清了一下测试数据库的redis，这下好了，接口超时。查了一下silk发现运行了1w多次sql。 万恶之源的代码，难怪查了1W多次，这外键coupon，每次都要查询数据库。而且这里channel也没有用set，这简直基础数据结构都没掌握啊。 123456tbkcoupons = TbkCouponTags.objects.filter(is_hot=True)channel = []for t in tbkcoupons: cc = t.coupon.channel if cc not in channel: channel.append(cc) 使用select_related简单的处理了一下 12345tbkcoupons = TbkCouponTags.objects.select_related('coupon').filter(is_hot=True)channel = set()for t in tbkcoupons: cc = t.coupon.channel channel.add(cc) 快了10倍，冷静一下，思考一下这大哥到底要干嘛，后面看到拿到了tbkcoupons没有再做其他用处。所以这东西完全可以使用反向连接加去重来解决啊，看来sql基础也欠缺。这里改成了values+distinct来处理，因为mysql不支持distinct(‘channel’)这种指定字段的形式。 12tbkcoupons = TbkCoupon.objects.filter(tbkcoupontags__is_hot=True).values('channel').distinct()channels = [c['channel'] for c in tbkcoupons] 后面的逻辑判断，又使用了一堆的ifelse，看着不清晰，将其改为了字典。这些倒不是什么大问题。 最后，修改了一些取值的逻辑。最后将结果保存到了redis中。命中缓存的话大概10+ms。 后来又发现了一个有意思的事情，他好像也知道这个查询挺慢的，所以用celerybeat实现了一个周期任务，定时地更新这个redis。 返回按照当前查询数组顺序的queryset。遇见了这样一个需求 ，收藏列表需要返回按照收藏顺序的商品。而这个顺序保存在java后台。通过Thrift接口调用，返回了一个id列表，而商品保存在我这里。需要根据这个id的顺序返回queryset。django-get-a-queryset-from-array-of-ids-in-specific-order。 123from django.db.models import Case, Whenpreserved = Case(*[When(num_iid=num_iid, then=pos) for pos, num_iid in enumerate(num_iids)])TbkCoupon.objects.filter(num_iid__in=num_iids).order_by(preserved)]]></content>
