@@ -112,7 +112,7 @@
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（二叉树篇）Tree/range_sum.png">
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/15/complete-binary-tree-1.png">
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/15/complete-binary-tree-2.png">
-<meta property="og:updated_time" content="2019-01-26T11:35:20.657Z">
+<meta property="og:updated_time" content="2019-01-27T07:58:34.738Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（二叉树篇）Tree">
 <meta name="twitter:description" content="树的定义12345class TreeNode:    def __init__(self, x):        self.val = x        self.left = None        self.right = None">
@@ -367,8 +367,8 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2019-01-26T19:35:20+08:00" content="2019-01-26">
-                  2019-01-26
+                <time itemprop="dateUpdated" datetime="2019-01-27T15:58:34+08:00" content="2019-01-27">
+                  2019-01-27
                 </time>
               </span>
             
@@ -636,7 +636,6 @@
 <p>方法三：还没想出来，以上两种都没有利用到一些题中已知条件，我看Solution中给出的及一些Discuss中的答案也忽略了这个条件。想了想无论是哪个顺序遍历，或者深度广度优先，都没能很好的利用这个条件。</p>
 <h3 id="687-Longest-Univalue-Path"><a href="#687-Longest-Univalue-Path" class="headerlink" title="687. Longest Univalue Path"></a>687. Longest Univalue Path</h3><h4 id="相同节点最长路径，路径长度按照两个节点之间的边距，也就是节点数-1。原题"><a href="#相同节点最长路径，路径长度按照两个节点之间的边距，也就是节点数-1。原题" class="headerlink" title="相同节点最长路径，路径长度按照两个节点之间的边距，也就是节点数-1。原题"></a>相同节点最长路径，路径长度按照两个节点之间的边距，也就是节点数-1。<a href="https://leetcode.com/problems/longest-univalue-path/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">              5</span><br><span class="line">             / \</span><br><span class="line">            4   5</span><br><span class="line">           / \   \</span><br><span class="line">          1   1   5</span><br><span class="line">output: 2</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">longestUnivaluePath</span><span class="params">(self, root)</span>:</span></span><br><span class="line">    self.res = <span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">traverse</span><span class="params">(node)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        left_len, right_len = traverse(node.left), traverse(node.right)</span><br><span class="line">        left = (left_len+<span class="number">1</span>) <span class="keyword">if</span> node.left <span class="keyword">and</span> node.left.val==node.val <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">        right = (right_len+<span class="number">1</span>) <span class="keyword">if</span> node.right <span class="keyword">and</span> node.right.val==node.val <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">        self.res = max(self.res, left + right)</span><br><span class="line">        <span class="keyword">return</span> max(left, right)</span><br><span class="line">    traverse(root)</span><br><span class="line">    <span class="keyword">return</span> self.res</span><br></pre></td></tr></table></figure>
-
       
     </div>
     
@@ -778,7 +777,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -800,7 +799,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -922,7 +921,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共43.2k字</span>
+  <span class="post-count">博客全站共43.3k字</span>
 </div>
         
 
