@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="720. Longest Word in Dictionary字典中的最长单词，找出一个列表中的一个单词，该单词的子单词也必须在字典中。相同长度的单词，返回字典序最前的一个。原题">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-02T12:59:06.351Z">
+<meta property="og:updated_time" content="2019-02-05T09:06:06.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（哈希篇）hashtable">
 <meta name="twitter:description" content="720. Longest Word in Dictionary字典中的最长单词，找出一个列表中的一个单词，该单词的子单词也必须在字典中。相同长度的单词，返回字典序最前的一个。原题">
@@ -363,8 +363,8 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2019-02-02T20:59:06+08:00" content="2019-02-02">
-                  2019-02-02
+                <time itemprop="dateUpdated" datetime="2019-02-05T17:06:06+08:00" content="2019-02-05">
+                  2019-02-05
                 </time>
               </span>
             
@@ -451,7 +451,12 @@
 <p>方法一：Brute Force.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">longestWord</span><span class="params">(self, words)</span>:</span></span><br><span class="line">    res = <span class="string">''</span></span><br><span class="line">    wordset = set(words)</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">        <span class="keyword">if</span> len(word)&gt;len(res) <span class="keyword">or</span> len(word)==len(res) <span class="keyword">and</span> word&lt;res:</span><br><span class="line">            <span class="keyword">if</span> all(word[:k] <span class="keyword">in</span> wordset <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>, len(word))):</span><br><span class="line">                res = word         </span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <p>方法二：trie. 暂且留坑。</p>
+<h3 id="748-Shortest-Completing-Word"><a href="#748-Shortest-Completing-Word" class="headerlink" title="748. Shortest Completing Word"></a>748. Shortest Completing Word</h3><h4 id="最短的完整匹配单词。包含licensePlate中的所有字母，大小写不敏感。原题"><a href="#最短的完整匹配单词。包含licensePlate中的所有字母，大小写不敏感。原题" class="headerlink" title="最短的完整匹配单词。包含licensePlate中的所有字母，大小写不敏感。原题"></a>最短的完整匹配单词。包含<code>licensePlate</code>中的所有字母，大小写不敏感。<a href="https://leetcode.com/problems/shortest-completing-word/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: licensePlate = &quot;1s3 PSt&quot;, words = [&quot;step&quot;, &quot;steps&quot;, &quot;stripe&quot;, &quot;stepple&quot;]</span><br><span class="line">Output: &quot;steps&quot;</span><br><span class="line">Explanation: The smallest length word that contains the letters &quot;S&quot;, &quot;P&quot;, &quot;S&quot;, and &quot;T&quot;.</span><br><span class="line">Note that the answer is not &quot;step&quot;, because the letter &quot;s&quot; must occur in the word twice.</span><br><span class="line">Also note that we ignored case for the purposes of comparing whether a letter exists in the word.</span><br></pre></td></tr></table></figure>
+<p>方法一：未优化。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shortestCompletingWord</span><span class="params">(self, licensePlate: <span class="string">'str'</span>, words: <span class="string">'List[str]'</span>)</span> -&gt; 'str':</span></span><br><span class="line">    lp = <span class="string">''</span>.join(x <span class="keyword">for</span> x <span class="keyword">in</span> licensePlate.lower() <span class="keyword">if</span> x.isalpha())</span><br><span class="line">    c1 = collections.Counter(lp)</span><br><span class="line">    words = map(str.lower, words)</span><br><span class="line">    ans = <span class="string">'A'</span> * <span class="number">16</span>  <span class="comment"># word has largest length 15</span></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">        diff = c1 - collections.Counter(word)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> diff <span class="keyword">and</span> len(word) &lt; len(ans):</span><br><span class="line">            ans = word</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<font color="#32CD32" size="3">方法二：more elegant. </font>
 
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shortestCompletingWord</span><span class="params">(self, licensePlate: <span class="string">'str'</span>, words: <span class="string">'List[str]'</span>)</span> -&gt; 'str':</span></span><br><span class="line">    lp = <span class="string">''</span>.join(x <span class="keyword">for</span> x <span class="keyword">in</span> licensePlate.lower() <span class="keyword">if</span> x.isalpha())</span><br><span class="line">    c1 = collections.Counter(lp)</span><br><span class="line">    words = map(str.lower, words)</span><br><span class="line">    <span class="keyword">return</span> min((word <span class="keyword">for</span> word <span class="keyword">in</span> words </span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> c1-collections.Counter(word)), key=len)</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -681,7 +686,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#720-Longest-Word-in-Dictionary"><span class="nav-number">1.</span> <span class="nav-text">720. Longest Word in Dictionary</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字典中的最长单词，找出一个列表中的一个单词，该单词的子单词也必须在字典中。相同长度的单词，返回字典序最前的一个。原题"><span class="nav-number">1.1.</span> <span class="nav-text">字典中的最长单词，找出一个列表中的一个单词，该单词的子单词也必须在字典中。相同长度的单词，返回字典序最前的一个。原题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#720-Longest-Word-in-Dictionary"><span class="nav-number">1.</span> <span class="nav-text">720. Longest Word in Dictionary</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字典中的最长单词，找出一个列表中的一个单词，该单词的子单词也必须在字典中。相同长度的单词，返回字典序最前的一个。原题"><span class="nav-number">1.1.</span> <span class="nav-text">字典中的最长单词，找出一个列表中的一个单词，该单词的子单词也必须在字典中。相同长度的单词，返回字典序最前的一个。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#748-Shortest-Completing-Word"><span class="nav-number">2.</span> <span class="nav-text">748. Shortest Completing Word</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#最短的完整匹配单词。包含licensePlate中的所有字母，大小写不敏感。原题"><span class="nav-number">2.1.</span> <span class="nav-text">最短的完整匹配单词。包含licensePlate中的所有字母，大小写不敏感。原题</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -733,7 +738,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共46.1k字</span>
+  <span class="post-count">博客全站共46.8k字</span>
 </div>
         
 
