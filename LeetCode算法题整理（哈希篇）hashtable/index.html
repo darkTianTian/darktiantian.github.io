@@ -101,18 +101,18 @@
 
 
 
-<meta name="description" content="1. Two Sum给定一个数组，找出数组两个元素相加为目标值，假定只有唯一解。原题123Given nums = [2, 7, 11, 15], target = 9,Because nums[0] + nums[1] = 2 + 7 = 9,return [0, 1]. 1234567def two_sum(nums, target):    buff_dict = &amp;#123;&amp;#125;">
+<meta name="description" content="1. Two Sum给定一个数组，找出数组两个元素相加为目标值，假定只有唯一解。原题123Given nums = [2, 7, 11, 15], target = 9,Because nums[0] + nums[1] = 2 + 7 = 9,return [0, 1].">
 <meta name="keywords" content="LeetCode,Python,Algorithm,HashTable">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode算法题整理（哈希篇）hashtable">
 <meta property="og:url" content="http://darktiantian.github.io.git/LeetCode算法题整理（哈希篇）hashtable/index.html">
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
-<meta property="og:description" content="1. Two Sum给定一个数组，找出数组两个元素相加为目标值，假定只有唯一解。原题123Given nums = [2, 7, 11, 15], target = 9,Because nums[0] + nums[1] = 2 + 7 = 9,return [0, 1]. 1234567def two_sum(nums, target):    buff_dict = &amp;#123;&amp;#125;">
+<meta property="og:description" content="1. Two Sum给定一个数组，找出数组两个元素相加为目标值，假定只有唯一解。原题123Given nums = [2, 7, 11, 15], target = 9,Because nums[0] + nums[1] = 2 + 7 = 9,return [0, 1].">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-15T13:42:25.932Z">
+<meta property="og:updated_time" content="2019-02-19T12:44:21.654Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（哈希篇）hashtable">
-<meta name="twitter:description" content="1. Two Sum给定一个数组，找出数组两个元素相加为目标值，假定只有唯一解。原题123Given nums = [2, 7, 11, 15], target = 9,Because nums[0] + nums[1] = 2 + 7 = 9,return [0, 1]. 1234567def two_sum(nums, target):    buff_dict = &amp;#123;&amp;#125;">
+<meta name="twitter:description" content="1. Two Sum给定一个数组，找出数组两个元素相加为目标值，假定只有唯一解。原题123Given nums = [2, 7, 11, 15], target = 9,Because nums[0] + nums[1] = 2 + 7 = 9,return [0, 1].">
 
 
 
@@ -363,8 +363,8 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2019-02-15T21:42:25+08:00" content="2019-02-15">
-                  2019-02-15
+                <time itemprop="dateUpdated" datetime="2019-02-19T20:44:21+08:00" content="2019-02-19">
+                  2019-02-19
                 </time>
               </span>
             
@@ -447,9 +447,9 @@
 
       
         <h3 id="1-Two-Sum"><a href="#1-Two-Sum" class="headerlink" title="1. Two Sum"></a>1. Two Sum</h3><h4 id="给定一个数组，找出数组两个元素相加为目标值，假定只有唯一解。原题"><a href="#给定一个数组，找出数组两个元素相加为目标值，假定只有唯一解。原题" class="headerlink" title="给定一个数组，找出数组两个元素相加为目标值，假定只有唯一解。原题"></a>给定一个数组，找出数组两个元素相加为目标值，假定只有唯一解。<a href="https://leetcode.com/problems/two-sum/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Given nums = [2, 7, 11, 15], target = 9,</span><br><span class="line">Because nums[0] + nums[1] = 2 + 7 = 9,</span><br><span class="line">return [0, 1].</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">two_sum</span><span class="params">(nums, target)</span>:</span></span><br><span class="line">    buff_dict = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i, num <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">        <span class="keyword">if</span> num <span class="keyword">not</span> <span class="keyword">in</span> buff_dict:</span><br><span class="line">            buff_dict[target-num] = i</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> [buff_dict[num], i]</span><br></pre></td></tr></table></figure>
-<h3 id="720-Longest-Word-in-Dictionary"><a href="#720-Longest-Word-in-Dictionary" class="headerlink" title="720. Longest Word in Dictionary"></a>720. Longest Word in Dictionary</h3><h4 id="字典中的最长单词，找出一个列表中的一个单词，该单词的子单词也必须在字典中。相同长度的单词，返回字典序最前的一个。原题"><a href="#字典中的最长单词，找出一个列表中的一个单词，该单词的子单词也必须在字典中。相同长度的单词，返回字典序最前的一个。原题" class="headerlink" title="字典中的最长单词，找出一个列表中的一个单词，该单词的子单词也必须在字典中。相同长度的单词，返回字典序最前的一个。原题"></a>字典中的最长单词，找出一个列表中的一个单词，该单词的子单词也必须在字典中。相同长度的单词，返回字典序最前的一个。<a href="https://leetcode.com/problems/longest-word-in-dictionary/" target="_blank" rel="noopener">原题</a></h4><a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">words = [&quot;w&quot;,&quot;wo&quot;,&quot;wor&quot;,&quot;worl&quot;, &quot;world&quot;]</span><br><span class="line">Output: &quot;world&quot;</span><br><span class="line">Explanation: </span><br><span class="line">The word &quot;world&quot; can be built one character at a time by &quot;w&quot;, &quot;wo&quot;, &quot;wor&quot;, and &quot;worl&quot;.</span><br></pre></td></tr></table></figure>
+<h3 id="720-Longest-Word-in-Dictionary"><a href="#720-Longest-Word-in-Dictionary" class="headerlink" title="720. Longest Word in Dictionary"></a>720. Longest Word in Dictionary</h3><h4 id="字典中的最长单词，找出一个列表中的一个单词，该单词的子单词也必须在字典中。相同长度的单词，返回字典序最前的一个。原题"><a href="#字典中的最长单词，找出一个列表中的一个单词，该单词的子单词也必须在字典中。相同长度的单词，返回字典序最前的一个。原题" class="headerlink" title="字典中的最长单词，找出一个列表中的一个单词，该单词的子单词也必须在字典中。相同长度的单词，返回字典序最前的一个。原题"></a>字典中的最长单词，找出一个列表中的一个单词，该单词的子单词也必须在字典中。相同长度的单词，返回字典序最前的一个。<a href="https://leetcode.com/problems/longest-word-in-dictionary/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">words = [&quot;w&quot;,&quot;wo&quot;,&quot;wor&quot;,&quot;worl&quot;, &quot;world&quot;]</span><br><span class="line">Output: &quot;world&quot;</span><br><span class="line">Explanation: </span><br><span class="line">The word &quot;world&quot; can be built one character at a time by &quot;w&quot;, &quot;wo&quot;, &quot;wor&quot;, and &quot;worl&quot;.</span><br></pre></td></tr></table></figure>
 <p>方法一：Brute Force.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">longestWord</span><span class="params">(self, words)</span>:</span></span><br><span class="line">    res = <span class="string">''</span></span><br><span class="line">    wordset = set(words)</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">        <span class="keyword">if</span> len(word)&gt;len(res) <span class="keyword">or</span> len(word)==len(res) <span class="keyword">and</span> word&lt;res:</span><br><span class="line">            <span class="keyword">if</span> all(word[:k] <span class="keyword">in</span> wordset <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>, len(word))):</span><br><span class="line">                res = word         </span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <p>方法二：trie. 暂且留坑。</p>
@@ -753,7 +753,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共57.2k字</span>
+  <span class="post-count">博客全站共57.3k字</span>
 </div>
         
 

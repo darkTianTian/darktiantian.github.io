@@ -111,7 +111,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（数组篇）Array/interval1.png">
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（数组篇）Array/oranges.png">
-<meta property="og:updated_time" content="2019-02-18T14:43:20.976Z">
+<meta property="og:updated_time" content="2019-02-19T11:25:44.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（数组篇）Array">
 <meta name="twitter:description" content="26. Remove Duplicates from Sorted Array删除排序数组中重复的元素, 在原数组上操作，返回一个长度，标识前n个元素为目标数组。原题">
@@ -366,8 +366,8 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2019-02-18T22:43:20+08:00" content="2019-02-18">
-                  2019-02-18
+                <time itemprop="dateUpdated" datetime="2019-02-19T19:25:44+08:00" content="2019-02-19">
+                  2019-02-19
                 </time>
               </span>
             
@@ -513,6 +513,8 @@
 <p>ps: 此题解法为LeetCode一位大神，经常能看到此人的答案，不过这个是我认为最pythonic的一个，没有为了强行one-line而one-line。brilliant!</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TypeError: can only concatenate tuple (not &quot;list&quot;) to tuple</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">spiralOrder</span><span class="params">(self, matrix)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> matrix <span class="keyword">and</span> list(matrix.pop(<span class="number">0</span>))+self.spiralOrder(list(zip(*matrix))[::<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
+<p>此题有个变形，如果逆时针该如何打印。这样的话情况稍微复杂一些。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">anti_clock_wise</span><span class="params">(self, matrix)</span></span></span><br><span class="line"><span class="function">	<span class="title">if</span> <span class="title">not</span> <span class="title">matrix</span>:</span></span><br><span class="line">        <span class="keyword">return</span> []</span><br><span class="line">    clock_wise = list(zip(*(matrix[::<span class="number">-1</span>])))</span><br><span class="line">    a = list(clock_wise.pop(<span class="number">0</span>))[::<span class="number">-1</span>]</span><br><span class="line">    b = self.spiralOrder(clock_wise)</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br></pre></td></tr></table></figure>
 <h3 id="46-Permutations"><a href="#46-Permutations" class="headerlink" title="46. Permutations"></a>46. Permutations</h3><h4 id="数组全排列。原题"><a href="#数组全排列。原题" class="headerlink" title="数组全排列。原题"></a>数组全排列。<a href="https://leetcode.com/problems/permutations/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3]</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  [1,2,3],</span><br><span class="line">  [1,3,2],</span><br><span class="line">  [2,1,3],</span><br><span class="line">  [2,3,1],</span><br><span class="line">  [3,1,2],</span><br><span class="line">  [3,2,1]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <font color="#32CD32" size="3">方法一：recursively. 锁定头部法。思想为拿出一个数字作为头部，剩下的递归。</font>
 
@@ -1084,7 +1086,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共57.2k字</span>
+  <span class="post-count">博客全站共57.3k字</span>
 </div>
         
 
