@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="7. Reverse Integer倒置一个整数， 此答案忽略了原题中的范围判断。原题12Input: -123Output: -321">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-19T09:46:33.294Z">
+<meta property="og:updated_time" content="2019-02-21T13:59:08.253Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（数学篇）Math">
 <meta name="twitter:description" content="7. Reverse Integer倒置一个整数， 此答案忽略了原题中的范围判断。原题12Input: -123Output: -321">
@@ -363,8 +363,8 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2019-02-19T17:46:33+08:00" content="2019-02-19">
-                  2019-02-19
+                <time itemprop="dateUpdated" datetime="2019-02-21T21:59:08+08:00" content="2019-02-21">
+                  2019-02-21
                 </time>
               </span>
             
@@ -602,7 +602,6 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">largestTimeFromDigits</span><span class="params">(self, A: <span class="string">'List[int]'</span>)</span> -&gt; 'str':</span></span><br><span class="line">    p = itertools.permutations(A)</span><br><span class="line">    <span class="keyword">return</span> max([<span class="string">'&#123;&#125;&#123;&#125;:&#123;&#125;&#123;&#125;'</span>.format(*d) <span class="keyword">for</span> d <span class="keyword">in</span> p </span><br><span class="line">                <span class="keyword">if</span> d[:<span class="number">2</span>] &lt; (<span class="number">2</span>, <span class="number">4</span>) <span class="keyword">and</span> d[<span class="number">2</span>] &lt; <span class="number">6</span>] <span class="keyword">or</span> [<span class="string">''</span>])</span><br></pre></td></tr></table></figure>
 <h3 id="914-X-of-a-Kind-in-a-Deck-of-Cards"><a href="#914-X-of-a-Kind-in-a-Deck-of-Cards" class="headerlink" title="914. X of a Kind in a Deck of Cards"></a>914. X of a Kind in a Deck of Cards</h3><h4 id="有这样一堆数字卡牌，问是否存在一个X-gt-2，使得将同样数字的卡牌分为每X个一组，并且刚好所有的卡牌分完。原题"><a href="#有这样一堆数字卡牌，问是否存在一个X-gt-2，使得将同样数字的卡牌分为每X个一组，并且刚好所有的卡牌分完。原题" class="headerlink" title="有这样一堆数字卡牌，问是否存在一个X&gt;=2，使得将同样数字的卡牌分为每X个一组，并且刚好所有的卡牌分完。原题"></a>有这样一堆数字卡牌，问是否存在一个X&gt;=2，使得将同样数字的卡牌分为每X个一组，并且刚好所有的卡牌分完。<a href="https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards" target="_blank" rel="noopener">原题</a></h4><p>思路：使用<code>Counter</code>来统计每个数字的个数，然后求这些数字的最大公约数是否大于等于2，这里思路卡了一下，因为没想到最大公约数可以通过<code>reduce</code>来计算，没考虑到是可以累积的。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hasGroupsSizeX</span><span class="params">(self, deck)</span>:</span></span><br><span class="line">    <span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line">    <span class="keyword">from</span> math <span class="keyword">import</span> gcd</span><br><span class="line">    <span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line">    <span class="keyword">return</span> reduce(gcd, Counter(deck).values()) &gt;= <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
       
     </div>
     
