@@ -109,10 +109,12 @@
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="704. Binary Search二分法在有序数组中查找元素。原题123Input: nums = [-1,0,3,5,9,12], target = 9Output: 4Explanation: 9 exists in nums and its index is 4">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-10T02:20:54.495Z">
+<meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（二分法篇）Binary-Search/gold.gif">
+<meta property="og:updated_time" content="2019-03-01T05:43:23.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（二分法篇）Binary Search">
 <meta name="twitter:description" content="704. Binary Search二分法在有序数组中查找元素。原题123Input: nums = [-1,0,3,5,9,12], target = 9Output: 4Explanation: 9 exists in nums and its index is 4">
+<meta name="twitter:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（二分法篇）Binary-Search/gold.gif">
 
 
 
@@ -363,8 +365,8 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2019-02-10T10:20:54+08:00" content="2019-02-10">
-                  2019-02-10
+                <time itemprop="dateUpdated" datetime="2019-03-01T13:43:23+08:00" content="2019-03-01">
+                  2019-03-01
                 </time>
               </span>
             
@@ -491,6 +493,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">peakIndexInMountainArray</span><span class="params">(self, A: <span class="string">'List[int]'</span>)</span> -&gt; 'int':</span></span><br><span class="line">    lo, hi = <span class="number">0</span>, len(A)<span class="number">-1</span></span><br><span class="line">    <span class="keyword">while</span> lo &lt; hi:</span><br><span class="line">        mid = (lo + hi) // <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> A[mid] &gt; A[mid+<span class="number">1</span>]:</span><br><span class="line">            hi = mid</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            lo = mid + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> lo</span><br></pre></td></tr></table></figure>
 <font color="#32CD32" size="3">方法四：黄金分割法，应用在单峰函数求极值，速度比二分法要快。</font>
 
+<img src="/LeetCode算法题整理（二分法篇）Binary-Search/gold.gif">
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">peakIndexInMountainArray</span><span class="params">(self, A: <span class="string">'List[int]'</span>)</span> -&gt; 'int':</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">gold1</span><span class="params">(i, j)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> i + int(round((j-i) * <span class="number">0.382</span>))</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">gold2</span><span class="params">(i, j)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> i + int(round((j-i) * <span class="number">0.618</span>))</span><br><span class="line">    </span><br><span class="line">    l, r = <span class="number">0</span>, len(A) - <span class="number">1</span></span><br><span class="line">    x1, x2 = gold1(l, r), gold2(l, r)</span><br><span class="line">    <span class="keyword">while</span> x1 &lt; x2:</span><br><span class="line">        <span class="keyword">if</span> A[x1] &lt; A[x2]:</span><br><span class="line">            l = x1</span><br><span class="line">            x1 = x2</span><br><span class="line">            x2 = gold1(x1, r)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            r = x2</span><br><span class="line">            x2 = x1</span><br><span class="line">            x1 = gold2(l, x2)</span><br><span class="line">    <span class="keyword">return</span> x1</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -777,7 +780,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共69.6k字</span>
+  <span class="post-count">博客全站共69.9k字</span>
 </div>
         
 
