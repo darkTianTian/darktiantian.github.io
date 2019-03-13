@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="2. 实现Singleton模式使用__new__控制实例创建过程12345678class Singleton:    def __new__(cls, *args, **kw):        if not hasattr(cls, &apos;_instance&apos;):            cls._instance = super(Singleton, cls).__new__(cls, **arg">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-09T17:01:21.131Z">
+<meta property="og:updated_time" content="2019-03-10T12:08:11.386Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="剑指Offer">
 <meta name="twitter:description" content="2. 实现Singleton模式使用__new__控制实例创建过程12345678class Singleton:    def __new__(cls, *args, **kw):        if not hasattr(cls, &apos;_instance&apos;):            cls._instance = super(Singleton, cls).__new__(cls, **arg">
@@ -363,7 +363,7 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2019-03-10T01:01:21+08:00" content="2019-03-10">
+                <time itemprop="dateUpdated" datetime="2019-03-10T20:08:11+08:00" content="2019-03-10">
                   2019-03-10
                 </time>
               </span>
@@ -575,7 +575,7 @@
 <a href="/LeetCode算法题整理（位运算篇）Bit-Manipulation/" title="268. Missing Number">268. Missing Number</a>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_missing</span><span class="params">(nums)</span>:</span></span><br><span class="line">    l, r = <span class="number">0</span>, len(nums)<span class="number">-1</span></span><br><span class="line">    <span class="keyword">while</span> l &lt; r:</span><br><span class="line">        mid = (l+r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> nums[mid] == mid:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            r = mid</span><br><span class="line">    <span class="keyword">return</span> nums[r]<span class="number">-1</span></span><br></pre></td></tr></table></figure>
 <h3 id="54-二叉搜索树的第k大节点"><a href="#54-二叉搜索树的第k大节点" class="headerlink" title="54.二叉搜索树的第k大节点"></a>54.二叉搜索树的第k大节点</h3><p>牛客网上是求第k小节点，这里被坑了一次，然后返回值居然要求返回节点对象，而不是节点值，否则一直报错，WTF。这里的答案按书中返回。如果是牛客网上需要把节点添加到<code>res</code>中，然后<code>return res[k-1]</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kthSmallest</span><span class="params">(self, root: TreeNode, k: int)</span> -&gt; int:</span></span><br><span class="line">    stack, ans = [], <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        <span class="keyword">while</span> root:</span><br><span class="line">            stack.append(root)</span><br><span class="line">            root = root.right</span><br><span class="line">        cur = stack.pop()</span><br><span class="line">        k -= <span class="number">1</span></span><br><span class="line">        ans = cur.val</span><br><span class="line">        root = cur.left</span><br><span class="line">        <span class="keyword">if</span> k == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kth_largest</span><span class="params">(self, root: TreeNode, k: int)</span> -&gt; int:</span></span><br><span class="line">    stack, ans = [], <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        <span class="keyword">while</span> root:</span><br><span class="line">            stack.append(root)</span><br><span class="line">            root = root.right</span><br><span class="line">        cur = stack.pop()</span><br><span class="line">        k -= <span class="number">1</span></span><br><span class="line">        ans = cur.val</span><br><span class="line">        root = cur.left</span><br><span class="line">        <span class="keyword">if</span> k == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 <h3 id="55-二叉树的深度"><a href="#55-二叉树的深度" class="headerlink" title="55.二叉树的深度"></a>55.二叉树的深度</h3><a href="/LeetCode算法题整理（二叉树篇）Tree/" title="104. Maximum Depth of Binary Tree">104. Maximum Depth of Binary Tree</a>
 <h3 id="55-1平衡二叉树"><a href="#55-1平衡二叉树" class="headerlink" title="55.1平衡二叉树"></a>55.1平衡二叉树</h3><a href="/LeetCode算法题整理（二叉树篇）Tree/" title="110. Balanced Binary Tree">110. Balanced Binary Tree</a>
 <h3 id="56-数组中只出现一次的两个数字。"><a href="#56-数组中只出现一次的两个数字。" class="headerlink" title="56 数组中只出现一次的两个数字。"></a>56 数组中只出现一次的两个数字。</h3><a href="/LeetCode算法题整理（位运算篇）Bit-Manipulation/" title="260. Single Number III">260. Single Number III</a>
@@ -884,7 +884,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共72.8k字</span>
+  <span class="post-count">博客全站共74.5k字</span>
 </div>
         
 
