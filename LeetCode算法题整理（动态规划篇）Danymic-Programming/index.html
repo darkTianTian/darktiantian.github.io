@@ -110,7 +110,8 @@
 <meta property="og:description" content="70. Climbing Stairs爬楼梯，一次可以爬一阶或两阶楼梯，爬上n阶楼梯有多少种方法？原题">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（动态规划篇）Danymic-Programming/121_profit_graph.png">
-<meta property="og:updated_time" content="2019-02-27T03:28:50.214Z">
+<meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（动态规划篇）Danymic-Programming/122_maxprofit.png">
+<meta property="og:updated_time" content="2019-03-14T15:49:10.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（动态规划篇）Danymic Programming">
 <meta name="twitter:description" content="70. Climbing Stairs爬楼梯，一次可以爬一阶或两阶楼梯，爬上n阶楼梯有多少种方法？原题">
@@ -365,8 +366,8 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2019-02-27T11:28:50+08:00" content="2019-02-27">
-                  2019-02-27
+                <time itemprop="dateUpdated" datetime="2019-03-14T23:49:10+08:00" content="2019-03-14">
+                  2019-03-14
                 </time>
               </span>
             
@@ -463,6 +464,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, prices: List[int])</span> -&gt; int:</span></span><br><span class="line">    cur = sofar = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(prices)):</span><br><span class="line">        cur += prices[i] - prices[i<span class="number">-1</span>]</span><br><span class="line">        cur = max(<span class="number">0</span>, cur)</span><br><span class="line">        sofar = max(cur, sofar)</span><br><span class="line">    <span class="keyword">return</span> sofar</span><br></pre></td></tr></table></figure>
 <h3 id="122-Best-Time-to-Buy-and-Sell-Stock-II"><a href="#122-Best-Time-to-Buy-and-Sell-Stock-II" class="headerlink" title="122. Best Time to Buy and Sell Stock II"></a>122. Best Time to Buy and Sell Stock II</h3><h4 id="买入卖出，允许多次交易。原题"><a href="#买入卖出，允许多次交易。原题" class="headerlink" title="买入卖出，允许多次交易。原题"></a>买入卖出，允许多次交易。<a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [7,1,5,3,6,4]</span><br><span class="line">Output: 7</span><br><span class="line">Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.</span><br><span class="line">             Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.</span><br></pre></td></tr></table></figure>
 <p>思路：比较每两天的价格，如果是涨价了，那就把收益计算进去，否则不出手交易。</p>
+<img src="/LeetCode算法题整理（动态规划篇）Danymic-Programming/122_maxprofit.png">
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_profit</span><span class="params">(prices)</span>:</span></span><br><span class="line">    profit = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(prices)):</span><br><span class="line">        <span class="keyword">if</span> prices[i] &gt; prices[i<span class="number">-1</span>]:</span><br><span class="line">            profit += prices[i] - prices[i<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">return</span> profit</span><br></pre></td></tr></table></figure>
 <h3 id="198-House-Robber"><a href="#198-House-Robber" class="headerlink" title="198. House Robber"></a>198. House Robber</h3><h4 id="抢劫房子问题。不能连续抢劫两个挨着的房间。原题"><a href="#抢劫房子问题。不能连续抢劫两个挨着的房间。原题" class="headerlink" title="抢劫房子问题。不能连续抢劫两个挨着的房间。原题"></a>抢劫房子问题。不能连续抢劫两个挨着的房间。<a href="https://leetcode.com/problems/house-robber" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,7,9,3,1]</span><br><span class="line">Output: 12</span><br><span class="line">Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).</span><br><span class="line">             Total amount you can rob = 2 + 9 + 1 = 12.</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f(0) = nums[0]</span><br><span class="line">f(1) = max(num[0], num[1])</span><br><span class="line">f(k) = max( f(k-2) + nums[k], f(k-1) )</span><br></pre></td></tr></table></figure>
@@ -761,7 +763,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共74.9k字</span>
+  <span class="post-count">博客全站共75.2k字</span>
 </div>
         
 
