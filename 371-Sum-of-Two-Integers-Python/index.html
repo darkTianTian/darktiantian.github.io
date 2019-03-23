@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="不用加减乘除做加法剑指Offer中也出现过此题，此篇文章着重分析一下为什么Python需要做一些多余的操作。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-08T02:39:27.000Z">
+<meta property="og:updated_time" content="2019-03-21T03:42:56.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="371. Sum of Two Integers - Python">
 <meta name="twitter:description" content="不用加减乘除做加法剑指Offer中也出现过此题，此篇文章着重分析一下为什么Python需要做一些多余的操作。">
@@ -363,8 +363,8 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2018-09-08T10:39:27+08:00" content="2018-09-08">
-                  2018-09-08
+                <time itemprop="dateUpdated" datetime="2019-03-21T11:42:56+08:00" content="2019-03-21">
+                  2019-03-21
                 </time>
               </span>
             
@@ -455,7 +455,7 @@
 </ul>
 <p>这里不再赘述详细过程。那么我们不难写出代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_sum</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    res, carry = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> b != <span class="number">0</span>:</span><br><span class="line">        res = a ^ b</span><br><span class="line">        carry = (a &amp; b) &lt;&lt; <span class="number">1</span></span><br><span class="line">        a, b = res, carry</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<p>但是当输入<code>a=-1, b=1</code>时，会发现程序超时。<br>先来看看正常的32位int类型运算时发生了什么，因为进行位运算时要使用补码进行运算，而正数的反码和补码都是本身，负数的反码为除符号位，其它按位取反，负数的补码为反码+1。下面列出了传入<code>a=-1,b=1</code>时，每次循环中<code>a</code>和<code>b</code>的补码。</p>
+<p>但是当输入<code>a=-1, b=1</code>时，会发现程序超时。<br>先来看看正常的32位int类型运算时发生了什么，因为进行位运算时要使用补码进行运算，而正数的反码和补码都是本身，负数的反码为除符号位，其它按位取反，负数的补码为反码+1。下面列出了32为整数传入<code>a=-1,b=1</code>时，每次循环中<code>a</code>和<code>b</code>的补码。</p>
 <table>
 <thead>
 <tr>
@@ -696,7 +696,7 @@ a的原码|a的补码|b的原码|b的补码|(a^b) & mask| a & b | ((a&b)<<1) & m
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -840,7 +840,7 @@ a的原码|a的补码|b的原码|b的补码|(a^b) & mask| a & b | ((a&b)<<1) & m
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共75.2k字</span>
+  <span class="post-count">博客全站共80.0k字</span>
 </div>
         
 
