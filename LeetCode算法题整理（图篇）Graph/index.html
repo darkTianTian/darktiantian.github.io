@@ -110,7 +110,7 @@
 <meta property="og:description" content="990. Satisfiability of Equality Equations满足所有方程式，判断是否存在变量的值满足所有的等式与不等式。原题解析：所有的相等的点，在图中是联通的。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（图篇）Graph/113_sample.png">
-<meta property="og:updated_time" content="2019-03-01T16:25:38.226Z">
+<meta property="og:updated_time" content="2019-03-31T05:05:08.574Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（图篇）Graph">
 <meta name="twitter:description" content="990. Satisfiability of Equality Equations满足所有方程式，判断是否存在变量的值满足所有的等式与不等式。原题解析：所有的相等的点，在图中是联通的。">
@@ -365,8 +365,8 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2019-03-02T00:25:38+08:00" content="2019-03-02">
-                  2019-03-02
+                <time itemprop="dateUpdated" datetime="2019-03-31T13:05:08+08:00" content="2019-03-31">
+                  2019-03-31
                 </time>
               </span>
             
@@ -464,6 +464,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findJudge</span><span class="params">(self, N: int, trust: List[List[int]])</span> -&gt; int:</span></span><br><span class="line">    count = [<span class="number">0</span>] * (N + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> i, j <span class="keyword">in</span> trust:</span><br><span class="line">        count[i] -= <span class="number">1</span></span><br><span class="line">        count[j] += <span class="number">1</span></span><br><span class="line">        print(count)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, N + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> count[i] == N - <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> i</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
 <h3 id="133-Clone-Graph"><a href="#133-Clone-Graph" class="headerlink" title="133. Clone Graph"></a>133. Clone Graph</h3><h4 id="深拷贝一个简单环。原题"><a href="#深拷贝一个简单环。原题" class="headerlink" title="深拷贝一个简单环。原题"></a>深拷贝一个简单环。<a href="https://leetcode.com/problems/clone-graph/" target="_blank" rel="noopener">原题</a></h4><img src="/LeetCode算法题整理（图篇）Graph/113_sample.png">
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cloneGraph</span><span class="params">(self, node: <span class="string">'Node'</span>)</span> -&gt; 'Node':</span></span><br><span class="line">    cp = collections.defaultdict(<span class="keyword">lambda</span>: Node(<span class="number">0</span>, []))</span><br><span class="line">    nodes = [node]</span><br><span class="line">    seen = set()</span><br><span class="line">    <span class="keyword">while</span> nodes:</span><br><span class="line">        n = nodes.pop()</span><br><span class="line">        cp[n].val = n.val</span><br><span class="line">        cp[n].neighbors = [cp[x] <span class="keyword">for</span> x <span class="keyword">in</span> n.neighbors]</span><br><span class="line">        nodes.extend(x <span class="keyword">for</span> x <span class="keyword">in</span> n.neighbors <span class="keyword">if</span> x <span class="keyword">not</span> <span class="keyword">in</span> seen)</span><br><span class="line">        seen.add(n)</span><br><span class="line">    <span class="keyword">return</span> cp[node]</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -605,7 +606,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -627,7 +628,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -749,7 +750,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共85.9k字</span>
+  <span class="post-count">博客全站共92.1k字</span>
 </div>
         
 

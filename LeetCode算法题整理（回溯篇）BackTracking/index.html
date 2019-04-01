@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="LeetCode,Python,Algorithm,BackTracking," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="93. Restore IP Addresses恢复IP地址。原题12Input: &amp;quot;25525511135&amp;quot;Output: [&amp;quot;255.255.11.135&amp;quot;, &amp;quot;255.255.111.35&amp;quot;]">
+<meta name="keywords" content="LeetCode,Python,Algorithm,BackTracking">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode算法题整理（回溯篇）BackTracking">
+<meta property="og:url" content="http://darktiantian.github.io.git/LeetCode算法题整理（回溯篇）BackTracking/index.html">
+<meta property="og:site_name" content="Xiaoliji&#39;s Blog">
+<meta property="og:description" content="93. Restore IP Addresses恢复IP地址。原题12Input: &amp;quot;25525511135&amp;quot;Output: [&amp;quot;255.255.11.135&amp;quot;, &amp;quot;255.255.111.35&amp;quot;]">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-30T14:42:00.736Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode算法题整理（回溯篇）BackTracking">
+<meta name="twitter:description" content="93. Restore IP Addresses恢复IP地址。原题12Input: &amp;quot;25525511135&amp;quot;Output: [&amp;quot;255.255.11.135&amp;quot;, &amp;quot;255.255.111.35&amp;quot;]">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://darktiantian.github.io.git/LeetCode算法题整理（回溯篇）BackTracking/"/>
+
+
+
+
+
+  <title>LeetCode算法题整理（回溯篇）BackTracking | Xiaoliji's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="https://github.com/darkTianTian" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Xiaoliji's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">小里脊的个人博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://darktiantian.github.io.git/LeetCode算法题整理（回溯篇）BackTracking/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaoliji">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaoliji's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">LeetCode算法题整理（回溯篇）BackTracking</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-24T20:53:44+08:00">
+                2019-03-24
+              </time>
+            
+
+            
+              <span class="post-updated">
+                &nbsp; | &nbsp; Updated on
+                <time itemprop="dateUpdated" datetime="2019-03-30T22:42:00+08:00" content="2019-03-30">
+                  2019-03-30
+                </time>
+              </span>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/LeetCode算法题整理（回溯篇）BackTracking/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="LeetCode算法题整理（回溯篇）BackTracking/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/LeetCode算法题整理（回溯篇）BackTracking/" class="leancloud_visitors" data-flag-title="LeetCode算法题整理（回溯篇）BackTracking">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="93-Restore-IP-Addresses"><a href="#93-Restore-IP-Addresses" class="headerlink" title="93. Restore IP Addresses"></a>93. Restore IP Addresses</h3><h4 id="恢复IP地址。原题"><a href="#恢复IP地址。原题" class="headerlink" title="恢复IP地址。原题"></a>恢复IP地址。<a href="https://leetcode.com/problems/restore-ip-addresses/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;25525511135&quot;</span><br><span class="line">Output: [&quot;255.255.11.135&quot;, &quot;255.255.111.35&quot;]</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>方法一：需要注意0的情况。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">restoreIpAddresses</span><span class="params">(self, s: str)</span> -&gt; List[str]:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(ip, remain, part)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> part &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> remain <span class="keyword">and</span> part==<span class="number">0</span>:</span><br><span class="line">            ans.append(ip)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            ip += <span class="string">'.'</span> * bool(ip)</span><br><span class="line">            n = len(remain)</span><br><span class="line">            <span class="keyword">if</span> n &gt;= <span class="number">1</span>:</span><br><span class="line">                backtrack(ip+remain[:<span class="number">1</span>], remain[<span class="number">1</span>:], part<span class="number">-1</span>)</span><br><span class="line">            <span class="keyword">if</span> n &gt;= <span class="number">2</span> <span class="keyword">and</span> remain[<span class="number">0</span>]!=<span class="string">'0'</span>:</span><br><span class="line">                backtrack(ip+remain[:<span class="number">2</span>], remain[<span class="number">2</span>:], part<span class="number">-1</span>)</span><br><span class="line">            <span class="keyword">if</span> n &gt;= <span class="number">3</span>:</span><br><span class="line">                <span class="keyword">if</span> <span class="number">99</span> &lt; int(remain[:<span class="number">3</span>]) &lt; <span class="number">256</span>:</span><br><span class="line">                    backtrack(ip+remain[:<span class="number">3</span>], remain[<span class="number">3</span>:], part<span class="number">-1</span>)</span><br><span class="line">            </span><br><span class="line">    ans = []</span><br><span class="line">    <span class="keyword">if</span> s:</span><br><span class="line">        backtrack(<span class="string">''</span>, s, <span class="number">4</span>)</span><br><span class="line">    <span class="keyword">return</span> list(ans)</span><br></pre></td></tr></table></figure>
+<h3 id="131-Palindrome-Partitioning"><a href="#131-Palindrome-Partitioning" class="headerlink" title="131. Palindrome Partitioning"></a>131. Palindrome Partitioning</h3><h4 id="回文串切分。原题"><a href="#回文串切分。原题" class="headerlink" title="回文串切分。原题"></a>回文串切分。<a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;aab&quot;</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  [&quot;aa&quot;,&quot;b&quot;],</span><br><span class="line">  [&quot;a&quot;,&quot;a&quot;,&quot;b&quot;]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>方法一：原始回溯。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(self, s: str)</span> -&gt; List[List[str]]:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(s, remain)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> remain:</span><br><span class="line">            ans.append(s)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(remain)+<span class="number">1</span>):      <span class="comment"># 这里是n+1，因为整个字符串也有可能。</span></span><br><span class="line">                <span class="keyword">if</span> remain[:i] == remain[:i][::<span class="number">-1</span>]:</span><br><span class="line">                    backtrack(s+[remain[:i]], remain[i:])</span><br><span class="line">    ans = []</span><br><span class="line">    <span class="keyword">if</span> s:</span><br><span class="line">        backtrack([], s)</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<font color="#32CD32" size="3">方法二：使用列表生成式。</font>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(self, s: str)</span> -&gt; List[List[str]]:</span></span><br><span class="line">    <span class="keyword">return</span> s <span class="keyword">and</span> [[s[:i]] + suffix </span><br><span class="line">                  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(s)+<span class="number">1</span>) <span class="keyword">if</span> s[:i]==s[i<span class="number">-1</span>::<span class="number">-1</span>]</span><br><span class="line">                  <span class="keyword">for</span> suffix <span class="keyword">in</span> self.partition(s[i:])] <span class="keyword">or</span> [[]]</span><br></pre></td></tr></table></figure>
+<h3 id="77-Combinations"><a href="#77-Combinations" class="headerlink" title="77. Combinations"></a>77. Combinations</h3><h4 id="实现组合。原题"><a href="#实现组合。原题" class="headerlink" title="实现组合。原题"></a>实现组合。<a href="https://leetcode.com/problems/combinations/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 4, k = 2</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  [2,4],</span><br><span class="line">  [3,4],</span><br><span class="line">  [2,3],</span><br><span class="line">  [1,2],</span><br><span class="line">  [1,3],</span><br><span class="line">  [1,4],</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>方法一：回溯。700ms, 比Solution中的慢了100ms.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combine</span><span class="params">(self, n: int, k: int)</span> -&gt; List[List[int]]:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(a, k, rest)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> k == <span class="number">1</span>:</span><br><span class="line">            ans.extend(a+[num] <span class="keyword">for</span> num <span class="keyword">in</span> rest)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> i, h <span class="keyword">in</span> enumerate(rest):</span><br><span class="line">                backtrack(a+[h], k<span class="number">-1</span>, rest[i+<span class="number">1</span>:])</span><br><span class="line">        </span><br><span class="line">    ans = []</span><br><span class="line">    backtrack([], k, list(range(<span class="number">1</span>, n+<span class="number">1</span>)))</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<p>方法二：Solution中的递归。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combine</span><span class="params">(self, n: int, k: int)</span> -&gt; List[List[int]]:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(first=<span class="number">1</span>, cur=[])</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(cur) == k:</span><br><span class="line">            ans.append(cur[:])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(first, n+<span class="number">1</span>):</span><br><span class="line">                cur.append(i)</span><br><span class="line">                backtrack(i+<span class="number">1</span>, cur)</span><br><span class="line">                cur.pop()</span><br><span class="line">        </span><br><span class="line">    ans = []</span><br><span class="line">    backtrack()</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<font color="#32CD32" size="3">方法三：列表生成式写法，递归。</font>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combine</span><span class="params">(self, n: int, k: int)</span> -&gt; List[List[int]]:</span></span><br><span class="line">    <span class="keyword">if</span> k == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> [[]]</span><br><span class="line">    <span class="keyword">return</span> [pre+[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(k, n+<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">for</span> pre <span class="keyword">in</span> self.combine(i<span class="number">-1</span>, k<span class="number">-1</span>)]</span><br></pre></td></tr></table></figure>
+<h3 id="39-Combination-Sum"><a href="#39-Combination-Sum" class="headerlink" title="39. Combination Sum"></a>39. Combination Sum</h3><h4 id="和77类似，找出和为指定数值的组合，候选数字可以重复使用。原题"><a href="#和77类似，找出和为指定数值的组合，候选数字可以重复使用。原题" class="headerlink" title="和77类似，找出和为指定数值的组合，候选数字可以重复使用。原题"></a>和77类似，找出和为指定数值的组合，候选数字可以重复使用。<a href="https://leetcode.com/problems/combination-sum/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: candidates = [2,3,5], target = 8,</span><br><span class="line">A solution set is:</span><br><span class="line">[</span><br><span class="line">  [2,2,2,2],</span><br><span class="line">  [2,3,3],</span><br><span class="line">  [3,5]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>方法一：将候选组排序，并记录当前的索引值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combinationSum</span><span class="params">(self, candidates: List[int], target: int)</span> -&gt; List[List[int]]:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(g, i, target)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> target == <span class="number">0</span>:</span><br><span class="line">            ans.append(g)</span><br><span class="line">        <span class="keyword">elif</span> target &lt; candidates[i]:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i, n):</span><br><span class="line">            backtrack(g+[candidates[j]], j, target-candidates[j])</span><br><span class="line">    </span><br><span class="line">    ans = []</span><br><span class="line">    n = len(candidates)</span><br><span class="line">    candidates.sort()</span><br><span class="line">    backtrack([], <span class="number">0</span>, target)</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<h3 id="40-Combination-Sum-II"><a href="#40-Combination-Sum-II" class="headerlink" title="40. Combination Sum II"></a>40. Combination Sum II</h3><h4 id="组合求和，和39类似，区别在于候选数字中可能有重复数字，但每个数字只能使用一次。原题"><a href="#组合求和，和39类似，区别在于候选数字中可能有重复数字，但每个数字只能使用一次。原题" class="headerlink" title="组合求和，和39类似，区别在于候选数字中可能有重复数字，但每个数字只能使用一次。原题"></a>组合求和，和39类似，区别在于候选数字中可能有重复数字，但每个数字只能使用一次。<a href="https://leetcode.com/problems/combination-sum-ii/" target="_blank" rel="noopener">原题</a></h4><p>麻烦的地方在于如何保证结果是非重复的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combinationSum2</span><span class="params">(self, candidates: List[int], target: int)</span> -&gt; List[List[int]]:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(g, i, target)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> target == <span class="number">0</span>:</span><br><span class="line">            ans.append(g)</span><br><span class="line">            <span class="keyword">return</span> </span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i, n):</span><br><span class="line">            <span class="comment"># avoid duplicate result</span></span><br><span class="line">            <span class="keyword">if</span> j != i <span class="keyword">and</span> candidates[j]==candidates[j<span class="number">-1</span>]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">if</span> candidates[j] &gt; target:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            backtrack(g+[candidates[j]], j+<span class="number">1</span>, target-candidates[j])</span><br><span class="line">    </span><br><span class="line">    ans = []</span><br><span class="line">    n = len(candidates)</span><br><span class="line">    candidates.sort()</span><br><span class="line">    backtrack([], <span class="number">0</span>, target)</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<h3 id="216-Combination-Sum-III"><a href="#216-Combination-Sum-III" class="headerlink" title="216. Combination Sum III"></a>216. Combination Sum III</h3><h4 id="组合求和，从1-9选出k个不重复的数，和为n。原题"><a href="#组合求和，从1-9选出k个不重复的数，和为n。原题" class="headerlink" title="组合求和，从1~9选出k个不重复的数，和为n。原题"></a>组合求和，从1~9选出k个不重复的数，和为n。<a href="https://leetcode.com/problems/combination-sum-iii/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: k = 3, n = 9</span><br><span class="line">Output: [[1,2,6], [1,3,5], [2,3,4]]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combinationSum3</span><span class="params">(self, k: int, n: int)</span> -&gt; List[List[int]]:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(g, i, target, k)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> k==<span class="number">0</span> <span class="keyword">and</span> target==<span class="number">0</span>:</span><br><span class="line">            ans.append(g)</span><br><span class="line">        <span class="keyword">if</span> k &lt; <span class="number">0</span> <span class="keyword">or</span> target &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i, <span class="number">10</span>):</span><br><span class="line">            backtrack(g+[j], j+<span class="number">1</span>, target-j, k<span class="number">-1</span>)</span><br><span class="line">    </span><br><span class="line">    ans = []</span><br><span class="line">    backtrack([], <span class="number">1</span>, n, k)</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<p>方法二：递归，使用<code>last</code>作为上限。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combinationSum3</span><span class="params">(self, k: int, n: int)</span> -&gt; List[List[int]]:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">combs</span><span class="params">(k, n, cap)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> k:</span><br><span class="line">            <span class="keyword">return</span> [[]] * (<span class="keyword">not</span> n)</span><br><span class="line">        <span class="keyword">return</span> [comb + [last]</span><br><span class="line">                <span class="keyword">for</span> last <span class="keyword">in</span> range(<span class="number">1</span>, cap)</span><br><span class="line">                <span class="keyword">for</span> comb <span class="keyword">in</span> combs(k<span class="number">-1</span>, n-last, last)]</span><br><span class="line">    <span class="keyword">return</span> combs(k, n, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="78-Subsets"><a href="#78-Subsets" class="headerlink" title="78. Subsets"></a>78. Subsets</h3><h4 id="输出给定无重复集合的子集组合。原题"><a href="#输出给定无重复集合的子集组合。原题" class="headerlink" title="输出给定无重复集合的子集组合。原题"></a>输出给定无重复集合的子集组合。<a href="https://leetcode.com/problems/subsets/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,2,3]</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  [3],</span><br><span class="line">  [1],</span><br><span class="line">  [2],</span><br><span class="line">  [1,2,3],</span><br><span class="line">  [1,3],</span><br><span class="line">  [2,3],</span><br><span class="line">  [1,2],</span><br><span class="line">  []</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>方法一：常规写法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subsets</span><span class="params">(self, nums: List[int])</span> -&gt; List[List[int]]:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(g, i, n)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> n:</span><br><span class="line">            ans.append(g)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i, len(nums)):</span><br><span class="line">            backtrack(g+[nums[j]], j+<span class="number">1</span>, n<span class="number">-1</span>)</span><br><span class="line">    </span><br><span class="line">    ans = []</span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> range(len(nums)+<span class="number">1</span>):</span><br><span class="line">        backtrack([], <span class="number">0</span>, n)</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<font color="#32CD32" size="3">方法二：做一个递增就好了。</font>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subsets</span><span class="params">(self, nums: List[int])</span> -&gt; List[List[int]]:</span></span><br><span class="line">    ans = [[]]</span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">        ans += [pre+[num] <span class="keyword">for</span> pre <span class="keyword">in</span> ans]</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<h3 id="90-Subsets-II"><a href="#90-Subsets-II" class="headerlink" title="90. Subsets II"></a>90. Subsets II</h3><h4 id="和78类似，区别在于给定的数组有重复元素。原题"><a href="#和78类似，区别在于给定的数组有重复元素。原题" class="headerlink" title="和78类似，区别在于给定的数组有重复元素。原题"></a>和78类似，区别在于给定的数组有重复元素。<a href="https://leetcode.com/problems/subsets-ii/" target="_blank" rel="noopener">原题</a></h4><p>方法一：用到了40题中解法去重的代码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subsetsWithDup</span><span class="params">(self, nums: List[int])</span> -&gt; List[List[int]]:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(g, i, n)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> n:</span><br><span class="line">            ans.append(g)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i, len(nums)):</span><br><span class="line">            <span class="keyword">if</span> j!=i <span class="keyword">and</span> nums[j]==nums[j<span class="number">-1</span>]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            backtrack(g+[nums[j]], j+<span class="number">1</span>, n<span class="number">-1</span>)</span><br><span class="line">    </span><br><span class="line">    ans = []</span><br><span class="line">    nums.sort()</span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> range(len(nums)+<span class="number">1</span>):</span><br><span class="line">        backtrack([], <span class="number">0</span>, n)</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<h3 id="79-Word-Search"><a href="#79-Word-Search" class="headerlink" title="79. Word Search"></a>79. Word Search</h3><h4 id="矩阵中的路径。原题"><a href="#矩阵中的路径。原题" class="headerlink" title="矩阵中的路径。原题"></a>矩阵中的路径。<a href="https://leetcode.com/problems/word-search/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">board =</span><br><span class="line">[</span><br><span class="line">  [&apos;A&apos;,&apos;B&apos;,&apos;C&apos;,&apos;E&apos;],</span><br><span class="line">  [&apos;S&apos;,&apos;F&apos;,&apos;C&apos;,&apos;S&apos;],</span><br><span class="line">  [&apos;A&apos;,&apos;D&apos;,&apos;E&apos;,&apos;E&apos;]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">Given word = &quot;ABCCED&quot;, return true.</span><br><span class="line">Given word = &quot;SEE&quot;, return true.</span><br><span class="line">Given word = &quot;ABCB&quot;, return false.</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exist</span><span class="params">(self, g: List[List[str]], word: str)</span> -&gt; bool:</span></span><br><span class="line">    R, C = len(g), len(g[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">spread</span><span class="params">(i, j, w)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> w:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        original, g[i][j] = g[i][j], <span class="string">'-'</span></span><br><span class="line">        spreaded = <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">for</span> x, y <span class="keyword">in</span> ((i<span class="number">-1</span>, j), (i+<span class="number">1</span>, j), (i, j<span class="number">-1</span>), (i, j+<span class="number">1</span>)):</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">0</span>&lt;=x&lt;R <span class="keyword">and</span> <span class="number">0</span>&lt;=y&lt;C <span class="keyword">and</span> w[<span class="number">0</span>]==g[x][y]</span><br><span class="line">                    <span class="keyword">and</span> spread(x, y, w[<span class="number">1</span>:])):</span><br><span class="line">                spreaded = <span class="keyword">True</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        g[i][j] = original</span><br><span class="line">        <span class="keyword">return</span> spreaded</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(R):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(C):</span><br><span class="line">            <span class="keyword">if</span> g[i][j] == word[<span class="number">0</span>] <span class="keyword">and</span> spread(i, j, word[<span class="number">1</span>:]):</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+<h3 id="200-Number-of-Islands"><a href="#200-Number-of-Islands" class="headerlink" title="200. Number of Islands"></a>200. Number of Islands</h3><h4 id="小岛的个数。原题"><a href="#小岛的个数。原题" class="headerlink" title="小岛的个数。原题"></a>小岛的个数。<a href="https://leetcode.com/problems/number-of-islands/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">11110</span><br><span class="line">11010</span><br><span class="line">11000</span><br><span class="line">00000</span><br><span class="line"></span><br><span class="line">Output: 1</span><br></pre></td></tr></table></figure>
+<p>方法一：常规写法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">numIslands</span><span class="params">(self, grid: List[List[str]])</span> -&gt; int:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> grid:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    R, C = len(grid), len(grid[<span class="number">0</span>])</span><br><span class="line">    seen = set()</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">spread</span><span class="params">(i, j)</span>:</span></span><br><span class="line">        seen.add((i, j))</span><br><span class="line">        <span class="keyword">for</span> x, y <span class="keyword">in</span> ((i<span class="number">-1</span>, j), (i+<span class="number">1</span>, j), (i, j<span class="number">-1</span>), (i, j+<span class="number">1</span>)):</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">0</span>&lt;=x&lt;R <span class="keyword">and</span> <span class="number">0</span>&lt;=y&lt;C <span class="keyword">and</span> (x, y) <span class="keyword">not</span> <span class="keyword">in</span> seen</span><br><span class="line">                    <span class="keyword">and</span> grid[x][y]==<span class="string">'1'</span>):</span><br><span class="line">                spread(x, y)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(R):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(C):</span><br><span class="line">            <span class="keyword">if</span> (i, j) <span class="keyword">not</span> <span class="keyword">in</span> seen <span class="keyword">and</span> grid[i][j]==<span class="string">'1'</span>:</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">                spread(i, j)</span><br><span class="line">    <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+<p>方法二：当登录一座岛屿时，使这座岛屿下沉，变为’0’。不明白为什么比上个方法慢了20ms。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">numIslands</span><span class="params">(self, grid: List[List[str]])</span> -&gt; int:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sink</span><span class="params">(i, j)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="number">0</span>&lt;=i&lt;len(grid) <span class="keyword">and</span> <span class="number">0</span>&lt;=j&lt;len(grid[i]) <span class="keyword">and</span> grid[i][j]==<span class="string">'1'</span>:</span><br><span class="line">            grid[i][j] = <span class="string">'0'</span></span><br><span class="line">            list(map(sink, (i<span class="number">-1</span>, i+<span class="number">1</span>, i, i), (j, j, j<span class="number">-1</span>, j+<span class="number">1</span>)))   <span class="comment"># important, return generator without list</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> sum(sink(i, j) <span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid)) <span class="keyword">for</span> j <span class="keyword">in</span> range(len(grid[i])))</span><br></pre></td></tr></table></figure>
+<h3 id="130-Surrounded-Regions"><a href="#130-Surrounded-Regions" class="headerlink" title="130. Surrounded Regions"></a>130. Surrounded Regions</h3><h4 id="将四周被包围的O翻转成X，边缘不算包围。原题"><a href="#将四周被包围的O翻转成X，边缘不算包围。原题" class="headerlink" title="将四周被包围的O翻转成X，边缘不算包围。原题"></a>将四周被包围的<code>O</code>翻转成<code>X</code>，边缘不算包围。<a href="https://leetcode.com/problems/surrounded-regions/" target="_blank" rel="noopener">原题</a></h4><p>方法一：传统的方法在延伸的时候判断不出是否到达边界。所以这里先得到边界的点，然后从边界往里延伸，将所有的<code>O</code>变为<code>S</code>，第二次遍历时，将<code>S</code>恢复成<code>O</code>，其他设为<code>X</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span><span class="params">(self, board: List[List[str]])</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> board: <span class="keyword">return</span></span><br><span class="line">    R, C = len(board), len(board[<span class="number">0</span>])</span><br><span class="line">    bounds = [(i, j) <span class="keyword">for</span> k <span class="keyword">in</span> range(R+C) </span><br><span class="line">              <span class="keyword">for</span> i, j <span class="keyword">in</span> ((<span class="number">0</span>, k), (R<span class="number">-1</span>, k), (k, <span class="number">0</span>), (k, C<span class="number">-1</span>))</span><br><span class="line">              <span class="keyword">if</span> i &lt; R <span class="keyword">and</span> j &lt; C]</span><br><span class="line">    <span class="keyword">while</span> bounds:</span><br><span class="line">        x, y = bounds.pop()</span><br><span class="line">        <span class="keyword">if</span> <span class="number">0</span>&lt;=x&lt;R <span class="keyword">and</span> <span class="number">0</span>&lt;=y&lt;C <span class="keyword">and</span> board[x][y]==<span class="string">'O'</span>:</span><br><span class="line">            board[x][y] = <span class="string">'S'</span></span><br><span class="line">            bounds += (x<span class="number">-1</span>, y), (x+<span class="number">1</span>, y), (x, y<span class="number">-1</span>), (x, y+<span class="number">1</span>)</span><br><span class="line">    board[:] = [[<span class="string">'XO'</span>[c==<span class="string">'S'</span>] <span class="keyword">for</span> c <span class="keyword">in</span> row] <span class="keyword">for</span> row <span class="keyword">in</span> board]</span><br></pre></td></tr></table></figure>
+<h3 id="417-Pacific-Atlantic-Water-Flow"><a href="#417-Pacific-Atlantic-Water-Flow" class="headerlink" title="417. Pacific Atlantic Water Flow"></a>417. Pacific Atlantic Water Flow</h3><h4 id="太平洋大西洋水流向，假设陆地上可以沿着高度不高于的地方流淌，求能同时流入两个海洋的陆地坐标。原题"><a href="#太平洋大西洋水流向，假设陆地上可以沿着高度不高于的地方流淌，求能同时流入两个海洋的陆地坐标。原题" class="headerlink" title="太平洋大西洋水流向，假设陆地上可以沿着高度不高于的地方流淌，求能同时流入两个海洋的陆地坐标。原题"></a>太平洋大西洋水流向，假设陆地上可以沿着高度不高于的地方流淌，求能同时流入两个海洋的陆地坐标。<a href="https://leetcode.com/problems/pacific-atlantic-water-flow/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Given the following 5x5 matrix:</span><br><span class="line"></span><br><span class="line">  Pacific ~   ~   ~   ~   ~ </span><br><span class="line">       ~  1   2   2   3  (5) *</span><br><span class="line">       ~  3   2   3  (4) (4) *</span><br><span class="line">       ~  2   4  (5)  3   1  *</span><br><span class="line">       ~ (6) (7)  1   4   5  *</span><br><span class="line">       ~ (5)  1   1   2   4  *</span><br><span class="line">          *   *   *   *   * Atlantic</span><br><span class="line">Return:</span><br><span class="line">[[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]] (positions with parentheses in above matrix).</span><br><span class="line"> </span><br><span class="line"> Pacific  ~   ~   ~   </span><br><span class="line">       ~  1   2  (3)  *</span><br><span class="line">       ~ (8) (9) (4)  *</span><br><span class="line">       ~ (7) (6) (5)  *</span><br><span class="line">          *   *   *   * Atlantic</span><br></pre></td></tr></table></figure>
+<p>方法一：一开始我以为从左上的点只能往右或下方向找陆地，事实上还是要寻找四个方向。这应该是最暴力的解法了。但是看了几个高票答案都没我这个快。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pacificAtlantic</span><span class="params">(self, matrix: List[List[int]])</span> -&gt; List[List[int]]:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> matrix:</span><br><span class="line">        <span class="keyword">return</span> []</span><br><span class="line">    p_land = set()</span><br><span class="line">    a_land = set()</span><br><span class="line">    R, C = len(matrix), len(matrix[<span class="number">0</span>])</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">spread</span><span class="params">(i, j, land)</span>:</span></span><br><span class="line">        land.add((i, j))</span><br><span class="line">        <span class="keyword">for</span> x, y <span class="keyword">in</span> ((i+<span class="number">1</span>, j), (i, j+<span class="number">1</span>), (i<span class="number">-1</span>, j), (i, j<span class="number">-1</span>)):</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">0</span>&lt;=x&lt;R <span class="keyword">and</span> <span class="number">0</span>&lt;=y&lt;C <span class="keyword">and</span> matrix[x][y] &gt;= matrix[i][j]</span><br><span class="line">                    <span class="keyword">and</span> (x, y) <span class="keyword">not</span> <span class="keyword">in</span> land):</span><br><span class="line">                spread(x, y, land)</span><br><span class="line">                </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(R):</span><br><span class="line">        spread(i, <span class="number">0</span>, p_land)</span><br><span class="line">        spread(i, C<span class="number">-1</span>, a_land)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(C):</span><br><span class="line">        spread(<span class="number">0</span>, j, p_land)</span><br><span class="line">        spread(R<span class="number">-1</span>, j, a_land)</span><br><span class="line">    <span class="keyword">return</span> list(p_land &amp; a_land)</span><br></pre></td></tr></table></figure>
+<h3 id="526-Beautiful-Arrangement"><a href="#526-Beautiful-Arrangement" class="headerlink" title="526. Beautiful Arrangement"></a>526. Beautiful Arrangement</h3><h4 id="完美安排，给定1-N的数字，生成一种排列，是第i位的数字能被i整除，或者i能被第i位的数字整除，索引从1开始。原题"><a href="#完美安排，给定1-N的数字，生成一种排列，是第i位的数字能被i整除，或者i能被第i位的数字整除，索引从1开始。原题" class="headerlink" title="完美安排，给定1~N的数字，生成一种排列，是第i位的数字能被i整除，或者i能被第i位的数字整除，索引从1开始。原题"></a>完美安排，给定1~N的数字，生成一种排列，是第i位的数字能被i整除，或者i能被第i位的数字整除，索引从1开始。<a href="https://leetcode.com/problems/beautiful-arrangement/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Input: 2</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: </span><br><span class="line"></span><br><span class="line">The first beautiful arrangement is [1, 2]:</span><br><span class="line"></span><br><span class="line">Number at the 1st position (i=1) is 1, and 1 is divisible by i (i=1).</span><br><span class="line"></span><br><span class="line">Number at the 2nd position (i=2) is 2, and 2 is divisible by i (i=2).</span><br><span class="line"></span><br><span class="line">The second beautiful arrangement is [2, 1]:</span><br><span class="line"></span><br><span class="line">Number at the 1st position (i=1) is 2, and 2 is divisible by i (i=1).</span><br><span class="line"></span><br><span class="line">Number at the 2nd position (i=2) is 1, and i (i=2) is divisible by 1.</span><br></pre></td></tr></table></figure>
+<p>方法一：常规写法，1300ms，beats50%.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countArrangement</span><span class="params">(self, N: int)</span> -&gt; int:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(g, rest)</span>:</span></span><br><span class="line">        <span class="keyword">nonlocal</span> count</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> rest:</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">        index = len(g) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i, num <span class="keyword">in</span> enumerate(rest):</span><br><span class="line">            <span class="keyword">if</span> num % index == <span class="number">0</span> <span class="keyword">or</span> index % num == <span class="number">0</span>:</span><br><span class="line">                <span class="comment"># print(g, i, num, index, rest)</span></span><br><span class="line">                g.append(num)</span><br><span class="line">                backtrack(g, rest[:i]+rest[i+<span class="number">1</span>:])</span><br><span class="line">                g.pop()</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    backtrack([], list(range(<span class="number">1</span>, N+<span class="number">1</span>)))</span><br><span class="line">    <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+<p>方法二：去掉了方法一中一些无用的空间和操作。1000ms, beats 67%.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countArrangement</span><span class="params">(self, N: int)</span> -&gt; int:</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(g)</span>:</span></span><br><span class="line">        <span class="keyword">nonlocal</span> count</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> rest:</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">        index = len(g) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> rest:</span><br><span class="line">            <span class="keyword">if</span> num % index == <span class="number">0</span> <span class="keyword">or</span> index % num == <span class="number">0</span>:</span><br><span class="line">                g.append(num)</span><br><span class="line">                rest.remove(num)</span><br><span class="line">                backtrack(g)</span><br><span class="line">                g.pop()</span><br><span class="line">                rest.add(num)</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    rest = set(range(<span class="number">1</span>, N+<span class="number">1</span>))</span><br><span class="line">    backtrack([])</span><br><span class="line">    <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+<font color="#32CD32" size="3">方法三：这里从后往前构建，最后构造1，因为1的位置放任何数字都可以。152ms</font>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countArrangement</span><span class="params">(self, N: int)</span> -&gt; int:</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(i, rest)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> i == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> sum(backtrack(i<span class="number">-1</span>, rest-&#123;x&#125;)</span><br><span class="line">                   <span class="keyword">for</span> x <span class="keyword">in</span> rest</span><br><span class="line">                   <span class="keyword">if</span> x % i == <span class="number">0</span> <span class="keyword">or</span> i % x == <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> backtrack(N, set(range(<span class="number">1</span>, N+<span class="number">1</span>)))</span><br></pre></td></tr></table></figure>
+<font color="#32CD32" size="3">方法四：在3的基础上优化，每次调用方法时可以利用之前的结果。52ms</font>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">cache = &#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countArrangement</span><span class="params">(self, N: int)</span> -&gt; int:</span></span><br><span class="line">            </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(i, rest)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> i == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">            key = i, rest</span><br><span class="line">            <span class="keyword">if</span> key <span class="keyword">in</span> cache:</span><br><span class="line">                <span class="keyword">return</span> cache[key]</span><br><span class="line">            ans =  sum(backtrack(i<span class="number">-1</span>, rest[:j]+rest[j+<span class="number">1</span>:])</span><br><span class="line">                       <span class="keyword">for</span> j, x <span class="keyword">in</span> enumerate(rest)</span><br><span class="line">                       <span class="keyword">if</span> x % i == <span class="number">0</span> <span class="keyword">or</span> i % x == <span class="number">0</span>)</span><br><span class="line">            <span class="comment"># print(ans, i, rest)</span></span><br><span class="line">            cache[key] = ans</span><br><span class="line">            <span class="keyword">return</span> ans</span><br><span class="line">        <span class="keyword">return</span> backtrack(N, tuple(range(<span class="number">1</span>, N+<span class="number">1</span>)))</span><br></pre></td></tr></table></figure>
+<h3 id="22-Generate-Parentheses"><a href="#22-Generate-Parentheses" class="headerlink" title="22. Generate Parentheses"></a>22. Generate Parentheses</h3><h4 id="生成n对合法的括号。原题"><a href="#生成n对合法的括号。原题" class="headerlink" title="生成n对合法的括号。原题"></a>生成n对合法的括号。<a href="https://leetcode.com/problems/generate-parentheses/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &quot;((()))&quot;,</span><br><span class="line">  &quot;(()())&quot;,</span><br><span class="line">  &quot;(())()&quot;,</span><br><span class="line">  &quot;()(())&quot;,</span><br><span class="line">  &quot;()()()&quot;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>方法一：常规写法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generateParenthesis</span><span class="params">(self, n: int)</span> -&gt; List[str]:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(p, l, r)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(p) == n*<span class="number">2</span>:</span><br><span class="line">            ans.append(p)</span><br><span class="line">        <span class="keyword">if</span> l &lt; n:</span><br><span class="line">            backtrack(p+<span class="string">'('</span>, l+<span class="number">1</span>, r) </span><br><span class="line">        <span class="keyword">if</span> r &lt; l:</span><br><span class="line">            backtrack(p+<span class="string">')'</span>, l, r+<span class="number">1</span>)</span><br><span class="line">    ans = []</span><br><span class="line">    backtrack(<span class="string">''</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<font color="#32CD32" size="3">方法二：生成器写法。</font>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generateParenthesis</span><span class="params">(self, n: int)</span> -&gt; List[str]:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">gen_parens</span><span class="params">(p, l, r)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> r &gt;= l &gt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> r:</span><br><span class="line">                <span class="keyword">yield</span> p</span><br><span class="line">            <span class="keyword">yield</span> <span class="keyword">from</span> gen_parens(p+<span class="string">'('</span>, l<span class="number">-1</span>, r)</span><br><span class="line">            <span class="keyword">yield</span> <span class="keyword">from</span> gen_parens(p+<span class="string">')'</span>, l, r<span class="number">-1</span>)</span><br><span class="line">    <span class="keyword">return</span> list(gen_parens(<span class="string">''</span>, n, n))</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/" rel="tag">
+            <i class="fa fa-tag"></i> LeetCode</a>
+          
+            <a href="/tags/Python/" rel="tag">
+            <i class="fa fa-tag"></i> Python</a>
+          
+            <a href="/tags/Algorithm/" rel="tag">
+            <i class="fa fa-tag"></i> Algorithm</a>
+          
+            <a href="/tags/BackTracking/" rel="tag">
+            <i class="fa fa-tag"></i> BackTracking</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/矩阵中单词的路径，很多人都错了/" rel="next" title="矩阵中单词的路径，很多人都错了">
+                <i class="fa fa-chevron-left"></i> 矩阵中单词的路径，很多人都错了
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="xiaoliji" />
+          <p class="site-author-name" itemprop="name">xiaoliji</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/darkTianTian" target="_blank" title="GitHub" rel="external nofollow">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/de42f74901fd" target="_blank" title="简书" rel="external nofollow">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://leetcode.com/darktiantian/" target="_blank" title="LeetCode" rel="external nofollow">
+                  
+                    <i class="fa fa-fw fa-leetcode"></i>
+                  
+                    
+                      LeetCode
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#93-Restore-IP-Addresses"><span class="nav-number">1.</span> <span class="nav-text">93. Restore IP Addresses</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#恢复IP地址。原题"><span class="nav-number">1.1.</span> <span class="nav-text">恢复IP地址。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#131-Palindrome-Partitioning"><span class="nav-number">2.</span> <span class="nav-text">131. Palindrome Partitioning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#回文串切分。原题"><span class="nav-number">2.1.</span> <span class="nav-text">回文串切分。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#77-Combinations"><span class="nav-number">3.</span> <span class="nav-text">77. Combinations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现组合。原题"><span class="nav-number">3.1.</span> <span class="nav-text">实现组合。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#39-Combination-Sum"><span class="nav-number">4.</span> <span class="nav-text">39. Combination Sum</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#和77类似，找出和为指定数值的组合，候选数字可以重复使用。原题"><span class="nav-number">4.1.</span> <span class="nav-text">和77类似，找出和为指定数值的组合，候选数字可以重复使用。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#40-Combination-Sum-II"><span class="nav-number">5.</span> <span class="nav-text">40. Combination Sum II</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#组合求和，和39类似，区别在于候选数字中可能有重复数字，但每个数字只能使用一次。原题"><span class="nav-number">5.1.</span> <span class="nav-text">组合求和，和39类似，区别在于候选数字中可能有重复数字，但每个数字只能使用一次。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#216-Combination-Sum-III"><span class="nav-number">6.</span> <span class="nav-text">216. Combination Sum III</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#组合求和，从1-9选出k个不重复的数，和为n。原题"><span class="nav-number">6.1.</span> <span class="nav-text">组合求和，从1~9选出k个不重复的数，和为n。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#78-Subsets"><span class="nav-number">7.</span> <span class="nav-text">78. Subsets</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输出给定无重复集合的子集组合。原题"><span class="nav-number">7.1.</span> <span class="nav-text">输出给定无重复集合的子集组合。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#90-Subsets-II"><span class="nav-number">8.</span> <span class="nav-text">90. Subsets II</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#和78类似，区别在于给定的数组有重复元素。原题"><span class="nav-number">8.1.</span> <span class="nav-text">和78类似，区别在于给定的数组有重复元素。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#79-Word-Search"><span class="nav-number">9.</span> <span class="nav-text">79. Word Search</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵中的路径。原题"><span class="nav-number">9.1.</span> <span class="nav-text">矩阵中的路径。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#200-Number-of-Islands"><span class="nav-number">10.</span> <span class="nav-text">200. Number of Islands</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#小岛的个数。原题"><span class="nav-number">10.1.</span> <span class="nav-text">小岛的个数。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#130-Surrounded-Regions"><span class="nav-number">11.</span> <span class="nav-text">130. Surrounded Regions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将四周被包围的O翻转成X，边缘不算包围。原题"><span class="nav-number">11.1.</span> <span class="nav-text">将四周被包围的O翻转成X，边缘不算包围。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#417-Pacific-Atlantic-Water-Flow"><span class="nav-number">12.</span> <span class="nav-text">417. Pacific Atlantic Water Flow</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#太平洋大西洋水流向，假设陆地上可以沿着高度不高于的地方流淌，求能同时流入两个海洋的陆地坐标。原题"><span class="nav-number">12.1.</span> <span class="nav-text">太平洋大西洋水流向，假设陆地上可以沿着高度不高于的地方流淌，求能同时流入两个海洋的陆地坐标。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#526-Beautiful-Arrangement"><span class="nav-number">13.</span> <span class="nav-text">526. Beautiful Arrangement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#完美安排，给定1-N的数字，生成一种排列，是第i位的数字能被i整除，或者i能被第i位的数字整除，索引从1开始。原题"><span class="nav-number">13.1.</span> <span class="nav-text">完美安排，给定1~N的数字，生成一种排列，是第i位的数字能被i整除，或者i能被第i位的数字整除，索引从1开始。原题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-Generate-Parentheses"><span class="nav-number">14.</span> <span class="nav-text">22. Generate Parentheses</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生成n对合法的括号。原题"><span class="nav-number">14.1.</span> <span class="nav-text">生成n对合法的括号。原题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaoliji</span>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+<div class="powered-by">
+
+  Powered by <a class="theme-link" href="https://hexo.io" rel="texternal nofollow">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="texternal nofollow">
+    NexT.Mist
+  </a>
+</div>
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共92.1k字</span>
+</div>
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://darktiantian.github.io.git/LeetCode算法题整理（回溯篇）BackTracking/';
+          this.page.identifier = 'LeetCode算法题整理（回溯篇）BackTracking/';
+          this.page.title = 'LeetCode算法题整理（回溯篇）BackTracking';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("MuBXc6gVka7X95yN3qhh8Akg-gzGzoHsz", "flbiG5OQDhWpAaCRLDETaoPF");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
