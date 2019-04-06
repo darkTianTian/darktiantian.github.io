@@ -159,9 +159,9 @@
       </categories>
       <tags>
         <tag>LeetCode</tag>
+        <tag>Bit Manipulation</tag>
         <tag>Python</tag>
         <tag>Algorithm</tag>
-        <tag>Bit Manipulation</tag>
       </tags>
   </entry>
   <entry>
@@ -196,8 +196,8 @@
         <category>sql</category>
       </categories>
       <tags>
-        <tag>LeetCode</tag>
         <tag>Mysql</tag>
+        <tag>LeetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -209,9 +209,9 @@
       </categories>
       <tags>
         <tag>LeetCode</tag>
+        <tag>Bit Manipulation</tag>
         <tag>Python</tag>
         <tag>Algorithm</tag>
-        <tag>Bit Manipulation</tag>
       </tags>
   </entry>
   <entry>
@@ -244,7 +244,7 @@
   <entry>
     <title><![CDATA[Python排序算法]]></title>
     <url>%2FPython%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[快速排序 快排算是应用中广泛的排序算法了。由于实现简单，适用于不同的输入数据且在一般应用中比其他排序算法要快。快排的一个特点是原地排序，内循环比大多数排序算法要短小。它的主要缺点是非常脆弱，在实现中要非常小心才能避免低劣的性能。 快排是一种分治的排序算法。它将一个数组分成两个子数组，将两部分独立地排序。快排和归并排序是互补的：归并排序将数组分成两个子数组分别排序，并将有序的子数组归并以将整个数组排序，递归调用发生在处理整个数组之前；而快排将数组排序的方式则是当两个子数组都有序时整个数组自然也就有序了，递归调用发生在处理整个数组之后。 按照《算法第4版》中的例子，实现一个标准的python解法。 1234567891011121314151617181920212223242526import randomdef quick_sort(a): random.shuffle(a) # 消除输入依赖，保持随机性，也可使用随机选取切分元素 quick_sort_divide(a, 0, len(a)-1) def quick_sort_divide(a, lo, hi): if hi &lt;= lo: return j = partition(a, lo, hi) quick_sort_divide(a, lo, j-1) quick_sort_divide(a, j+1, hi) def partition(a, lo, hi): i, j = lo+1, hi pivot = a[lo] # 选取第一个元素作为切分元素 while True: while a[i]&lt;pivot and i&lt;hi: # 遇到大于等于pivot时停止，某些情况可以避免算法运行时间变为平方级别 i += 1 while a[j]&gt;pivot and j&gt;lo: j -= 1 if i &gt;= j: break a[i], a[j] = a[j], a[i] a[lo], a[j] = a[j], a[lo] return j 性能分析： 内循环使用一个递增的索引将数组元素和一个定值比较，相对于归并和希尔的在内循环中移动数据的方法更快，更简洁。 比较的次数很少。排序效率依赖切分数组的效果。 冒泡排序12345678910def bubble_sort(nums): n = len(nums) for i in range(n-1, 0, -1): flag = True for j in range(0, i): if nums[j] &gt; nums[j+1]: nums[j+1], nums[j] = nums[j], nums[j+1] flag = False if flag: return 选择排序12345678def select_sort(nums: list) -&gt; list: n = len(nums) for i in range(n-1): min_i = i for j in range(i+1, n): if nums[min_i] &gt; nums[j]: min_i = j nums[min_i], nums[i] = nums[i], nums[min_i] 插入排序 12345678910def insertion(ary: list) -&gt; list: for i in range(1, len(ary)): val, index = ary[i], i for j in range(i-1, -1, -1): if ary[j] &gt; val: ary[j+1] = ary[j] index = j else: break ary[index] = val 希尔排序一直觉得网上的希尔排序方式不够pythonic，这里写了一个调用插入排序的方法。 123456789def shell_sorted(nums): res = list(nums) n = len(res) step = round(n/2) while step &gt; 0: for i in range(step): res[i:n:step] = insert_sorted(res[i:n:step]) step = round(step/2) return res 归并排序 123456789101112131415161718def merge_sort(ary): if len(ary) &lt;= 1 : return ary num = len(ary) // 2 left = merge_sort(ary[:num]) right = merge_sort(ary[num:]) return merge(left, right) def merge(left, right): res, l, r = [], 0, 0 while l&lt;len(left) and r&lt;len(right) : if left[l] &lt; right[r]: res.append(left[l]) l += 1 else: res.append(right[r]) r += 1 res += left[l:] or right[r:] return res]]></content>
+    <content type="text"><![CDATA[快速排序 快排算是应用中广泛的排序算法了。由于实现简单，适用于不同的输入数据且在一般应用中比其他排序算法要快。快排的一个特点是原地排序，内循环比大多数排序算法要短小。它的主要缺点是非常脆弱，在实现中要非常小心才能避免低劣的性能。 快排是一种分治的排序算法。它将一个数组分成两个子数组，将两部分独立地排序。快排和归并排序是互补的：归并排序将数组分成两个子数组分别排序，并将有序的子数组归并以将整个数组排序，递归调用发生在处理整个数组之前；而快排将数组排序的方式则是当两个子数组都有序时整个数组自然也就有序了，递归调用发生在处理整个数组之后。 按照《算法第4版》中的例子，实现一个标准的python解法。 1234567891011121314151617181920212223242526import randomdef quick_sort(a): random.shuffle(a) # 消除输入依赖，保持随机性，也可使用随机选取切分元素 quick_sort_divide(a, 0, len(a)-1) def quick_sort_divide(a, lo, hi): if hi &lt;= lo: return j = partition(a, lo, hi) quick_sort_divide(a, lo, j-1) quick_sort_divide(a, j+1, hi) def partition(a, lo, hi): i, j = lo+1, hi pivot = a[lo] # 选取第一个元素作为切分元素 while True: while a[i]&lt;pivot and i&lt;hi: # 遇到大于等于pivot时停止，某些情况可以避免算法运行时间变为平方级别 i += 1 while a[j]&gt;pivot and j&gt;lo: j -= 1 if i &gt;= j: break a[i], a[j] = a[j], a[i] a[lo], a[j] = a[j], a[lo] return j 性能分析： 内循环使用一个递增的索引将数组元素和一个定值比较，相对于归并和希尔的在内循环中移动数据的方法更快，更简洁。 比较的次数很少。排序效率依赖切分数组的效果。 冒泡排序12345678910def bubble_sort(nums): n = len(nums) for i in range(n-1, 0, -1): flag = True for j in range(0, i): if nums[j] &gt; nums[j+1]: nums[j+1], nums[j] = nums[j], nums[j+1] flag = False if flag: return 选择排序12345678def select_sort(nums: list) -&gt; list: n = len(nums) for i in range(n-1): min_i = i for j in range(i+1, n): if nums[min_i] &gt; nums[j]: min_i = j nums[min_i], nums[i] = nums[i], nums[min_i] 插入排序 12345678910def insertion(ary: list) -&gt; list: for i in range(1, len(ary)): val, index = ary[i], i for j in range(i-1, -1, -1): if ary[j] &gt; val: ary[j+1] = ary[j] index = j else: break ary[index] = val 希尔排序一直觉得网上的希尔排序方式不够pythonic，这里写了一个调用插入排序的方法。 123456789def shell_sorted(nums): res = list(nums) n = len(res) step = round(n/2) while step &gt; 0: for i in range(step): res[i:n:step] = insert_sorted(res[i:n:step]) step = round(step/2) return res 归并排序 原地归并 12345678910111213141516171819202122232425def merge_sort(nums: list): _merge_divide(nums, 0, len(nums)-1)def _merge_divide(a, l, r): if l &gt;= r: return mid = (l + r) // 2 _merge_divide(a, l, mid) _merge_divide(a, mid+1, r) _merge(a, l, mid, r) def _merge(a, l, mid, r): aux = [] i, j = l, mid + 1 if a[mid] &lt;= a[mid+1]: # 有序则跳出 return while i&lt;=mid and j&lt;=r: if a[i] &lt;= a[j]: aux.append(a[i]) i += 1 else: aux.append(a[j]) j += 1 aux += a[i:mid+1] or a[j:r+1] a[l:r+1] = aux 自底向上的归并排序。_merge方法都是一样的。 12345678910111213141516171819202122def merge_sort_bu(nums: list): sz, n = 1, len(nums) while sz &lt;= n: for i in range(0, n-sz, sz*2): # sz 表示子数组大小 # 把两个大小为sz的数组归并成一个 _merge(nums, i, i+sz-1, min(i+sz*2-1, n-1)) sz *= 2 def _merge(a, l, mid, r): aux = [] i, j = l, mid + 1 if a[mid] &lt;= a[mid+1]: return while i&lt;=mid and j&lt;=r: if a[i] &lt;= a[j]: aux.append(a[i]) i += 1 else: aux.append(a[j]) j += 1 aux += a[i:mid+1] or a[j:r+1] a[l:r+1] = aux]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -304,10 +304,10 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>String</tag>
         <tag>LeetCode</tag>
         <tag>Python</tag>
         <tag>Algorithm</tag>
+        <tag>String</tag>
       </tags>
   </entry>
   <entry>
