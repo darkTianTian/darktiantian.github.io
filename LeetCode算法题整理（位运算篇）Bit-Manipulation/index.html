@@ -112,7 +112,7 @@
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（位运算篇）Bit-Manipulation/sum_two.png">
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（位运算篇）Bit-Manipulation/Binary_clock_samui_moon.jpg">
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（位运算篇）Bit-Manipulation/complement.png">
-<meta property="og:updated_time" content="2020-05-11T03:22:26.922Z">
+<meta property="og:updated_time" content="2020-05-27T01:45:43.066Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（位运算篇）Bit Manipulation">
 <meta name="twitter:description" content="191. Number of 1 Bits计算数字的二进制中有多少个1。原题123Input: 11Output: 3Explanation: Integer 11 has binary representation 00000000000000000000000000001011">
@@ -367,8 +367,8 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2020-05-11T11:22:26+08:00" content="2020-05-11">
-                  2020-05-11
+                <time itemprop="dateUpdated" datetime="2020-05-27T09:45:43+08:00" content="2020-05-27">
+                  2020-05-27
                 </time>
               </span>
             
@@ -458,7 +458,7 @@
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hamming_weigth</span><span class="params">(n)</span>:</span></span><br><span class="line">    bits = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> n:</span><br><span class="line">        bits += <span class="number">1</span></span><br><span class="line">        n = (n<span class="number">-1</span>) &amp; n</span><br><span class="line">    <span class="keyword">return</span> bits</span><br></pre></td></tr></table></figure>
 <h3 id="136-Single-Number"><a href="#136-Single-Number" class="headerlink" title="136. Single Number"></a>136. Single Number</h3><h4 id="找出数组中不重复的元素。其它元素出现两次。原题"><a href="#找出数组中不重复的元素。其它元素出现两次。原题" class="headerlink" title="找出数组中不重复的元素。其它元素出现两次。原题"></a>找出数组中不重复的元素。其它元素出现两次。<a href="https://leetcode.com/problems/single-number/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [4,1,2,1,2]</span><br><span class="line">Output: 4</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">single_num</span><span class="params">(nums)</span>:</span></span><br><span class="line">    <span class="keyword">from</span> itertools <span class="keyword">import</span> reduce</span><br><span class="line">    <span class="keyword">return</span> reduce(<span class="keyword">lambda</span> x, y: x ^ y, nums)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">single_num</span><span class="params">(nums)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> reduce(<span class="keyword">lambda</span> x, y: x ^ y, nums)</span><br></pre></td></tr></table></figure>
 <h3 id="137-Single-Number-II"><a href="#137-Single-Number-II" class="headerlink" title="137. Single Number II"></a>137. Single Number II</h3><h4 id="找出数组中出现一次的元素，其它元素出现三次。原题"><a href="#找出数组中出现一次的元素，其它元素出现三次。原题" class="headerlink" title="找出数组中出现一次的元素，其它元素出现三次。原题"></a>找出数组中出现一次的元素，其它元素出现三次。<a href="https://leetcode.com/problems/single-number-ii/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,2,3,2]</span><br><span class="line">Output: 3</span><br></pre></td></tr></table></figure>
 <p>方法一：找出单独元素每一位的值。如果把所有数字的二进制每一位加起来，如果某一位可以被3整除，则表示单独元素的该位为0，否则为1。以下使用<code>count</code>来表示每一位<code>1</code>的个数。假设<code>count%3!=0</code>为True，说明该元素<code>i</code>位为1，然后是用<code>|=</code>更新ans在第<code>i</code>个位置的值，这里也可以使用<code>+=</code>，但是效率稍慢。<code>convert</code>的作用是因为python中的int是个对象，且没有最大限制，不是在第32位使用1来表示负数。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">singleNumber</span><span class="params">(self, nums, n=<span class="number">3</span>)</span>:</span></span><br><span class="line">    ans = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">32</span>):</span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> ((num &gt;&gt; i) &amp; <span class="number">1</span>):</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">        ans |= ((count%n!=<span class="number">0</span>) &lt;&lt; i)</span><br><span class="line">    <span class="keyword">return</span> self.convert(ans)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convert</span><span class="params">(self, x)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> x &gt;= <span class="number">2</span>**<span class="number">31</span>:</span><br><span class="line">        x -= <span class="number">2</span>**<span class="number">32</span></span><br><span class="line">    <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
@@ -861,7 +861,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共115.6k字</span>
+  <span class="post-count">博客全站共116.9k字</span>
 </div>
         
 
