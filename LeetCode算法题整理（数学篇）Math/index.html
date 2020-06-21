@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="7. Reverse Integer倒置一个整数， 此答案忽略了原题中的范围判断。原题12Input: -123Output: -321">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-04-28T11:02:48.740Z">
+<meta property="og:updated_time" content="2020-06-11T10:45:58.400Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（数学篇）Math">
 <meta name="twitter:description" content="7. Reverse Integer倒置一个整数， 此答案忽略了原题中的范围判断。原题12Input: -123Output: -321">
@@ -363,8 +363,8 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2020-04-28T19:02:48+08:00" content="2020-04-28">
-                  2020-04-28
+                <time itemprop="dateUpdated" datetime="2020-06-11T18:45:58+08:00" content="2020-06-11">
+                  2020-06-11
                 </time>
               </span>
             
@@ -477,7 +477,7 @@
 <h3 id="233-Number-of-Digit-One"><a href="#233-Number-of-Digit-One" class="headerlink" title="233. Number of Digit One"></a>233. Number of Digit One</h3><h4 id="1-n数字中1的个数。原题"><a href="#1-n数字中1的个数。原题" class="headerlink" title="1~n数字中1的个数。原题"></a>1~n数字中1的个数。<a href="https://leetcode.com/problems/number-of-digit-one/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countDigitOne</span><span class="params">(self, n)</span>:</span>    </span><br><span class="line">    countr, i = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> i &lt;= n:</span><br><span class="line">        divider = i * <span class="number">10</span></span><br><span class="line">        countr += (n // divider) * i + min(max(n % divider - i + <span class="number">1</span>, <span class="number">0</span>), i)</span><br><span class="line">        i *= <span class="number">10</span></span><br><span class="line">    <span class="keyword">return</span> countr</span><br></pre></td></tr></table></figure>
 <h3 id="263-Ugly-Number"><a href="#263-Ugly-Number" class="headerlink" title="263. Ugly Number"></a>263. Ugly Number</h3><h4 id="判断一个数是否是丑数。原题"><a href="#判断一个数是否是丑数。原题" class="headerlink" title="判断一个数是否是丑数。原题"></a>判断一个数是否是丑数。<a href="https://leetcode.com/problems/ugly-number-ii/description/" target="_blank" rel="noopener">原题</a></h4><p>方法一：根据定义实现。<code>&lt; num</code>是为了判断<code>num=0</code>的情况。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isUgly</span><span class="params">(self, num)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>:</span><br><span class="line">        <span class="keyword">while</span> num % f == <span class="number">0</span> &lt; num:</span><br><span class="line">            num //= f</span><br><span class="line">    <span class="keyword">return</span> num == <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h3 id="264-Ugly-Number-II"><a href="#264-Ugly-Number-II" class="headerlink" title="264. Ugly Number II"></a>264. Ugly Number II</h3><h4 id="输出第n个丑数。原题"><a href="#输出第n个丑数。原题" class="headerlink" title="输出第n个丑数。原题"></a>输出第n个丑数。<a href="https://leetcode.com/problems/ugly-number-ii/discuss/" target="_blank" rel="noopener">原题</a></h4><p>书中的方法</p>
+<h3 id="264-Ugly-Number-II"><a href="#264-Ugly-Number-II" class="headerlink" title="264. Ugly Number II"></a>264. Ugly Number II</h3><h4 id="输出第n个丑数。原题"><a href="#输出第n个丑数。原题" class="headerlink" title="输出第n个丑数。原题"></a>输出第n个丑数。<a href="https://leetcode.com/problems/ugly-number-ii/" target="_blank" rel="noopener">原题</a></h4><p>书中的方法</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nthUglyNumber</span><span class="params">(self, n)</span>:</span></span><br><span class="line">    q = [<span class="number">1</span>]</span><br><span class="line">    t2, t3, t5 = <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n<span class="number">-1</span>):</span><br><span class="line">        a2, a3, a5 = q[t2]*<span class="number">2</span>, q[t3]*<span class="number">3</span>, q[t5]*<span class="number">5</span></span><br><span class="line">        to_add = min(a2, a3, a5)</span><br><span class="line">        q.append(to_add)</span><br><span class="line">        <span class="keyword">if</span> a2 == to_add:</span><br><span class="line">            t2 += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> a3 == to_add:</span><br><span class="line">            t3 += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> a5 == to_add:</span><br><span class="line">            t5 += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> q[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
 <h3 id="67-Add-Binary"><a href="#67-Add-Binary" class="headerlink" title="67.Add Binary"></a>67.Add Binary</h3><h4 id="实现二进制加法。原题"><a href="#实现二进制加法。原题" class="headerlink" title="实现二进制加法。原题"></a>实现二进制加法。<a href="https://leetcode.com/problems/add-binary/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: a = &quot;11&quot;, b = &quot;1&quot;</span><br><span class="line">Output: &quot;100&quot;</span><br></pre></td></tr></table></figure>
 <p>方法一：按照加法的二进制思想来计算，不过Runtime大约100ms。后来试着将<code>list comprehension</code>拆成一个<code>for</code>循环，也并没有提高速度。居然<code>beats</code>只有4%，难道大部分人都用的<code>bin</code>。讨论区简单翻了了一下，没有找到一个高效的pythonic的方法。</p>
@@ -966,7 +966,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共120.7k字</span>
+  <span class="post-count">博客全站共127.3k字</span>
 </div>
         
 
