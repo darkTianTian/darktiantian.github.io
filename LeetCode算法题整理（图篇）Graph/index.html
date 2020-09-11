@@ -111,7 +111,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（图篇）Graph/113_sample.png">
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（图篇）Graph/1334.png">
-<meta property="og:updated_time" content="2020-09-02T09:25:17.923Z">
+<meta property="og:updated_time" content="2020-09-11T09:50:10.955Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（图篇）Graph">
 <meta name="twitter:description" content="990. Satisfiability of Equality Equations满足所有方程式，判断是否存在变量的值满足所有的等式与不等式。原题解析：所有的相等的点，在图中是联通的。">
@@ -366,8 +366,8 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2020-09-02T17:25:17+08:00" content="2020-09-02">
-                  2020-09-02
+                <time itemprop="dateUpdated" datetime="2020-09-11T17:50:10+08:00" content="2020-09-11">
+                  2020-09-11
                 </time>
               </span>
             
@@ -539,6 +539,7 @@
 <h3 id="127-Word-Ladder"><a href="#127-Word-Ladder" class="headerlink" title="127. Word Ladder"></a>127. Word Ladder</h3><h4 id="每次可以改变单词中的一个字母，但必须在wordList中，问最少需要多少次能达到目标单词。原题"><a href="#每次可以改变单词中的一个字母，但必须在wordList中，问最少需要多少次能达到目标单词。原题" class="headerlink" title="每次可以改变单词中的一个字母，但必须在wordList中，问最少需要多少次能达到目标单词。原题"></a>每次可以改变单词中的一个字母，但必须在wordList中，问最少需要多少次能达到目标单词。<a href="https://leetcode.com/problems/word-ladder/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">beginWord = &quot;hit&quot;,</span><br><span class="line">endWord = &quot;cog&quot;,</span><br><span class="line">wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]</span><br><span class="line"></span><br><span class="line">Output: 5</span><br><span class="line"></span><br><span class="line">Explanation: As one shortest transformation is &quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;dot&quot; -&gt; &quot;dog&quot; -&gt; &quot;cog&quot;,</span><br><span class="line">return its length 5.</span><br></pre></td></tr></table></figure>
 <p>方法一：BFS很好想，但是要想如何去重，wordList可能非常大，所以不能遍历，因为只有26个字母可以变，所以可以变换完比较。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ladderLength</span><span class="params">(self, beginWord: str, endWord: str, wordList: List[str])</span> -&gt; int:</span></span><br><span class="line">    q = [(beginWord, <span class="number">1</span>)]</span><br><span class="line">    words_set = set(wordList)</span><br><span class="line">    letters = string.ascii_lowercase</span><br><span class="line">    <span class="keyword">for</span> w, step <span class="keyword">in</span> q:</span><br><span class="line">        <span class="keyword">if</span> w == endWord: <span class="keyword">return</span> step</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(w)):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> letters:</span><br><span class="line">                nw = w[:i] + c + w[i+<span class="number">1</span>:]</span><br><span class="line">                <span class="keyword">if</span> nw <span class="keyword">in</span> words_set:</span><br><span class="line">                    q.append((nw, step+<span class="number">1</span>))</span><br><span class="line">                    words_set.remove(nw)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -835,7 +836,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共159.0k字</span>
+  <span class="post-count">博客全站共160.2k字</span>
 </div>
         
 
