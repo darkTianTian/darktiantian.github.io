@@ -115,7 +115,7 @@
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（数组篇）Array/rotate_img.png">
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（数组篇）Array/block_sum.png">
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（数组篇）Array/rainwatertrap.png">
-<meta property="og:updated_time" content="2020-09-20T16:03:35.450Z">
+<meta property="og:updated_time" content="2020-09-20T17:23:47.760Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（数组篇）Array">
 <meta name="twitter:description" content="26. Remove Duplicates from Sorted Array删除排序数组中重复的元素, 在原数组上操作，返回一个长度，标识前n个元素为目标数组。原题">
@@ -370,7 +370,7 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2020-09-21T00:03:35+08:00" content="2020-09-21">
+                <time itemprop="dateUpdated" datetime="2020-09-21T01:23:47+08:00" content="2020-09-21">
                   2020-09-21
                 </time>
               </span>
@@ -1182,6 +1182,10 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sumOddLengthSubarrays</span><span class="params">(self, arr: List[int])</span> -&gt; int:</span></span><br><span class="line">    n, sum_odd = len(arr), <span class="number">0</span></span><br><span class="line">    p_sum = [<span class="number">0</span>] + list(itertools.accumulate(arr))</span><br><span class="line">    <span class="keyword">for</span> i, p <span class="keyword">in</span> enumerate(p_sum):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>, n + <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            <span class="comment"># print(i, j, p_sum[j], p_sum[i])</span></span><br><span class="line">            sum_odd += p_sum[j] - p_sum[i] </span><br><span class="line">    <span class="keyword">return</span> sum_odd</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">0 1 1 0</span><br><span class="line">0 3 7 0</span><br><span class="line">0 5 15 0</span><br><span class="line">1 2 5 1</span><br><span class="line">1 4 12 1</span><br><span class="line">2 3 7 5</span><br><span class="line">2 5 15 5</span><br><span class="line">3 4 12 7</span><br><span class="line">4 5 15 12</span><br></pre></td></tr></table></figure>
 <p>方法二：通过观察可以找到规律，每个数字出现的个数是有规律的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1 2 3 4 5 subarray length 1</span><br><span class="line">1 2 X X X subarray length 2</span><br><span class="line">X 2 3 X X subarray length 2</span><br><span class="line">X X 3 4 X subarray length 2</span><br><span class="line">X X X 4 5 subarray length 2</span><br><span class="line">1 2 3 X X subarray length 3</span><br><span class="line">X 2 3 4 X subarray length 3</span><br><span class="line">X X 3 4 5 subarray length 3</span><br><span class="line">1 2 3 4 X subarray length 4</span><br><span class="line">X 2 3 4 5 subarray length 4</span><br><span class="line">1 2 3 4 5 subarray length 5</span><br><span class="line"></span><br><span class="line">5 8 9 8 5 total times each index was added.</span><br><span class="line">3 4 5 4 3 total times in odd length array with (x + 1) / 2</span><br><span class="line">2 4 4 4 2 total times in even length array with x / 2</span><br></pre></td></tr></table></figure>
+<font color="#32CD32" size="3">方法二：在所有子数组中，不管奇偶总共有多少，比如包含2的子数组，左边有2个子数组，右边4个子数组，一共有2<em>4，也就是说<br><br>对于第i个元素，包含第i个元素的子数组=`(i+1) </em> (n-i)<code>奇数数组</code>(x+1)//2`, x表示总数。</font>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sumOddLengthSubarrays</span><span class="params">(self, arr: List[int])</span> -&gt; int:</span></span><br><span class="line">    ans, n = <span class="number">0</span>, len(arr)</span><br><span class="line">    <span class="keyword">for</span> i, a <span class="keyword">in</span> enumerate(arr):</span><br><span class="line">        ans += (((i+<span class="number">1</span>)*(n-i) + <span class="number">1</span>) // <span class="number">2</span>) * a</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1324,7 +1328,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1335,7 +1339,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -1346,7 +1350,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -1479,7 +1483,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共171.6k字</span>
+  <span class="post-count">博客全站共174.0k字</span>
 </div>
         
 
