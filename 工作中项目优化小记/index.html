@@ -109,14 +109,14 @@
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="前言博主目前接手了一个项目，该项目代码从某马微店那里买来，社交金融相关。这个项目的代码可以说是逻辑混乱，毫无可重用性，而且又无文档，git message中一堆毫无用处的“update”，PEP8规范？不存在的。使得我每日游走在被代码劝退的边缘。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://darktiantian.github.io.git/2018/11/14/工作中项目优化小记/before.png">
-<meta property="og:image" content="http://darktiantian.github.io.git/2018/11/14/工作中项目优化小记/baokuan_1.png">
-<meta property="og:image" content="http://darktiantian.github.io.git/2018/11/14/工作中项目优化小记/baokuan_2.png">
+<meta property="og:image" content="http://darktiantian.github.io.git/工作中项目优化小记/before.png">
+<meta property="og:image" content="http://darktiantian.github.io.git/工作中项目优化小记/baokuan_1.png">
+<meta property="og:image" content="http://darktiantian.github.io.git/工作中项目优化小记/baokuan_2.png">
 <meta property="og:updated_time" content="2018-12-24T16:59:24.241Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工作中项目优化小记">
 <meta name="twitter:description" content="前言博主目前接手了一个项目，该项目代码从某马微店那里买来，社交金融相关。这个项目的代码可以说是逻辑混乱，毫无可重用性，而且又无文档，git message中一堆毫无用处的“update”，PEP8规范？不存在的。使得我每日游走在被代码劝退的边缘。">
-<meta name="twitter:image" content="http://darktiantian.github.io.git/2018/11/14/工作中项目优化小记/before.png">
+<meta name="twitter:image" content="http://darktiantian.github.io.git/工作中项目优化小记/before.png">
 
 
 
@@ -451,17 +451,17 @@
 
       
         <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><h5 id="博主目前接手了一个项目，该项目代码从某马微店那里买来，社交金融相关。这个项目的代码可以说是逻辑混乱，毫无可重用性，而且又无文档，git-message中一堆毫无用处的“update”，PEP8规范？不存在的。使得我每日游走在被代码劝退的边缘。"><a href="#博主目前接手了一个项目，该项目代码从某马微店那里买来，社交金融相关。这个项目的代码可以说是逻辑混乱，毫无可重用性，而且又无文档，git-message中一堆毫无用处的“update”，PEP8规范？不存在的。使得我每日游走在被代码劝退的边缘。" class="headerlink" title="博主目前接手了一个项目，该项目代码从某马微店那里买来，社交金融相关。这个项目的代码可以说是逻辑混乱，毫无可重用性，而且又无文档，git message中一堆毫无用处的“update”，PEP8规范？不存在的。使得我每日游走在被代码劝退的边缘。"></a>博主目前接手了一个项目，该项目代码从某马微店那里买来，社交金融相关。这个项目的代码可以说是逻辑混乱，毫无可重用性，而且又无文档，git message中一堆毫无用处的“update”，PEP8规范？不存在的。使得我每日游走在被代码劝退的边缘。</h5><h5 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h5><h4 id="震惊！一次请求1W多条sql。"><a href="#震惊！一次请求1W多条sql。" class="headerlink" title="震惊！一次请求1W多条sql。"></a>震惊！一次请求1W多条sql。</h4><p>该功能为商品的热销分类表单。之前大概看了一眼，数据是先从redis中取，redis值存的永久有效，没有的话查DB。然后某天清了一下测试数据库的redis，这下好了，接口超时。查了一下silk发现运行了1w多次sql。</p>
-<img src="/2018/11/14/工作中项目优化小记/before.png">
+<img src="/工作中项目优化小记/before.png">
 <p>万恶之源的代码，难怪查了1W多次，这外键coupon，每次都要查询数据库。而且这里channel也没有用set，这简直基础数据结构都没掌握啊。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tbkcoupons = TbkCouponTags.objects.filter(is_hot=<span class="keyword">True</span>)</span><br><span class="line">channel = []</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> tbkcoupons:</span><br><span class="line">    cc = t.coupon.channel</span><br><span class="line">    <span class="keyword">if</span> cc <span class="keyword">not</span> <span class="keyword">in</span> channel:</span><br><span class="line">        channel.append(cc)</span><br></pre></td></tr></table></figure>
 <p>使用select_related简单的处理了一下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tbkcoupons = TbkCouponTags.objects.select_related(<span class="string">'coupon'</span>).filter(is_hot=<span class="keyword">True</span>)</span><br><span class="line">channel = set()</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> tbkcoupons:</span><br><span class="line">    cc = t.coupon.channel</span><br><span class="line">    channel.add(cc)</span><br></pre></td></tr></table></figure>
-<img src="/2018/11/14/工作中项目优化小记/baokuan_1.png">
+<img src="/工作中项目优化小记/baokuan_1.png">
 <p>快了10倍，冷静一下，思考一下这大哥到底要干嘛，后面看到拿到了<code>tbkcoupons</code>没有再做其他用处。所以这东西完全可以使用反向连接加去重来解决啊，看来sql基础也欠缺。这里改成了values+distinct来处理，因为mysql不支持distinct(‘channel’)这种指定字段的形式。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tbkcoupons = TbkCoupon.objects.filter(tbkcoupontags__is_hot=<span class="keyword">True</span>).values(<span class="string">'channel'</span>).distinct()</span><br><span class="line">channels = [c[<span class="string">'channel'</span>] <span class="keyword">for</span> c <span class="keyword">in</span> tbkcoupons]</span><br></pre></td></tr></table></figure>
 <p>后面的逻辑判断，又使用了一堆的<code>ifelse</code>，看着不清晰，将其改为了字典。这些倒不是什么大问题。</p>
 <p>最后，修改了一些取值的逻辑。最后将结果保存到了redis中。命中缓存的话大概10+ms。</p>
-<img src="/2018/11/14/工作中项目优化小记/baokuan_2.png">
+<img src="/工作中项目优化小记/baokuan_2.png">
 <p>后来又发现了一个有意思的事情，他好像也知道这个查询挺慢的，所以用celerybeat实现了一个周期任务，定时地更新这个redis。</p>
 <h4 id="返回按照当前查询数组顺序的queryset。"><a href="#返回按照当前查询数组顺序的queryset。" class="headerlink" title="返回按照当前查询数组顺序的queryset。"></a>返回按照当前查询数组顺序的queryset。</h4><p>遇见了这样一个需求 ，收藏列表需要返回按照收藏顺序的商品。而这个顺序保存在java后台。通过Thrift接口调用，返回了一个id列表，而商品保存在我这里。需要根据这个id的顺序返回queryset。<a href="https://stackoverflow.com/questions/4916851/django-get-a-queryset-from-array-of-ids-in-specific-order" target="_blank" rel="noopener">django-get-a-queryset-from-array-of-ids-in-specific-order</a>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db.models <span class="keyword">import</span> Case, When</span><br><span class="line">preserved = Case(*[When(num_iid=num_iid, then=pos) <span class="keyword">for</span> pos, num_iid <span class="keyword">in</span> enumerate(num_iids)])</span><br><span class="line">TbkCoupon.objects.filter(num_iid__in=num_iids).order_by(preserved)</span><br></pre></td></tr></table></figure>

@@ -109,16 +109,16 @@
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="前言此书为[日]水野贵明著，之前已经通读了一遍，收获不少，为了复习与总结，这里便整理一份笔记，以便忘记的时候查找。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://darktiantian.github.io.git/2018/11/26/《Web-API-的设计与开发》读后总结/OAuth_base.jpeg">
-<meta property="og:image" content="http://darktiantian.github.io.git/2018/11/26/《Web-API-的设计与开发》读后总结/stale-while-revalidate.jpeg">
-<meta property="og:image" content="http://darktiantian.github.io.git/2018/11/26/《Web-API-的设计与开发》读后总结/XSS.jpeg">
-<meta property="og:image" content="http://darktiantian.github.io.git/2018/11/26/《Web-API-的设计与开发》读后总结/CSRF.jpeg">
-<meta property="og:image" content="http://darktiantian.github.io.git/2018/11/26/《Web-API-的设计与开发》读后总结/CSRF_TOKEN.jpeg">
+<meta property="og:image" content="http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/OAuth_base.jpeg">
+<meta property="og:image" content="http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/stale-while-revalidate.jpeg">
+<meta property="og:image" content="http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/XSS.jpeg">
+<meta property="og:image" content="http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/CSRF.jpeg">
+<meta property="og:image" content="http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/CSRF_TOKEN.jpeg">
 <meta property="og:updated_time" content="2019-02-21T08:34:04.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Web API 的设计与开发》读后总结">
 <meta name="twitter:description" content="前言此书为[日]水野贵明著，之前已经通读了一遍，收获不少，为了复习与总结，这里便整理一份笔记，以便忘记的时候查找。">
-<meta name="twitter:image" content="http://darktiantian.github.io.git/2018/11/26/《Web-API-的设计与开发》读后总结/OAuth_base.jpeg">
+<meta name="twitter:image" content="http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/OAuth_base.jpeg">
 
 
 
@@ -568,7 +568,7 @@
 <li>是否可以省略，如page等分页参数，一般都会设置默认值。</li>
 </ul>
 <h4 id="登录与OAuth2-0"><a href="#登录与OAuth2-0" class="headerlink" title="登录与OAuth2.0"></a>登录与OAuth2.0</h4><h5 id="什么是OAuth"><a href="#什么是OAuth" class="headerlink" title="什么是OAuth?"></a>什么是OAuth?</h5><p>假设带有用户注册功能的在线服务A（Facebook）对外公开了API，在线服务B便可以使用这些在线服务A的API提供的各种功能。在这种情况下，当某个已在Facebook里注册的用户需要使用你的在线服务时，你的在线服务就回希望访问Facebook来使用该用户在Facebook中注册的信息。这时，判断是否允许你的在线服务使用该用户在Facebook里注册的信息的机制就是OAuth。</p>
-<img src="/2018/11/26/《Web-API-的设计与开发》读后总结/OAuth_base.jpeg">
+<img src="/《Web-API-的设计与开发》读后总结/OAuth_base.jpeg">
 <h5 id="OAuth2-0里的4中类型的交互模式用于访问资源的许可，称为Grant-Type。"><a href="#OAuth2-0里的4中类型的交互模式用于访问资源的许可，称为Grant-Type。" class="headerlink" title="OAuth2.0里的4中类型的交互模式用于访问资源的许可，称为Grant Type。"></a>OAuth2.0里的4中类型的交互模式用于访问资源的许可，称为Grant Type。</h5><table>
 <thead>
 <tr>
@@ -1054,7 +1054,7 @@
 </tbody>
 </table>
 <p>通过<code>stale-while-revalidate=600</code>这样指定秒数，那么即使代理服务器超过了<code>max-age</code>指定的时间，其内部也能异步进行缓存验证，并指定在一定的时间内允许将缓存数据经由响应消息返回。换言之，在指定了<code>max-age=600,stale-while-revalidate=600</code>的情况下，虽然数据维持新鲜状态的时间只有10分钟，但在随后的10分钟内，缓存服务器也能处理来自客户端的请求，并将所保存的缓存数据直接返回给客户端。与此同时，代理服务器还会异步地向原始服务器发起缓存验证的询问。也就是说，客户端最长可以在20分钟内接收到缓存的数据，使得缓存的数据不会因为突然变得到期而不可用。另外，在缓存到期时，这样做还能异步地完成缓存的交互更新，从而更有效率地对客户端的访问做出响应。</p>
-<img src="/2018/11/26/《Web-API-的设计与开发》读后总结/stale-while-revalidate.jpeg">
+<img src="/《Web-API-的设计与开发》读后总结/stale-while-revalidate.jpeg">
 <p>由于某种原为无法访问原始服务器时，可以将<code>stale-if-error</code>指令指定为一定的秒数，允许在该段时间内代理服务器直接将所保存的不新鲜缓存返回给客户端。使用该指令的话，万一突发时间导致宕机，直接通过代理服务器和客户端交互，至少还能够在某段时间内不中断客户端的访问。</p>
 <h4 id="媒体类型的指定"><a href="#媒体类型的指定" class="headerlink" title="媒体类型的指定"></a>媒体类型的指定</h4><h5 id="具有代表性的媒体类型，也就是Content-Type"><a href="#具有代表性的媒体类型，也就是Content-Type" class="headerlink" title="具有代表性的媒体类型，也就是Content-Type"></a>具有代表性的媒体类型，也就是<code>Content-Type</code></h5><table>
 <thead>
@@ -1225,16 +1225,16 @@
 <p>但是IE会有一个<code>Content Sniffering</code>功能，根据实际的数据内容来推测数据格式。所以在返回JSON类型的数据时还应该添加</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-Content-Type-Options: nosniff</span><br></pre></td></tr></table></figure>
 <p>这会使IE8以后的浏览器不再使用<code>Content sniffering</code>功能。</p>
-<img src="/2018/11/26/《Web-API-的设计与开发》读后总结/XSS.jpeg">
+<img src="/《Web-API-的设计与开发》读后总结/XSS.jpeg">
 <h4 id="XSRF-CSRF-Cross-Site-Request-Forgery"><a href="#XSRF-CSRF-Cross-Site-Request-Forgery" class="headerlink" title="XSRF/CSRF(Cross Site Request Forgery)"></a>XSRF/CSRF(Cross Site Request Forgery)</h4><p>跨站点请求伪造。通过跨站点发送伪造的请求，让服务器执行用户意愿意外的处理。</p>
-<img src="/2018/11/26/《Web-API-的设计与开发》读后总结/CSRF.jpeg">
+<img src="/《Web-API-的设计与开发》读后总结/CSRF.jpeg">
 <p>常见例子：向公告板任意发帖，攻击站点以造成损失；恶意刷好评或差评。</p>
 <p>防范：</p>
 <ul>
 <li><p>禁止通过GET方法来修改服务端的数据，如添加收藏、公告板发帖等。这样一来，就无法用IMG元素等嵌入用于攻击的脚本了。</p>
 </li>
 <li><p>CSRF 令牌。</p>
-<img src="/2018/11/26/《Web-API-的设计与开发》读后总结/CSRF_TOKEN.jpeg">
+<img src="/《Web-API-的设计与开发》读后总结/CSRF_TOKEN.jpeg">
 </li>
 <li><p>如果Web API只存在由XMLHTTPRequest或非浏览器客户端发起的访问，就要求客户端使用某种机制在请求附加一个特殊的首部，如果请求消息中不存在这一特殊的首部，就拒绝访问。如<code>X-Request-With</code>首部</p>
 </li>

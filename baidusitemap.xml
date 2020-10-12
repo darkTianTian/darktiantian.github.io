@@ -4,8 +4,34 @@
 
     
   <url>
+    <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E5%9B%9E%E6%BA%AF%E7%AF%87%EF%BC%89BackTracking/</loc>
+    <lastmod>2020-10-12T13:45:56.901Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode算法题整理（回溯篇）BackTracking</title>
+        <pubTime>2019-03-24T12:53:44.000Z</pubTime>
+        
+        <tag>LeetCode</tag>
+         
+        <tag>Python</tag>
+         
+        <tag>Algorithm</tag>
+         
+        <tag>BackTracking</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://darktiantian.github.io.git/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E5%9B%BE%E7%AF%87%EF%BC%89Graph/</loc>
-    <lastmod>2020-10-12T05:22:29.831Z</lastmod>
+    <lastmod>2020-10-12T05:27:14.743Z</lastmod>
     <data>
         <display>
         <title>LeetCode算法题整理（图篇）Graph</title>
@@ -139,13 +165,13 @@
         <title>LeetCode算法题整理（位运算篇）Bit Manipulation</title>
         <pubTime>2018-08-30T13:22:30.000Z</pubTime>
         
+        <tag>Bit Manipulation</tag>
+         
         <tag>LeetCode</tag>
          
         <tag>Python</tag>
          
         <tag>Algorithm</tag>
-         
-        <tag>Bit Manipulation</tag>
          
          
            
@@ -191,13 +217,13 @@
         <title>LeetCode算法题整理（字符串篇）String</title>
         <pubTime>2018-08-12T13:28:29.000Z</pubTime>
         
-        <tag>String</tag>
-         
         <tag>LeetCode</tag>
          
         <tag>Python</tag>
          
         <tag>Algorithm</tag>
+         
+        <tag>String</tag>
          
          
            
@@ -382,32 +408,6 @@
 
     
   <url>
-    <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E5%9B%9E%E6%BA%AF%E7%AF%87%EF%BC%89BackTracking/</loc>
-    <lastmod>2020-09-25T12:47:30.201Z</lastmod>
-    <data>
-        <display>
-        <title>LeetCode算法题整理（回溯篇）BackTracking</title>
-        <pubTime>2019-03-24T12:53:44.000Z</pubTime>
-        
-        <tag>LeetCode</tag>
-         
-        <tag>Python</tag>
-         
-        <tag>Algorithm</tag>
-         
-        <tag>BackTracking</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="http://darktiantian.github.io.git/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E5%B9%B6%E5%8F%91%E7%AF%87%EF%BC%89Threading/</loc>
     <lastmod>2020-09-22T15:20:11.002Z</lastmod>
     <data>
@@ -557,13 +557,13 @@
         <title>371. Sum of Two Integers - Python</title>
         <pubTime>2018-09-07T04:31:18.000Z</pubTime>
         
+        <tag>Bit Manipulation</tag>
+         
         <tag>LeetCode</tag>
          
         <tag>Python</tag>
          
         <tag>Algorithm</tag>
-         
-        <tag>Bit Manipulation</tag>
          
          
            

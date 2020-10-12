@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,Python,Algorithm,Bit Manipulation," />
+  <meta name="keywords" content="Bit Manipulation,LeetCode,Python,Algorithm," />
 
 
 
@@ -102,21 +102,21 @@
 
 
 <meta name="description" content="191. Number of 1 Bits计算数字的二进制中有多少个1。原题123Input: 11Output: 3Explanation: Integer 11 has binary representation 00000000000000000000000000001011">
-<meta name="keywords" content="LeetCode,Python,Algorithm,Bit Manipulation">
+<meta name="keywords" content="Bit Manipulation,LeetCode,Python,Algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode算法题整理（位运算篇）Bit Manipulation">
 <meta property="og:url" content="http://darktiantian.github.io.git/LeetCode算法题整理（位运算篇）Bit-Manipulation/index.html">
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="191. Number of 1 Bits计算数字的二进制中有多少个1。原题123Input: 11Output: 3Explanation: Integer 11 has binary representation 00000000000000000000000000001011">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://darktiantian.github.io.git/2018/08/30/LeetCode算法题整理（位运算篇）Bit-Manipulation/sum_two.png">
-<meta property="og:image" content="http://darktiantian.github.io.git/2018/08/30/LeetCode算法题整理（位运算篇）Bit-Manipulation/Binary_clock_samui_moon.jpg">
-<meta property="og:image" content="http://darktiantian.github.io.git/2018/08/30/LeetCode算法题整理（位运算篇）Bit-Manipulation/complement.png">
+<meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（位运算篇）Bit-Manipulation/sum_two.png">
+<meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（位运算篇）Bit-Manipulation/Binary_clock_samui_moon.jpg">
+<meta property="og:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（位运算篇）Bit-Manipulation/complement.png">
 <meta property="og:updated_time" content="2020-10-07T19:10:21.009Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode算法题整理（位运算篇）Bit Manipulation">
 <meta name="twitter:description" content="191. Number of 1 Bits计算数字的二进制中有多少个1。原题123Input: 11Output: 3Explanation: Integer 11 has binary representation 00000000000000000000000000001011">
-<meta name="twitter:image" content="http://darktiantian.github.io.git/2018/08/30/LeetCode算法题整理（位运算篇）Bit-Manipulation/sum_two.png">
+<meta name="twitter:image" content="http://darktiantian.github.io.git/LeetCode算法题整理（位运算篇）Bit-Manipulation/sum_two.png">
 
 
 
@@ -481,14 +481,14 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">missingTwo</span><span class="params">(self, nums: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">    nums += [<span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> nums[:<span class="number">-2</span>]:</span><br><span class="line">        nums[n<span class="number">-1</span>] = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">return</span> [i+<span class="number">1</span> <span class="keyword">for</span> i, n <span class="keyword">in</span> enumerate(nums) <span class="keyword">if</span> n!=<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
 <p>方法六：很快，我想到了生成器islice，但是用了发现不对，为什么？因为我在循环中改变了nums，导致了n出现了-1的情况。所以我们只改变符号，不改变数字，需要用一个abs。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">missingTwo</span><span class="params">(self, nums: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">    nums += [<span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> islice(nums, len(nums)<span class="number">-2</span>):</span><br><span class="line">        nums[abs(n)<span class="number">-1</span>] = -nums[abs(n)<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">return</span> [i+<span class="number">1</span> <span class="keyword">for</span> i, n <span class="keyword">in</span> enumerate(nums) <span class="keyword">if</span> n&gt;<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-<h3 id="371-Sum-of-Two-Integers"><a href="#371-Sum-of-Two-Integers" class="headerlink" title="371. Sum of Two Integers"></a>371. Sum of Two Integers</h3><h4 id="不用加减乘除做加法。原题"><a href="#不用加减乘除做加法。原题" class="headerlink" title="不用加减乘除做加法。原题"></a>不用加减乘除做加法。<a href="https://leetcode.com/problems/sum-of-two-integers/description/" target="_blank" rel="noopener">原题</a></h4><p>解析<a href="/2018/09/07/371-Sum-of-Two-Integers-Python/" title="为何Python位运算有些不同">为何Python位运算有些不同</a></p>
+<h3 id="371-Sum-of-Two-Integers"><a href="#371-Sum-of-Two-Integers" class="headerlink" title="371. Sum of Two Integers"></a>371. Sum of Two Integers</h3><h4 id="不用加减乘除做加法。原题"><a href="#不用加减乘除做加法。原题" class="headerlink" title="不用加减乘除做加法。原题"></a>不用加减乘除做加法。<a href="https://leetcode.com/problems/sum-of-two-integers/description/" target="_blank" rel="noopener">原题</a></h4><p>解析<a href="/371-Sum-of-Two-Integers-Python/" title="为何Python位运算有些不同">为何Python位运算有些不同</a></p>
 <p>实际上加法分为三个步骤</p>
 <ol>
 <li>相加但不进位，1^0=1，1^1=0，0^0=0，所以第一步用异或。</li>
 <li>只求进位的结果，只有两个1才会进位，所以用<code>&amp;</code>，然后左移1位，表示要进的位。</li>
 <li>把前两步的结果再重复1，2步，直到没有进位产生，即<code>b=0</code>。</li>
 </ol>
-<img src="/2018/08/30/LeetCode算法题整理（位运算篇）Bit-Manipulation/sum_two.png">
+<img src="/LeetCode算法题整理（位运算篇）Bit-Manipulation/sum_two.png">
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getSum</span><span class="params">(self, a, b)</span>:</span></span><br><span class="line">    <span class="comment"># 32 bits integer max</span></span><br><span class="line">    MAX = <span class="number">0x7FFFFFFF</span>  <span class="comment"># 2**31-1</span></span><br><span class="line">    <span class="comment"># 32 bits interger min  </span></span><br><span class="line">    MIN = <span class="number">0x80000000</span>  <span class="comment"># -2**31</span></span><br><span class="line">    <span class="comment"># mask to get last 32 bits</span></span><br><span class="line">    mask = <span class="number">0xFFFFFFFF</span>  <span class="comment"># 2*32-1</span></span><br><span class="line">    <span class="keyword">while</span> b != <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># ^ get different bits and &amp; gets double 1s, &lt;&lt; moves carry</span></span><br><span class="line">        a, b = (a ^ b) &amp; mask, ((a &amp; b) &lt;&lt; <span class="number">1</span>) &amp; mask</span><br><span class="line">    <span class="comment"># if a is negative, get a's 32 bits complement positive first</span></span><br><span class="line">    <span class="comment"># then get 32-bit positive's Python complement negative</span></span><br><span class="line">    <span class="keyword">return</span> a <span class="keyword">if</span> a &lt;= MAX <span class="keyword">else</span> ~(a ^ mask)</span><br></pre></td></tr></table></figure>
 <h3 id="190-Reverse-Bits"><a href="#190-Reverse-Bits" class="headerlink" title="190. Reverse Bits"></a>190. Reverse Bits</h3><h4 id="返回一个数的二进制的倒序的十进制。原题"><a href="#返回一个数的二进制的倒序的十进制。原题" class="headerlink" title="返回一个数的二进制的倒序的十进制。原题"></a>返回一个数的二进制的倒序的十进制。<a href="https://leetcode.com/problems/reverse-bits/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: 43261596</span><br><span class="line">Output: 964176192</span><br><span class="line">Explanation: 43261596 represented in binary as 00000010100101000001111010011100, </span><br><span class="line">             return 964176192 represented in binary as 00111001011110000010100101000000.</span><br></pre></td></tr></table></figure>
 <p>方法一：使用原生库。<code>ljust</code>表示在右侧补’0’。或者使用<code>format</code>来补0。</p>
@@ -503,7 +503,7 @@
 <font color="#32CD32" size="3"><strong>方法二：使用异或。</strong></font>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findTheDifference</span><span class="params">(self, s, t)</span>:</span></span><br><span class="line">    <span class="keyword">from</span> operator <span class="keyword">import</span> xor</span><br><span class="line">    <span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line">    <span class="keyword">return</span> chr(reduce(xor, map(ord, s+t)))</span><br></pre></td></tr></table></figure>
-<h3 id="401-Binary-Watch"><a href="#401-Binary-Watch" class="headerlink" title="401. Binary Watch"></a>401. Binary Watch</h3><h4 id="有这样一个二进制的手表，输入一个n，表示有几个亮着的灯，返回所有可能出现的时间。时间范围为12小时制，即hours-0-11-，minutes-0-59-。原题"><a href="#有这样一个二进制的手表，输入一个n，表示有几个亮着的灯，返回所有可能出现的时间。时间范围为12小时制，即hours-0-11-，minutes-0-59-。原题" class="headerlink" title="有这样一个二进制的手表，输入一个n，表示有几个亮着的灯，返回所有可能出现的时间。时间范围为12小时制，即hours(0-11)，minutes(0-59)。原题"></a>有这样一个二进制的手表，输入一个n，表示有几个亮着的灯，返回所有可能出现的时间。时间范围为12小时制，即hours(0-11)，minutes(0-59)。<a href="https://leetcode.com/problems/binary-watch/description/" target="_blank" rel="noopener">原题</a></h4><img src="/2018/08/30/LeetCode算法题整理（位运算篇）Bit-Manipulation/Binary_clock_samui_moon.jpg">
+<h3 id="401-Binary-Watch"><a href="#401-Binary-Watch" class="headerlink" title="401. Binary Watch"></a>401. Binary Watch</h3><h4 id="有这样一个二进制的手表，输入一个n，表示有几个亮着的灯，返回所有可能出现的时间。时间范围为12小时制，即hours-0-11-，minutes-0-59-。原题"><a href="#有这样一个二进制的手表，输入一个n，表示有几个亮着的灯，返回所有可能出现的时间。时间范围为12小时制，即hours-0-11-，minutes-0-59-。原题" class="headerlink" title="有这样一个二进制的手表，输入一个n，表示有几个亮着的灯，返回所有可能出现的时间。时间范围为12小时制，即hours(0-11)，minutes(0-59)。原题"></a>有这样一个二进制的手表，输入一个n，表示有几个亮着的灯，返回所有可能出现的时间。时间范围为12小时制，即hours(0-11)，minutes(0-59)。<a href="https://leetcode.com/problems/binary-watch/description/" target="_blank" rel="noopener">原题</a></h4><img src="/LeetCode算法题整理（位运算篇）Bit-Manipulation/Binary_clock_samui_moon.jpg">
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 1</span><br><span class="line">Return: [&quot;1:00&quot;, &quot;2:00&quot;, &quot;4:00&quot;, &quot;8:00&quot;, &quot;0:01&quot;, &quot;0:02&quot;, &quot;0:04&quot;, &quot;0:08&quot;, &quot;0:16&quot;, &quot;0:32&quot;]</span><br></pre></td></tr></table></figure>
 <font color="#FF0000" size="3"><strong>一开始的思路：这是个错误的解法，因为分钟的灯不应该超过60分钟，因为要进位。类似的4和8的小时灯也不能同时亮起。</strong></font>
 
@@ -524,7 +524,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findComplement</span><span class="params">(self, num)</span>:</span></span><br><span class="line">    i = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> i &lt;= num:</span><br><span class="line">        i &lt;&lt;= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> (i<span class="number">-1</span>) ^ num</span><br></pre></td></tr></table></figure>
 <font color="#32CD32" size="3">方法三：更少的位移。核心思想还是找到<code>111</code>。比如一个8位数，最高代表符号：<code>1000000</code>，先将其右移1位，使得左边两位都变成1。然后再右移2位，使得左边四位变成1，以此类推，8位数最多移动3次就可以得到<code>1111111</code>，32位则还需要再移动2次。</font>
 
-<img src="/2018/08/30/LeetCode算法题整理（位运算篇）Bit-Manipulation/complement.png">
+<img src="/LeetCode算法题整理（位运算篇）Bit-Manipulation/complement.png">
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findComplement</span><span class="params">(self, num)</span>:</span></span><br><span class="line">    mask = num</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">        mask |= mask &gt;&gt; (<span class="number">2</span>**i)</span><br><span class="line">    <span class="keyword">return</span> num ^ mask</span><br></pre></td></tr></table></figure>
 <h3 id="693-Binary-Number-with-Alternating-Bits"><a href="#693-Binary-Number-with-Alternating-Bits" class="headerlink" title="693. Binary Number with Alternating Bits"></a>693. Binary Number with Alternating Bits</h3><h4 id="二进制是否是交替的0和1。原题"><a href="#二进制是否是交替的0和1。原题" class="headerlink" title="二进制是否是交替的0和1。原题"></a>二进制是否是交替的0和1。<a href="https://leetcode.com/problems/binary-number-with-alternating-bits/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: 5</span><br><span class="line">Output: True</span><br><span class="line">Explanation:</span><br><span class="line">The binary representation of 5 is: 101</span><br></pre></td></tr></table></figure>
 <p>方法一：字符串法。</p>
@@ -632,6 +632,9 @@
       
         <div class="post-tags">
           
+            <a href="/tags/Bit-Manipulation/" rel="tag">
+            <i class="fa fa-tag"></i> Bit Manipulation</a>
+          
             <a href="/tags/LeetCode/" rel="tag">
             <i class="fa fa-tag"></i> LeetCode</a>
           
@@ -640,9 +643,6 @@
           
             <a href="/tags/Algorithm/" rel="tag">
             <i class="fa fa-tag"></i> Algorithm</a>
-          
-            <a href="/tags/Bit-Manipulation/" rel="tag">
-            <i class="fa fa-tag"></i> Bit Manipulation</a>
           
         </div>
       
