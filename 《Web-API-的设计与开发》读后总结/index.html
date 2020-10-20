@@ -5,11 +5,11 @@
   
 
 
-<html class="theme-next mist use-motion" lang>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -27,8 +27,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -46,7 +46,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -80,21 +80,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="API,RESTful,">
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
+  <meta name="keywords" content="API,RESTful," />
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2">
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
 
 
 
@@ -102,23 +102,23 @@
 
 
 <meta name="description" content="前言此书为[日]水野贵明著，之前已经通读了一遍，收获不少，为了复习与总结，这里便整理一份笔记，以便忘记的时候查找。">
-<meta name="keywords" content="API,RESTful">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Web API 的设计与开发》读后总结">
-<meta property="og:url" content="http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/index.html">
+<meta property="og:url" content="http://darktiantian.github.io.git/%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="前言此书为[日]水野贵明著，之前已经通读了一遍，收获不少，为了复习与总结，这里便整理一份笔记，以便忘记的时候查找。">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/OAuth_base.jpeg">
-<meta property="og:image" content="http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/stale-while-revalidate.jpeg">
-<meta property="og:image" content="http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/XSS.jpeg">
-<meta property="og:image" content="http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/CSRF.jpeg">
-<meta property="og:image" content="http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/CSRF_TOKEN.jpeg">
-<meta property="og:updated_time" content="2019-02-21T08:34:04.327Z">
+<meta property="og:image" content="http://darktiantian.github.io.git/%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93/OAuth_base.jpeg">
+<meta property="og:image" content="http://darktiantian.github.io.git/%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93/stale-while-revalidate.jpeg">
+<meta property="og:image" content="http://darktiantian.github.io.git/%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93/XSS.jpeg">
+<meta property="og:image" content="http://darktiantian.github.io.git/%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93/CSRF.jpeg">
+<meta property="og:image" content="http://darktiantian.github.io.git/%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93/CSRF_TOKEN.jpeg">
+<meta property="article:published_time" content="2018-11-26T15:52:03.000Z">
+<meta property="article:modified_time" content="2019-02-21T08:34:04.327Z">
+<meta property="article:author" content="xiaoliji">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="RESTful">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《Web API 的设计与开发》读后总结">
-<meta name="twitter:description" content="前言此书为[日]水野贵明著，之前已经通读了一遍，收获不少，为了复习与总结，这里便整理一份笔记，以便忘记的时候查找。">
-<meta name="twitter:image" content="http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/OAuth_base.jpeg">
+<meta name="twitter:image" content="http://darktiantian.github.io.git/%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93/OAuth_base.jpeg">
 
 
 
@@ -147,7 +147,7 @@
 
 
 
-  <link rel="canonical" href="http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/">
+  <link rel="canonical" href="http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/"/>
 
 
 
@@ -169,7 +169,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
@@ -181,7 +181,7 @@
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <a href="https://github.com/darkTianTian" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <a href="https://github.com/darkTianTian" target="_blank" rel="noopener" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -189,7 +189,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Xiaoliji's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -219,29 +219,9 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Tags
           </a>
         </li>
       
@@ -249,9 +229,29 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
           </a>
         </li>
       
@@ -259,7 +259,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             About
           </a>
@@ -272,7 +272,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             Search
           </a>
@@ -293,7 +293,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -330,11 +332,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/">
+    <link itemprop="mainEntityOfPage" href="http://darktiantian.github.io.git/%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiaoliji">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -379,7 +381,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -409,8 +411,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/《Web-API-的设计与开发》读后总结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="《Web-API-的设计与开发》读后总结/" itemprop="commentCount"></span>
+                <a href="/%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="《Web-API-的设计与开发》读后总结/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -418,7 +421,7 @@
 
           
           
-             <span id="/《Web-API-的设计与开发》读后总结/" class="leancloud_visitors" data-flag-title="《Web API 的设计与开发》读后总结">
+             <span id="/%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93/" class="leancloud_visitors" data-flag-title="《Web API 的设计与开发》读后总结">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -565,7 +568,7 @@
 <li>是否可以省略，如page等分页参数，一般都会设置默认值。</li>
 </ul>
 <h4 id="登录与OAuth2-0"><a href="#登录与OAuth2-0" class="headerlink" title="登录与OAuth2.0"></a>登录与OAuth2.0</h4><h5 id="什么是OAuth"><a href="#什么是OAuth" class="headerlink" title="什么是OAuth?"></a>什么是OAuth?</h5><p>假设带有用户注册功能的在线服务A（Facebook）对外公开了API，在线服务B便可以使用这些在线服务A的API提供的各种功能。在这种情况下，当某个已在Facebook里注册的用户需要使用你的在线服务时，你的在线服务就回希望访问Facebook来使用该用户在Facebook中注册的信息。这时，判断是否允许你的在线服务使用该用户在Facebook里注册的信息的机制就是OAuth。</p>
-<img src="/《Web-API-的设计与开发》读后总结/OAuth_base.jpeg">
+<img src="/%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93/OAuth_base.jpeg" class>
 <h5 id="OAuth2-0里的4中类型的交互模式用于访问资源的许可，称为Grant-Type。"><a href="#OAuth2-0里的4中类型的交互模式用于访问资源的许可，称为Grant-Type。" class="headerlink" title="OAuth2.0里的4中类型的交互模式用于访问资源的许可，称为Grant Type。"></a>OAuth2.0里的4中类型的交互模式用于访问资源的许可，称为Grant Type。</h5><table>
 <thead>
 <tr>
@@ -705,7 +708,7 @@
 <h5 id="详细的出错信息"><a href="#详细的出错信息" class="headerlink" title="详细的出错信息"></a>详细的出错信息</h5><p>状态码属于通用的错误描述，在表示同各个API的内容相关的错误时显得力不从心。所以要返回额外的错误信息。</p>
 <ul>
 <li><p>一种是通过首部返回</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">X-MYNAME-ERROR-CODE: 2013</span><br><span class="line">X-MYNAME-ERROR-MESSAGE: Bad authentication token</span><br><span class="line">X-MYNAME-ERROR-INFO: http://docs.example.com/api/vi/authentication</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">X-MYNAME-ERROR-CODE: 2013</span><br><span class="line">X-MYNAME-ERROR-MESSAGE: Bad authentication token</span><br><span class="line">X-MYNAME-ERROR-INFO: http:&#x2F;&#x2F;docs.example.com&#x2F;api&#x2F;vi&#x2F;authentication</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>将出错信息放入消息体</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"error"</span>: &#123;</span><br><span class="line">        <span class="attr">"code"</span>: <span class="number">2013</span>,</span><br><span class="line">        <span class="attr">"message"</span>: <span class="string">"Bad authentication token"</span>,</span><br><span class="line">        <span class="attr">"info"</span>: <span class="string">"http://docs.example.com/api/vi/authentication"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -976,15 +979,15 @@
 <h4 id="缓存与HTTP协议规范"><a href="#缓存与HTTP协议规范" class="headerlink" title="缓存与HTTP协议规范"></a>缓存与HTTP协议规范</h4><p>HTTP协议中，缓存处于可用的状态时称为fresh（新鲜）状态，而处于不可用的状态时则称为stale（不新鲜）状态。</p>
 <h5 id="过期模型"><a href="#过期模型" class="headerlink" title="过期模型"></a>过期模型</h5><p>预先决定响应数据的保存期限，当到达期限后机会再次访问服务端来重新获得所需的数据。</p>
 <p>一个方法是用<code>Cache-Control</code>响应首部，另一个使用<code>Expires</code>响应首部。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Expires: Fri, 01 Jan 2016 00:00:00 GMT</span><br><span class="line">Cache-Control: max-age=3600</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Expires: Fri, 01 Jan 2016 00:00:00 GMT</span><br><span class="line">Cache-Control: max-age&#x3D;3600</span><br></pre></td></tr></table></figure>
 <p>Expires使用RFC 1123中定义的时间格式。HTTP1.0就存在，<code>Cache-Control</code>是HTTP1.1中定义的。有时需要制定一个遥远的日期，使得缓存始终生效，但HTTP1.1规定，不允许设置超过1年以上的时间。两者同时定义时，<code>Cache-Control</code>优先。<code>max-age</code>是根据首部中的<code>Date</code>算的。根据HTTP协议的规定，除了5字头错误等几个特殊情况以外，所有的HTTP消息都必须添加<code>Date</code>首部。<strong>描述日期的HTTP首部信息里，只能使用GMT（格林尼治标准时区）作为时区。</strong></p>
 <h5 id="验证模型"><a href="#验证模型" class="headerlink" title="验证模型"></a>验证模型</h5><p>轮询当前保存的缓存数据是否为最新数据，并只在服务器端进行数据更新时，才重新获取新的数据。</p>
 <p>虽然这么做没有减少网络通信的开销，但假设客户端缓存的数据过大，那么此时缓存的作用就体现出来了。这种方式，服务器需要知道“客户端当前保存的信息的状态”，为此需要用到更新日期或实体标签（Entity Tag）作为指标。两者分别填充在<code>Last-Modified</code>和<code>ETag</code>响应消息首部返回给客户端。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Last-Modified: Tue, 01 Jul 2014 00:00:00 GMT</span><br><span class="line">Etag: &quot;jfkeiwjpii189u98jljdfioj822adf&quot;</span><br></pre></td></tr></table></figure>
 <p>ETag如何生成取决于服务器端的实现。</p>
 <p>客户端使用最后更新日期执行附带条件的请求时，会用到<code>Modified-Since</code>首部。使用实体标签时，会用到<code>If-None-Match</code>首部。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET /v1/users/12345</span><br><span class="line">If-Modified-Since: Tue, 01 Jul 2014 00:00:00  GMT</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET /v1/users/12345</span><br><span class="line">If-None-Match: &quot;jfkeiwjpii189u98jljdfioj822adf&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;v1&#x2F;users&#x2F;12345</span><br><span class="line">If-Modified-Since: Tue, 01 Jul 2014 00:00:00  GMT</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;v1&#x2F;users&#x2F;12345</span><br><span class="line">If-None-Match: &quot;jfkeiwjpii189u98jljdfioj822adf&quot;</span><br></pre></td></tr></table></figure>
 <p>服务端检查是否有更新，如果有更新，则返回200和更新后的资源，同时添加最后更新日期或实体标签。未更新，则返回304，响应消息体为空。</p>
 <p>如果使用验证模型，并且更新的资源是某个特定的资源，则返回资源自身的最后更新日期；如果是列表信息的多个资源的话，则要使用其中最后更新的资源的最后更新日期。<a href="https://docs.djangoproject.com/en/1.11/topics/conditional-view-processing/" target="_blank" rel="noopener">Django中的Etag相关。</a></p>
 <p>ETag有强验证和弱验证两个概念。</p>
@@ -1051,7 +1054,7 @@
 </tbody>
 </table>
 <p>通过<code>stale-while-revalidate=600</code>这样指定秒数，那么即使代理服务器超过了<code>max-age</code>指定的时间，其内部也能异步进行缓存验证，并指定在一定的时间内允许将缓存数据经由响应消息返回。换言之，在指定了<code>max-age=600,stale-while-revalidate=600</code>的情况下，虽然数据维持新鲜状态的时间只有10分钟，但在随后的10分钟内，缓存服务器也能处理来自客户端的请求，并将所保存的缓存数据直接返回给客户端。与此同时，代理服务器还会异步地向原始服务器发起缓存验证的询问。也就是说，客户端最长可以在20分钟内接收到缓存的数据，使得缓存的数据不会因为突然变得到期而不可用。另外，在缓存到期时，这样做还能异步地完成缓存的交互更新，从而更有效率地对客户端的访问做出响应。</p>
-<img src="/《Web-API-的设计与开发》读后总结/stale-while-revalidate.jpeg">
+<img src="/%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93/stale-while-revalidate.jpeg" class>
 <p>由于某种原为无法访问原始服务器时，可以将<code>stale-if-error</code>指令指定为一定的秒数，允许在该段时间内代理服务器直接将所保存的不新鲜缓存返回给客户端。使用该指令的话，万一突发时间导致宕机，直接通过代理服务器和客户端交互，至少还能够在某段时间内不中断客户端的访问。</p>
 <h4 id="媒体类型的指定"><a href="#媒体类型的指定" class="headerlink" title="媒体类型的指定"></a>媒体类型的指定</h4><h5 id="具有代表性的媒体类型，也就是Content-Type"><a href="#具有代表性的媒体类型，也就是Content-Type" class="headerlink" title="具有代表性的媒体类型，也就是Content-Type"></a>具有代表性的媒体类型，也就是<code>Content-Type</code></h5><table>
 <thead>
@@ -1199,9 +1202,9 @@
 </ul>
 <h4 id="同源策略和跨域资源共享"><a href="#同源策略和跨域资源共享" class="headerlink" title="同源策略和跨域资源共享"></a>同源策略和跨域资源共享</h4><h5 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h5><p>通过XHTTPRequest对不同的域进行访问将无法获取响应数据，这一原则称为<strong>同源策略</strong>。同源策略主要是出于安全方面的考虑，它只允许从相同的源来获取数据，并通过URI里的schema（http, https等）、主机（api.example.com）、端口号的组合来判断是否同源。由于JSONP有很多安全问题，所以制定了<strong>跨域资源共享</strong>（Cross-Origin Resource Sharing，CORS）的方式解决跨域访问的问题。</p>
 <h5 id="CORS基本的交互"><a href="#CORS基本的交互" class="headerlink" title="CORS基本的交互"></a>CORS基本的交互</h5><p>当实施CORS时，客户端要先发送一个名为Origin的请求消息首部。如从<code>http://www.example.com/</code>访问<code>http://api/example.com/</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Origin: http://www.example.com</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Origin: http:&#x2F;&#x2F;www.example.com</span><br></pre></td></tr></table></figure>
 <p>服务器保存着允许访问的白名单，请求发送过来，会判断是否在白名单中。如果不在，则返回403；如果在，服务端会在<code>Access-Control-Allow-Origin</code>响应消息首部里放入和请求消息的Origin首部相同的源并返回，表示允许访问。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin: http://www.example.com</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin: http:&#x2F;&#x2F;www.example.com</span><br></pre></td></tr></table></figure>
 <h5 id="CORS与用户认证信息"><a href="#CORS与用户认证信息" class="headerlink" title="CORS与用户认证信息"></a>CORS与用户认证信息</h5><p>CORS中发送用户认证信息时，必须发布追加的HTTP响应消息首部。例如当客户端使用Cookie首部、Authentication首部发送用户认证信息时，服务器端需要像下面这样将<code>Access-Control-Allow-Credentials</code>首部设为true，来告知客户端“已识别所发送的认证信息”。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Credentials: true</span><br></pre></td></tr></table></figure>
 <p>如果不这么做，浏览器会直接拒绝来自服务器的响应消息。</p>
@@ -1218,20 +1221,20 @@
 <p>如服务器返回</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"data"</span>: <span class="string">"&lt;script&gt;alert('xss');&lt;/script&gt;"</span>&#125;</span><br></pre></td></tr></table></figure>
 <p>在<code>Content-Type</code>首部的值为text/html的情况下，如果浏览器直接访问该JSON数据的URI，该JSON数据会被解释为HTML，导致通过SCRIPT元素加载的JavaScript代码被浏览器执行。所以为了防范，需要让浏览器将JSON格式的数据只识别成JSON，响应首部添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: application/json</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: application&#x2F;json</span><br></pre></td></tr></table></figure>
 <p>但是IE会有一个<code>Content Sniffering</code>功能，根据实际的数据内容来推测数据格式。所以在返回JSON类型的数据时还应该添加</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-Content-Type-Options: nosniff</span><br></pre></td></tr></table></figure>
 <p>这会使IE8以后的浏览器不再使用<code>Content sniffering</code>功能。</p>
-<img src="/《Web-API-的设计与开发》读后总结/XSS.jpeg">
+<img src="/%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93/XSS.jpeg" class>
 <h4 id="XSRF-CSRF-Cross-Site-Request-Forgery"><a href="#XSRF-CSRF-Cross-Site-Request-Forgery" class="headerlink" title="XSRF/CSRF(Cross Site Request Forgery)"></a>XSRF/CSRF(Cross Site Request Forgery)</h4><p>跨站点请求伪造。通过跨站点发送伪造的请求，让服务器执行用户意愿意外的处理。</p>
-<img src="/《Web-API-的设计与开发》读后总结/CSRF.jpeg">
+<img src="/%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93/CSRF.jpeg" class>
 <p>常见例子：向公告板任意发帖，攻击站点以造成损失；恶意刷好评或差评。</p>
 <p>防范：</p>
 <ul>
 <li><p>禁止通过GET方法来修改服务端的数据，如添加收藏、公告板发帖等。这样一来，就无法用IMG元素等嵌入用于攻击的脚本了。</p>
 </li>
 <li><p>CSRF 令牌。</p>
-<img src="/《Web-API-的设计与开发》读后总结/CSRF_TOKEN.jpeg">
+<img src="/%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93/CSRF_TOKEN.jpeg" class>
 </li>
 <li><p>如果Web API只存在由XMLHTTPRequest或非浏览器客户端发起的访问，就要求客户端使用某种机制在请求附加一个特殊的首部，如果请求消息中不存在这一特殊的首部，就拒绝访问。如<code>X-Request-With</code>首部</p>
 </li>
@@ -1277,7 +1280,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/工作中项目优化小记/" rel="next" title="工作中项目优化小记">
+              <a href="/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96%E5%B0%8F%E8%AE%B0/" rel="next" title="工作中项目优化小记">
                 <i class="fa fa-chevron-left"></i> 工作中项目优化小记
               </a>
             
@@ -1287,7 +1290,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/记一次淘宝接口sign签名破解/" rel="prev" title="记一次淘宝接口sign签名破解">
+              <a href="/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%B7%98%E5%AE%9D%E6%8E%A5%E5%8F%A3sign%E7%AD%BE%E5%90%8D%E7%A0%B4%E8%A7%A3/" rel="prev" title="记一次淘宝接口sign签名破解">
                 记一次淘宝接口sign签名破解 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -1322,7 +1325,7 @@
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
         </noscript>
       </div>
     
@@ -1349,7 +1352,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -1360,7 +1363,9 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="xiaoliji">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="xiaoliji" />
           <p class="site-author-name" itemprop="name">xiaoliji</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -1371,7 +1376,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1393,7 +1398,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -1474,7 +1479,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第一章：什么是Web-API"><span class="nav-number">2.</span> <span class="nav-text">第一章：什么是Web API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#REST与Web-API"><span class="nav-number">2.1.</span> <span class="nav-text">REST与Web API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LSUD-vs-SSKD"><span class="nav-number">2.2.</span> <span class="nav-text">LSUD vs SSKD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二章：端点的设计与请求的形式"><span class="nav-number">3.</span> <span class="nav-text">第二章：端点的设计与请求的形式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#端点的概念："><span class="nav-number">3.1.</span> <span class="nav-text">端点的概念：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#端点的设计规范："><span class="nav-number">3.2.</span> <span class="nav-text">端点的设计规范：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP方法和端点"><span class="nav-number">3.3.</span> <span class="nav-text">HTTP方法和端点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#X-HTTP-Method-Override"><span class="nav-number">3.4.</span> <span class="nav-text">X-HTTP-Method-Override</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态相关的端点举例"><span class="nav-number">3.5.</span> <span class="nav-text">动态相关的端点举例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问资源的端点设计注意事项"><span class="nav-number">3.6.</span> <span class="nav-text">访问资源的端点设计注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相对位置获取数据大分页时效率低下"><span class="nav-number">3.7.</span> <span class="nav-text">相对位置获取数据大分页时效率低下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询参数还是使用路径？"><span class="nav-number">3.8.</span> <span class="nav-text">查询参数还是使用路径？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登录与OAuth2-0"><span class="nav-number">3.9.</span> <span class="nav-text">登录与OAuth2.0</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是OAuth"><span class="nav-number">3.9.1.</span> <span class="nav-text">什么是OAuth?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#OAuth2-0里的4中类型的交互模式用于访问资源的许可，称为Grant-Type。"><span class="nav-number">3.9.2.</span> <span class="nav-text">OAuth2.0里的4中类型的交互模式用于访问资源的许可，称为Grant Type。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SSKD应用尽量减少API调用次数"><span class="nav-number">3.9.3.</span> <span class="nav-text">SSKD应用尽量减少API调用次数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HETEOAS和REST-LEVEL3-API"><span class="nav-number">3.9.4.</span> <span class="nav-text">HETEOAS和REST LEVEL3 API</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三章：响应数据的设计"><span class="nav-number">4.</span> <span class="nav-text">第三章：响应数据的设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSONP"><span class="nav-number">4.1.</span> <span class="nav-text">JSONP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概念"><span class="nav-number">4.1.1.</span> <span class="nav-text">概念</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#封装是否必要"><span class="nav-number">4.2.</span> <span class="nav-text">封装是否必要</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扁平化还是层级？"><span class="nav-number">4.3.</span> <span class="nav-text">扁平化还是层级？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#序列与格式"><span class="nav-number">4.4.</span> <span class="nav-text">序列与格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回数据的个数"><span class="nav-number">4.5.</span> <span class="nav-text">返回数据的个数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#返回数据的名称"><span class="nav-number">4.5.1.</span> <span class="nav-text">返回数据的名称</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#日期的格式"><span class="nav-number">4.5.2.</span> <span class="nav-text">日期的格式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#详细的出错信息"><span class="nav-number">4.5.3.</span> <span class="nav-text">详细的出错信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#需要返回意义不明确的信息时"><span class="nav-number">4.5.4.</span> <span class="nav-text">需要返回意义不明确的信息时</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四章：最大程度地利用HTTP协议"><span class="nav-number">5.</span> <span class="nav-text">第四章：最大程度地利用HTTP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用HTTP协议规范的意义"><span class="nav-number">5.1.</span> <span class="nav-text">使用HTTP协议规范的意义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正确使用状态码"><span class="nav-number">5.2.</span> <span class="nav-text">正确使用状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#首位数字大概含义"><span class="nav-number">5.2.1.</span> <span class="nav-text">首位数字大概含义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#主要的HTTP状态码"><span class="nav-number">5.2.2.</span> <span class="nav-text">主要的HTTP状态码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#状态码详解及使用场景："><span class="nav-number">5.2.3.</span> <span class="nav-text">状态码详解及使用场景：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存与HTTP协议规范"><span class="nav-number">5.3.</span> <span class="nav-text">缓存与HTTP协议规范</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#过期模型"><span class="nav-number">5.3.1.</span> <span class="nav-text">过期模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#验证模型"><span class="nav-number">5.3.2.</span> <span class="nav-text">验证模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#启发式过期"><span class="nav-number">5.3.3.</span> <span class="nav-text">启发式过期</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不希望实施缓存"><span class="nav-number">5.3.4.</span> <span class="nav-text">不希望实施缓存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用Vary来指定缓存单位"><span class="nav-number">5.3.5.</span> <span class="nav-text">使用Vary来指定缓存单位</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cache-Control-首部"><span class="nav-number">5.3.6.</span> <span class="nav-text">Cache-Control 首部</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#媒体类型的指定"><span class="nav-number">5.4.</span> <span class="nav-text">媒体类型的指定</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#具有代表性的媒体类型，也就是Content-Type"><span class="nav-number">5.4.1.</span> <span class="nav-text">具有代表性的媒体类型，也就是Content-Type</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#以x-开头的媒体类型"><span class="nav-number">5.4.2.</span> <span class="nav-text">以x-开头的媒体类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自定义媒体类型"><span class="nav-number">5.4.3.</span> <span class="nav-text">自定义媒体类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#请求数据与媒体类型"><span class="nav-number">5.4.4.</span> <span class="nav-text">请求数据与媒体类型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同源策略和跨域资源共享"><span class="nav-number">5.5.</span> <span class="nav-text">同源策略和跨域资源共享</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概念-1"><span class="nav-number">5.5.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CORS基本的交互"><span class="nav-number">5.5.2.</span> <span class="nav-text">CORS基本的交互</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CORS与用户认证信息"><span class="nav-number">5.5.3.</span> <span class="nav-text">CORS与用户认证信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#私有的HTTP首部"><span class="nav-number">5.6.</span> <span class="nav-text">私有的HTTP首部</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五章：开发方便更改设计的Web-API"><span class="nav-number">6.</span> <span class="nav-text">第五章：开发方便更改设计的Web API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第六章：开发牢固的Web-API"><span class="nav-number">7.</span> <span class="nav-text">第六章：开发牢固的Web API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中间人攻击（Man-In-The-Middle-Attack-MITM攻击）"><span class="nav-number">7.1.</span> <span class="nav-text">中间人攻击（Man-In-The-Middle Attack, MITM攻击）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XSS"><span class="nav-number">7.2.</span> <span class="nav-text">XSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XSRF-CSRF-Cross-Site-Request-Forgery"><span class="nav-number">7.3.</span> <span class="nav-text">XSRF/CSRF(Cross Site Request Forgery)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSON劫持"><span class="nav-number">7.4.</span> <span class="nav-text">JSON劫持</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第一章：什么是Web-API"><span class="nav-number">2.</span> <span class="nav-text">第一章：什么是Web API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#REST与Web-API"><span class="nav-number">2.1.</span> <span class="nav-text">REST与Web API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LSUD-vs-SSKD"><span class="nav-number">2.2.</span> <span class="nav-text">LSUD vs SSKD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二章：端点的设计与请求的形式"><span class="nav-number">3.</span> <span class="nav-text">第二章：端点的设计与请求的形式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#端点的概念："><span class="nav-number">3.1.</span> <span class="nav-text">端点的概念：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#端点的设计规范："><span class="nav-number">3.2.</span> <span class="nav-text">端点的设计规范：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP方法和端点"><span class="nav-number">3.3.</span> <span class="nav-text">HTTP方法和端点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#X-HTTP-Method-Override"><span class="nav-number">3.4.</span> <span class="nav-text">X-HTTP-Method-Override</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态相关的端点举例"><span class="nav-number">3.5.</span> <span class="nav-text">动态相关的端点举例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问资源的端点设计注意事项"><span class="nav-number">3.6.</span> <span class="nav-text">访问资源的端点设计注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相对位置获取数据大分页时效率低下"><span class="nav-number">3.7.</span> <span class="nav-text">相对位置获取数据大分页时效率低下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询参数还是使用路径？"><span class="nav-number">3.8.</span> <span class="nav-text">查询参数还是使用路径？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登录与OAuth2-0"><span class="nav-number">3.9.</span> <span class="nav-text">登录与OAuth2.0</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是OAuth"><span class="nav-number">3.9.1.</span> <span class="nav-text">什么是OAuth?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#OAuth2-0里的4中类型的交互模式用于访问资源的许可，称为Grant-Type。"><span class="nav-number">3.9.2.</span> <span class="nav-text">OAuth2.0里的4中类型的交互模式用于访问资源的许可，称为Grant Type。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SSKD应用尽量减少API调用次数"><span class="nav-number">3.9.3.</span> <span class="nav-text">SSKD应用尽量减少API调用次数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HETEOAS和REST-LEVEL3-API"><span class="nav-number">3.9.4.</span> <span class="nav-text">HETEOAS和REST LEVEL3 API</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三章：响应数据的设计"><span class="nav-number">4.</span> <span class="nav-text">第三章：响应数据的设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSONP"><span class="nav-number">4.1.</span> <span class="nav-text">JSONP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概念"><span class="nav-number">4.1.1.</span> <span class="nav-text">概念</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#封装是否必要"><span class="nav-number">4.2.</span> <span class="nav-text">封装是否必要</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扁平化还是层级？"><span class="nav-number">4.3.</span> <span class="nav-text">扁平化还是层级？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#序列与格式"><span class="nav-number">4.4.</span> <span class="nav-text">序列与格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回数据的个数"><span class="nav-number">4.5.</span> <span class="nav-text">返回数据的个数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#返回数据的名称"><span class="nav-number">4.5.1.</span> <span class="nav-text">返回数据的名称</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#日期的格式"><span class="nav-number">4.5.2.</span> <span class="nav-text">日期的格式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#详细的出错信息"><span class="nav-number">4.5.3.</span> <span class="nav-text">详细的出错信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#需要返回意义不明确的信息时"><span class="nav-number">4.5.4.</span> <span class="nav-text">需要返回意义不明确的信息时</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四章：最大程度地利用HTTP协议"><span class="nav-number">5.</span> <span class="nav-text">第四章：最大程度地利用HTTP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用HTTP协议规范的意义"><span class="nav-number">5.1.</span> <span class="nav-text">使用HTTP协议规范的意义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正确使用状态码"><span class="nav-number">5.2.</span> <span class="nav-text">正确使用状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#首位数字大概含义"><span class="nav-number">5.2.1.</span> <span class="nav-text">首位数字大概含义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#主要的HTTP状态码"><span class="nav-number">5.2.2.</span> <span class="nav-text">主要的HTTP状态码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#状态码详解及使用场景："><span class="nav-number">5.2.3.</span> <span class="nav-text">状态码详解及使用场景：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存与HTTP协议规范"><span class="nav-number">5.3.</span> <span class="nav-text">缓存与HTTP协议规范</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#过期模型"><span class="nav-number">5.3.1.</span> <span class="nav-text">过期模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#验证模型"><span class="nav-number">5.3.2.</span> <span class="nav-text">验证模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#启发式过期"><span class="nav-number">5.3.3.</span> <span class="nav-text">启发式过期</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不希望实施缓存"><span class="nav-number">5.3.4.</span> <span class="nav-text">不希望实施缓存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用Vary来指定缓存单位"><span class="nav-number">5.3.5.</span> <span class="nav-text">使用Vary来指定缓存单位</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cache-Control-首部"><span class="nav-number">5.3.6.</span> <span class="nav-text">Cache-Control 首部</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#媒体类型的指定"><span class="nav-number">5.4.</span> <span class="nav-text">媒体类型的指定</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#具有代表性的媒体类型，也就是Content-Type"><span class="nav-number">5.4.1.</span> <span class="nav-text">具有代表性的媒体类型，也就是Content-Type</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#以x-开头的媒体类型"><span class="nav-number">5.4.2.</span> <span class="nav-text">以x-开头的媒体类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自定义媒体类型"><span class="nav-number">5.4.3.</span> <span class="nav-text">自定义媒体类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#请求数据与媒体类型"><span class="nav-number">5.4.4.</span> <span class="nav-text">请求数据与媒体类型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同源策略和跨域资源共享"><span class="nav-number">5.5.</span> <span class="nav-text">同源策略和跨域资源共享</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概念-1"><span class="nav-number">5.5.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CORS基本的交互"><span class="nav-number">5.5.2.</span> <span class="nav-text">CORS基本的交互</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CORS与用户认证信息"><span class="nav-number">5.5.3.</span> <span class="nav-text">CORS与用户认证信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#私有的HTTP首部"><span class="nav-number">5.6.</span> <span class="nav-text">私有的HTTP首部</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五章：开发方便更改设计的Web-API"><span class="nav-number">6.</span> <span class="nav-text">第五章：开发方便更改设计的Web API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第六章：开发牢固的Web-API"><span class="nav-number">7.</span> <span class="nav-text">第六章：开发牢固的Web API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中间人攻击（Man-In-The-Middle-Attack-MITM攻击）"><span class="nav-number">7.1.</span> <span class="nav-text">中间人攻击（Man-In-The-Middle Attack, MITM攻击）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XSS"><span class="nav-number">7.2.</span> <span class="nav-text">XSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XSRF-CSRF-Cross-Site-Request-Forgery"><span class="nav-number">7.3.</span> <span class="nav-text">XSRF&#x2F;CSRF(Cross Site Request Forgery)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSON劫持"><span class="nav-number">7.4.</span> <span class="nav-text">JSON劫持</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1494,7 +1499,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2020</span>
@@ -1513,12 +1518,12 @@
 </div>
 <div class="powered-by">
 
-  Powered by <a class="theme-link" href="https://hexo.io" rel="texternal nofollow">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io" target="_blank" rel="texternal nofollow noopener">Hexo</a>
 </div>
 
 <div class="theme-info">
   Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="texternal nofollow">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="texternal nofollow noopener">
     NexT.Mist
   </a>
 </div>
@@ -1526,7 +1531,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共187.1k字</span>
+  <span class="post-count">博客全站共192.5k字</span>
 </div>
         
 
@@ -1628,7 +1633,7 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://darktiantian.github.io.git/《Web-API-的设计与开发》读后总结/';
+          this.page.url = 'http://darktiantian.github.io.git/%E3%80%8AWeb-API-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E5%90%8E%E6%80%BB%E7%BB%93/';
           this.page.identifier = '《Web-API-的设计与开发》读后总结/';
           this.page.title = '《Web API 的设计与开发》读后总结';
         };
@@ -1670,7 +1675,7 @@
     var isfetched = false;
     var isXml = true;
     // Search DB path;
-    var search_path = "search.xml";
+    var search_path = "search.json";
     if (search_path.length === 0) {
       search_path = "search.xml";
     } else if (/json$/i.test(search_path)) {
