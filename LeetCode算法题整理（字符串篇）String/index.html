@@ -108,7 +108,7 @@
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
 <meta property="og:description" content="14. Longest Common Prefix返回最长公共前缀字符串。原题 12Input: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]Output: &quot;fl&quot;">
 <meta property="article:published_time" content="2018-08-12T13:28:29.000Z">
-<meta property="article:modified_time" content="2020-11-01T16:06:56.422Z">
+<meta property="article:modified_time" content="2020-11-02T02:43:43.858Z">
 <meta property="article:author" content="xiaoliji">
 <meta property="article:tag" content="String">
 <meta property="article:tag" content="LeetCode">
@@ -365,7 +365,7 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2020-11-02T00:06:56+08:00" content="2020-11-02">
+                <time itemprop="dateUpdated" datetime="2020-11-02T10:43:43+08:00" content="2020-11-02">
                   2020-11-02
                 </time>
               </span>
@@ -751,7 +751,7 @@
 <h3 id="1638-Count-Substrings-That-Differ-by-One-Character"><a href="#1638-Count-Substrings-That-Differ-by-One-Character" class="headerlink" title="1638. Count Substrings That Differ by One Character"></a><a href="https://leetcode.com/problems/count-substrings-that-differ-by-one-character/" target="_blank" rel="noopener">1638. Count Substrings That Differ by One Character</a></h3><h4 id="两个字符串的连续子串中刚好差一个字符的一共有多少对。"><a href="#两个字符串的连续子串中刚好差一个字符的一共有多少对。" class="headerlink" title="两个字符串的连续子串中刚好差一个字符的一共有多少对。"></a>两个字符串的连续子串中刚好差一个字符的一共有多少对。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Input: s &#x3D; &quot;aba&quot;, t &#x3D; &quot;baba&quot;</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: The following are the pairs of substrings from s and t that differ by exactly 1 character:</span><br><span class="line">(&quot;aba&quot;, &quot;baba&quot;)</span><br><span class="line">(&quot;aba&quot;, &quot;baba&quot;)</span><br><span class="line">(&quot;aba&quot;, &quot;baba&quot;)</span><br><span class="line">(&quot;aba&quot;, &quot;baba&quot;)</span><br><span class="line">(&quot;aba&quot;, &quot;baba&quot;)</span><br><span class="line">(&quot;aba&quot;, &quot;baba&quot;)</span><br><span class="line">The underlined portions are the substrings that are chosen from s and t.</span><br><span class="line">Input: s &#x3D; &quot;abe&quot;, t &#x3D; &quot;bbc&quot;</span><br><span class="line">Output: 10</span><br></pre></td></tr></table></figure>
 <p>方法一: 比赛时暴力过的。复杂度很高，时间1000ms+，不过居然能过。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countSubstrings</span><span class="params">(self, s: str, t: str)</span> -&gt; int:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">check</span><span class="params">(s1, s2)</span>:</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> a, b <span class="keyword">in</span> zip(s1, s2):</span><br><span class="line">            <span class="keyword">if</span> a != b:</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> count == <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> count == <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">    min_len = min(len(t), len(s))</span><br><span class="line">    ans = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> d <span class="keyword">in</span> range(<span class="number">1</span>, min_len+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)-d+<span class="number">1</span>):</span><br><span class="line">            s1 = s[i:i+d]</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(t)-d+<span class="number">1</span>):</span><br><span class="line">                s2 = t[j:j+d]</span><br><span class="line">                <span class="comment"># print(s1, s2, check(s1, s2))</span></span><br><span class="line">                ans += check(s1, s2)</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-<font color="#32CD32" size="3">方法二：Lee的方法好太多了，44ms。当字符不相等时重置为0，否则累加。</font>
+<font color="#32CD32" size="3">方法二：Lee的方法好太多了，44ms。当字符不相等时重置为0，否则累加。这个写法挺难理解的，cur表示相等的数的累加，不相等时重置为0，然后交给pre来处理。</font>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countSubstrings</span><span class="params">(self, s: str, t: str)</span> -&gt; int:</span></span><br><span class="line">    M, N = len(s), len(t)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">check</span><span class="params">(i, j)</span>:</span></span><br><span class="line">        res = pre = cur = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(min(M-i, N-j)):</span><br><span class="line">            cur += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> s[i+k] != t[j+k]:</span><br><span class="line">                pre, cur = cur, <span class="number">0</span></span><br><span class="line">            res += pre</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> sum(check(i, <span class="number">0</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(M)) + sum(check(<span class="number">0</span>, j) <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, N))</span><br></pre></td></tr></table></figure>
 
@@ -896,7 +896,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -907,7 +907,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -918,7 +918,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -1051,7 +1051,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共199.3k字</span>
+  <span class="post-count">博客全站共201.1k字</span>
 </div>
         
 

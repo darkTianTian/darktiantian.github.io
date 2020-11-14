@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="algorithm," />
+  <meta name="keywords" content="LeetCode,SegmentTree," />
 
 
 
@@ -101,16 +101,17 @@
 
 
 
-<meta name="description" content="简介 The Boyer–Moore majority vote algorithm is an algorithm for finding the majority of a sequence of elements using linear time and constant space. It is named after Robert S. Boyer and J Strother Moo">
+<meta name="description" content="1649. Create Sorted Array through Instructions根据指令数组创建一个有序的数组。每次新增数时的花费为，min(小于此数的个数，大于此数的个数)。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="波义尔摩尔投票算法（Boyer-Moore Voting Algorithm）">
-<meta property="og:url" content="http://darktiantian.github.io.git/%E6%B3%A2%E4%B9%89%E5%B0%94%E6%91%A9%E5%B0%94%E6%8A%95%E7%A5%A8%E7%AE%97%E6%B3%95%EF%BC%88Boyer-Moore-Voting-Algorithm%EF%BC%89/index.html">
+<meta property="og:title" content="LeetCode算法题整理（线段树篇）SegmentTree">
+<meta property="og:url" content="http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%AF%87%EF%BC%89SegmentTree/index.html">
 <meta property="og:site_name" content="Xiaoliji&#39;s Blog">
-<meta property="og:description" content="简介 The Boyer–Moore majority vote algorithm is an algorithm for finding the majority of a sequence of elements using linear time and constant space. It is named after Robert S. Boyer and J Strother Moo">
-<meta property="article:published_time" content="2018-09-02T14:43:51.000Z">
-<meta property="article:modified_time" content="2018-12-24T16:54:44.155Z">
+<meta property="og:description" content="1649. Create Sorted Array through Instructions根据指令数组创建一个有序的数组。每次新增数时的花费为，min(小于此数的个数，大于此数的个数)。">
+<meta property="article:published_time" content="2020-11-08T14:37:10.000Z">
+<meta property="article:modified_time" content="2020-11-08T15:02:06.166Z">
 <meta property="article:author" content="xiaoliji">
-<meta property="article:tag" content="algorithm">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="SegmentTree">
 <meta name="twitter:card" content="summary">
 
 
@@ -140,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="http://darktiantian.github.io.git/波义尔摩尔投票算法（Boyer-Moore-Voting-Algorithm）/"/>
+  <link rel="canonical" href="http://darktiantian.github.io.git/LeetCode算法题整理（线段树篇）SegmentTree/"/>
 
 
 
 
 
-  <title>波义尔摩尔投票算法（Boyer-Moore Voting Algorithm） | Xiaoliji's Blog</title>
+  <title>LeetCode算法题整理（线段树篇）SegmentTree | Xiaoliji's Blog</title>
   
 
 
@@ -325,7 +326,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://darktiantian.github.io.git/%E6%B3%A2%E4%B9%89%E5%B0%94%E6%91%A9%E5%B0%94%E6%8A%95%E7%A5%A8%E7%AE%97%E6%B3%95%EF%BC%88Boyer-Moore-Voting-Algorithm%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%AF%87%EF%BC%89SegmentTree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiaoliji">
@@ -342,7 +343,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">波义尔摩尔投票算法（Boyer-Moore Voting Algorithm）</h2>
+          <h2 class="post-title" itemprop="name headline">LeetCode算法题整理（线段树篇）SegmentTree</h2>
         
 
         <div class="post-meta">
@@ -354,16 +355,16 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-02T22:43:51+08:00">
-                2018-09-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-08T22:37:10+08:00">
+                2020-11-08
               </time>
             
 
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2018-12-25T00:54:44+08:00" content="2018-12-25">
-                  2018-12-25
+                <time itemprop="dateUpdated" datetime="2020-11-08T23:02:06+08:00" content="2020-11-08">
+                  2020-11-08
                 </time>
               </span>
             
@@ -386,8 +387,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/Segment-Tree/" itemprop="url" rel="index">
+                    <span itemprop="name">Segment Tree</span>
                   </a>
                 </span>
 
@@ -404,9 +405,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/%E6%B3%A2%E4%B9%89%E5%B0%94%E6%91%A9%E5%B0%94%E6%8A%95%E7%A5%A8%E7%AE%97%E6%B3%95%EF%BC%88Boyer-Moore-Voting-Algorithm%EF%BC%89/#comments" itemprop="discussionUrl">
+                <a href="/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%AF%87%EF%BC%89SegmentTree/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="波义尔摩尔投票算法（Boyer-Moore-Voting-Algorithm）/" itemprop="commentCount"></span>
+                        data-disqus-identifier="LeetCode算法题整理（线段树篇）SegmentTree/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -414,7 +415,7 @@
 
           
           
-             <span id="/%E6%B3%A2%E4%B9%89%E5%B0%94%E6%91%A9%E5%B0%94%E6%8A%95%E7%A5%A8%E7%AE%97%E6%B3%95%EF%BC%88Boyer-Moore-Voting-Algorithm%EF%BC%89/" class="leancloud_visitors" data-flag-title="波义尔摩尔投票算法（Boyer-Moore Voting Algorithm）">
+             <span id="/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%AF%87%EF%BC%89SegmentTree/" class="leancloud_visitors" data-flag-title="LeetCode算法题整理（线段树篇）SegmentTree">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -445,33 +446,12 @@
       
 
       
-        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><blockquote>
-<p>The Boyer–Moore majority vote algorithm is an algorithm for finding the majority of a sequence of elements using linear time and constant space. It is named after Robert S. Boyer and J Strother Moore, who published it in 1981,[1] and is a prototypical example of a streaming algorithm.</p>
-</blockquote>
-<a id="more"></a>
-<p>波义尔摩尔投票算法是一种使用线性时间复杂度和常数空间复杂度来找到数组的主要元素（出现超过一半次数的元素）。</p>
-<h3 id="题目-169-Majority-Element。找出数组中出现超过一半的元素。"><a href="#题目-169-Majority-Element。找出数组中出现超过一半的元素。" class="headerlink" title="题目: 169. Majority Element。找出数组中出现超过一半的元素。"></a>题目: 169. Majority Element。找出数组中出现超过一半的元素。</h3><blockquote>
-<p>Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.</p>
-</blockquote>
-<blockquote>
-<p>You may assume that the array is non-empty and the majority element always exist in the array.</p>
-</blockquote>
-<h3 id="《剑指Offer》中的解释"><a href="#《剑指Offer》中的解释" class="headerlink" title="《剑指Offer》中的解释"></a>《剑指Offer》中的解释</h3><blockquote>
-<p>遍历数组的时候保存两个值：一个是数组中的数字，另一个是次数。当我们遍历到下一个数字的时候，如果下一个数字和我们之前保存的数字相同，则次数加1；如果下一个数字和我们之前保存的数字不同，则次数减1。如果次数为零，那么需要保存下一个数字，并把次数设为1.由于我们要找的数字出现的次数比其他所有数字出现的次数之和还要多，那么要找的数字肯定是最后一次把次数设为1时的对应数字。</p>
-</blockquote>
-<h3 id="整个过程想象成一次投票选举"><a href="#整个过程想象成一次投票选举" class="headerlink" title="整个过程想象成一次投票选举"></a>整个过程想象成一次投票选举</h3><h4 id="投票规则：大屏幕上只允许出现一位候选人。如果选举人投的票不是当前候选人，那么让当前候选人票-1，如果是，则-1。"><a href="#投票规则：大屏幕上只允许出现一位候选人。如果选举人投的票不是当前候选人，那么让当前候选人票-1，如果是，则-1。" class="headerlink" title="投票规则：大屏幕上只允许出现一位候选人。如果选举人投的票不是当前候选人，那么让当前候选人票-1，如果是，则+1。"></a>投票规则：大屏幕上只允许出现一位候选人。如果选举人投的票不是当前候选人，那么让当前候选人票-1，如果是，则+1。</h4><p>OK，我们现在把所有数组的元素当成是选举人举出的号牌。我们先考虑最极端的情况：最后的<code>winner</code>以一票之差险胜。也就是元素出现的次数为<code>n//2+1</code>。这种情况是如何出现的呢，假设数组是这样的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[7, 7, 7, 7, 1, 2, 3]</span><br></pre></td></tr></table></figure>
-<p>没有投7的选举人假设在一开始知道了最有潜力的<code>winner</code>即7号，那么他们‘同仇敌忾’，将-1的票都投在了7号上，这种情况7号一直处于大屏幕中，没有更换过候选人。但是最后也没能打败7号，因为7号最后还保留一票。</p>
-<p>另外一种非极端的情况，没有投7的选举人产生了‘内讧’：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[7, 1, | 2, 3, | 7, 7, 7]</span><br></pre></td></tr></table></figure>
-<p>首先7号得到一票，然后被1号干掉，接着2号称为候选人，被3号干掉。3号的票浪费在了‘自己人’身上，即‘我们中出了一个叛徒’。就算团结起来都干不过7号，所以<code>winner</code>还是7号。</p>
-<p>最后附上LeetCode上的Python代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">majorityElement</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        candidate = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> count == <span class="number">0</span>:</span><br><span class="line">                candidate = num</span><br><span class="line">            count += (<span class="number">1</span> <span class="keyword">if</span> num == candidate <span class="keyword">else</span> <span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> candidate</span><br></pre></td></tr></table></figure>
-<p>参考：</p>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm" target="_blank" rel="noopener">维基百科</a></li>
-<li><a href="https://leetcode.com/problems/majority-element/solution/" target="_blank" rel="noopener">LeetCode</a></li>
-</ul>
+        <h3 id="1649-Create-Sorted-Array-through-Instructions"><a href="#1649-Create-Sorted-Array-through-Instructions" class="headerlink" title="1649. Create Sorted Array through Instructions"></a><a href="https://leetcode.com/problems/create-sorted-array-through-instructions/" target="_blank" rel="noopener">1649. Create Sorted Array through Instructions</a></h3><h4 id="根据指令数组创建一个有序的数组。每次新增数时的花费为，min-小于此数的个数，大于此数的个数-。"><a href="#根据指令数组创建一个有序的数组。每次新增数时的花费为，min-小于此数的个数，大于此数的个数-。" class="headerlink" title="根据指令数组创建一个有序的数组。每次新增数时的花费为，min(小于此数的个数，大于此数的个数)。"></a>根据指令数组创建一个有序的数组。每次新增数时的花费为，min(小于此数的个数，大于此数的个数)。</h4><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: instructions &#x3D; [1,5,6,2]</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: Begin with nums &#x3D; [].</span><br><span class="line">Insert 1 with cost min(0, 0) &#x3D; 0, now nums &#x3D; [1].</span><br><span class="line">Insert 5 with cost min(1, 0) &#x3D; 0, now nums &#x3D; [1,5].</span><br><span class="line">Insert 6 with cost min(2, 0) &#x3D; 0, now nums &#x3D; [1,5,6].</span><br><span class="line">Insert 2 with cost min(1, 2) &#x3D; 1, now nums &#x3D; [1,2,5,6].</span><br><span class="line">The total cost is 0 + 0 + 0 + 1 &#x3D; 1.</span><br></pre></td></tr></table></figure>
+<p>方法一：凭借此题达成了AK，卡着超时线过的，用了8s多。以为过不了呢，因为分析出来时间复杂度为O(n^2)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">createSortedArray</span><span class="params">(self, instructions: List[int])</span> -&gt; int:</span></span><br><span class="line">    ans, mod =<span class="number">0</span>, <span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span></span><br><span class="line">    nums = []</span><br><span class="line">    <span class="keyword">for</span> d <span class="keyword">in</span> instructions:</span><br><span class="line">        left = bisect.bisect_left(nums, d)</span><br><span class="line">        right = bisect.bisect(nums, d)</span><br><span class="line">        ans += min(left, len(nums)-right)</span><br><span class="line">        bisect.insort(nums, d)</span><br><span class="line">    <span class="keyword">return</span> ans % mod</span><br></pre></td></tr></table></figure>
+<p>方法二：使用<code>SortedList</code>，这个添加一个值的时间复杂度为<code>O(logn)</code>而不像<code>bisect.insort</code>是<code>O(n)</code>。5s多。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">createSortedArray</span><span class="params">(self, instructions: List[int])</span> -&gt; int:</span></span><br><span class="line">    <span class="keyword">from</span> sortedcontainers <span class="keyword">import</span> SortedList</span><br><span class="line">    ans, mod =<span class="number">0</span>, <span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span></span><br><span class="line">    nums = SortedList()</span><br><span class="line">    <span class="keyword">for</span> d <span class="keyword">in</span> instructions:</span><br><span class="line">        cost = min(nums.bisect_left(d), len(nums)-nums.bisect_right(d))</span><br><span class="line">        ans = (ans+cost) % mod</span><br><span class="line">        nums.add(d)</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -495,8 +475,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/algorithm/" rel="tag">
-            <i class="fa fa-tag"></i> algorithm</a>
+            <a href="/tags/LeetCode/" rel="tag">
+            <i class="fa fa-tag"></i> LeetCode</a>
+          
+            <a href="/tags/SegmentTree/" rel="tag">
+            <i class="fa fa-tag"></i> SegmentTree</a>
           
         </div>
       
@@ -509,8 +492,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88sql%E7%AF%87%EF%BC%89sql/" rel="next" title="LeetCode算法题整理（sql篇）sql">
-                <i class="fa fa-chevron-left"></i> LeetCode算法题整理（sql篇）sql
+              <a href="/Google-kickstart-Round-A-2020/" rel="next" title="Google kickstart Round A 2020">
+                <i class="fa fa-chevron-left"></i> Google kickstart Round A 2020
               </a>
             
           </div>
@@ -518,10 +501,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF%E9%97%AE%E9%A2%98%EF%BC%88Josephus-problem%EF%BC%89/" rel="prev" title="约瑟夫环问题（Josephus problem）">
-                约瑟夫环问题（Josephus problem） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -708,7 +687,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目-169-Majority-Element。找出数组中出现超过一半的元素。"><span class="nav-number">2.</span> <span class="nav-text">题目: 169. Majority Element。找出数组中出现超过一半的元素。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#《剑指Offer》中的解释"><span class="nav-number">3.</span> <span class="nav-text">《剑指Offer》中的解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整个过程想象成一次投票选举"><span class="nav-number">4.</span> <span class="nav-text">整个过程想象成一次投票选举</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#投票规则：大屏幕上只允许出现一位候选人。如果选举人投的票不是当前候选人，那么让当前候选人票-1，如果是，则-1。"><span class="nav-number">4.1.</span> <span class="nav-text">投票规则：大屏幕上只允许出现一位候选人。如果选举人投的票不是当前候选人，那么让当前候选人票-1，如果是，则+1。</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1649-Create-Sorted-Array-through-Instructions"><span class="nav-number">1.</span> <span class="nav-text">1649. Create Sorted Array through Instructions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#根据指令数组创建一个有序的数组。每次新增数时的花费为，min-小于此数的个数，大于此数的个数-。"><span class="nav-number">1.1.</span> <span class="nav-text">根据指令数组创建一个有序的数组。每次新增数时的花费为，min(小于此数的个数，大于此数的个数)。</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -862,9 +841,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://darktiantian.github.io.git/%E6%B3%A2%E4%B9%89%E5%B0%94%E6%91%A9%E5%B0%94%E6%8A%95%E7%A5%A8%E7%AE%97%E6%B3%95%EF%BC%88Boyer-Moore-Voting-Algorithm%EF%BC%89/';
-          this.page.identifier = '波义尔摩尔投票算法（Boyer-Moore-Voting-Algorithm）/';
-          this.page.title = '波义尔摩尔投票算法（Boyer-Moore Voting Algorithm）';
+          this.page.url = 'http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%AF%87%EF%BC%89SegmentTree/';
+          this.page.identifier = 'LeetCode算法题整理（线段树篇）SegmentTree/';
+          this.page.title = 'LeetCode算法题整理（线段树篇）SegmentTree';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';

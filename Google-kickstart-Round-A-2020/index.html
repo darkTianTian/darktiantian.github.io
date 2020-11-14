@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://darktiantian.github.io.git/Google-kickstart-Round-A-2020/b_atmp_15.png">
 <meta property="og:image" content="http://darktiantian.github.io.git/Google-kickstart-Round-A-2020/b_atmp_16.png">
 <meta property="article:published_time" content="2020-10-21T07:05:31.000Z">
-<meta property="article:modified_time" content="2020-10-22T13:58:04.157Z">
+<meta property="article:modified_time" content="2020-11-05T12:32:32.787Z">
 <meta property="article:author" content="xiaoliji">
 <meta property="article:tag" content="kickstart">
 <meta name="twitter:card" content="summary">
@@ -365,8 +365,8 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2020-10-22T21:58:04+08:00" content="2020-10-22">
-                  2020-10-22
+                <time itemprop="dateUpdated" datetime="2020-11-05T20:32:32+08:00" content="2020-11-05">
+                  2020-11-05
                 </time>
               </span>
             
@@ -469,6 +469,8 @@
 <p>更好的写法：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">T = int(input())</span><br><span class="line"><span class="keyword">for</span> case <span class="keyword">in</span> range(<span class="number">1</span>, T+<span class="number">1</span>):</span><br><span class="line">    N, K, P = map(int, input().split())</span><br><span class="line">    dp = [<span class="number">0</span>] * (P + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(N):</span><br><span class="line">        a = map(int, input().split())</span><br><span class="line">        new_dp = dp[:]</span><br><span class="line">        s = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j, x <span class="keyword">in</span> enumerate(a):</span><br><span class="line">            s += x</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(P-j<span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">                new_dp[k+j+<span class="number">1</span>] = max(new_dp[k+j+<span class="number">1</span>], dp[k]+s)</span><br><span class="line">        dp = new_dp</span><br><span class="line">    print(<span class="string">'Case #&#123;&#125;: &#123;&#125;'</span>.format(case, dp[<span class="number">-1</span>]))</span><br></pre></td></tr></table></figure>
 <p>今天闲来无事，将第二次没过的代码改了一下，用python2来写的，主要是为了能用PyPy解释器。结果。居然过掉了，难道以后因为这个要写python2了吗、</p>
+<h3 id="WorkOut"><a href="#WorkOut" class="headerlink" title="WorkOut"></a><a href="https://codingcompetitions.withgoogle.com/kickstart/round/000000000019ffc7/00000000001d3f5b#analysis" target="_blank" rel="noopener">WorkOut</a></h3><h4 id="有个人指定了一系列的健身计划，健身计划的组数是递增的，一组健身计划的难度是最大的组间差。可以向原有计划中添加K次训练，使得难度变小。给你这样一组计划和K，问最小可以使难度降到多少？"><a href="#有个人指定了一系列的健身计划，健身计划的组数是递增的，一组健身计划的难度是最大的组间差。可以向原有计划中添加K次训练，使得难度变小。给你这样一组计划和K，问最小可以使难度降到多少？" class="headerlink" title="有个人指定了一系列的健身计划，健身计划的组数是递增的，一组健身计划的难度是最大的组间差。可以向原有计划中添加K次训练，使得难度变小。给你这样一组计划和K，问最小可以使难度降到多少？"></a>有个人指定了一系列的健身计划，健身计划的组数是递增的，一组健身计划的难度是最大的组间差。可以向原有计划中添加K次训练，使得难度变小。给你这样一组计划和K，问最小可以使难度降到多少？</h4><p>方法一：我一开始想错了，用的贪心的思路和堆来做。其实是不对的，比如2,12之间，<code>[2, 5, 8, 12]</code>是小于<code>[2, 4, 7, 12]</code>的。此题用二分法。通过最小最大的难度，找到一个合适的，使得，所有组件差满足改难度后，需要添加的组数刚好小于等于K。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check</span><span class="params">(d, K)</span>:</span></span><br><span class="line">    need = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, N):</span><br><span class="line">        need += (sessions[i]-sessions[i<span class="number">-1</span>]<span class="number">-1</span>) // d</span><br><span class="line">        <span class="keyword">if</span> need &gt; K:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> need &lt;= K</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> case <span class="keyword">in</span> range(<span class="number">1</span>, int(input())+<span class="number">1</span>):</span><br><span class="line">    N, K = map(int, input().split())</span><br><span class="line">    sessions = list(map(int, input().split()))</span><br><span class="line">    lo, hi = <span class="number">1</span>, sessions[<span class="number">-1</span>]-sessions[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">while</span> lo &lt; hi:</span><br><span class="line">        mid = (lo + hi) &gt;&gt; <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> check(mid, K):</span><br><span class="line">            hi = mid</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            lo = mid + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    print_ans(case, lo)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -515,6 +517,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%AF%87%EF%BC%89SegmentTree/" rel="prev" title="LeetCode算法题整理（线段树篇）SegmentTree">
+                LeetCode算法题整理（线段树篇）SegmentTree <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -598,7 +604,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -609,7 +615,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -620,7 +626,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -701,7 +707,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#经过了上次G轮的比赛，发现kickstart很好，题目质量也很高，大数据的测试用例能够帮助我发现一些效率上的问题。所以打算将2020年过往轮次补一下。"><span class="nav-number">1.</span> <span class="nav-text">经过了上次G轮的比赛，发现kickstart很好，题目质量也很高，大数据的测试用例能够帮助我发现一些效率上的问题。所以打算将2020年过往轮次补一下。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ALLOCATION"><span class="nav-number"></span> <span class="nav-text">ALLOCATION</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#有N个房子在卖，手里有一些资金，问最多可以买多少个房子。"><span class="nav-number"></span> <span class="nav-text">有N个房子在卖，手里有一些资金，问最多可以买多少个房子。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Plates"><span class="nav-number"></span> <span class="nav-text">Plates</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#有N堆盘子，每堆盘都有K个盘子，每个盘子有不同的价格。拿取盘子时只能拿上面的一叠。我想取出P个盘子，问能取的最大值是多少。"><span class="nav-number"></span> <span class="nav-text">有N堆盘子，每堆盘都有K个盘子，每个盘子有不同的价格。拿取盘子时只能拿上面的一叠。我想取出P个盘子，问能取的最大值是多少。</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#经过了上次G轮的比赛，发现kickstart很好，题目质量也很高，大数据的测试用例能够帮助我发现一些效率上的问题。所以打算将2020年过往轮次补一下。"><span class="nav-number">1.</span> <span class="nav-text">经过了上次G轮的比赛，发现kickstart很好，题目质量也很高，大数据的测试用例能够帮助我发现一些效率上的问题。所以打算将2020年过往轮次补一下。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ALLOCATION"><span class="nav-number"></span> <span class="nav-text">ALLOCATION</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#有N个房子在卖，手里有一些资金，问最多可以买多少个房子。"><span class="nav-number"></span> <span class="nav-text">有N个房子在卖，手里有一些资金，问最多可以买多少个房子。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Plates"><span class="nav-number"></span> <span class="nav-text">Plates</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#有N堆盘子，每堆盘都有K个盘子，每个盘子有不同的价格。拿取盘子时只能拿上面的一叠。我想取出P个盘子，问能取的最大值是多少。"><span class="nav-number"></span> <span class="nav-text">有N堆盘子，每堆盘都有K个盘子，每个盘子有不同的价格。拿取盘子时只能拿上面的一叠。我想取出P个盘子，问能取的最大值是多少。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WorkOut"><span class="nav-number"></span> <span class="nav-text">WorkOut</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#有个人指定了一系列的健身计划，健身计划的组数是递增的，一组健身计划的难度是最大的组间差。可以向原有计划中添加K次训练，使得难度变小。给你这样一组计划和K，问最小可以使难度降到多少？"><span class="nav-number"></span> <span class="nav-text">有个人指定了一系列的健身计划，健身计划的组数是递增的，一组健身计划的难度是最大的组间差。可以向原有计划中添加K次训练，使得难度变小。给你这样一组计划和K，问最小可以使难度降到多少？</span></a></div>
             
 
           </div>
@@ -753,7 +759,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共199.3k字</span>
+  <span class="post-count">博客全站共201.1k字</span>
 </div>
         
 
