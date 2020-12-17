@@ -111,7 +111,7 @@
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E6%95%B0%E7%BB%84%E7%AF%87%EF%BC%89Array/rotate_img.png">
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E6%95%B0%E7%BB%84%E7%AF%87%EF%BC%89Array/rainwatertrap.png">
 <meta property="article:published_time" content="2018-08-12T09:22:00.000Z">
-<meta property="article:modified_time" content="2020-11-16T16:11:18.073Z">
+<meta property="article:modified_time" content="2020-11-28T12:37:26.158Z">
 <meta property="article:author" content="xiaoliji">
 <meta property="article:tag" content="LeetCode">
 <meta property="article:tag" content="Python">
@@ -369,8 +369,8 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2020-11-17T00:11:18+08:00" content="2020-11-17">
-                  2020-11-17
+                <time itemprop="dateUpdated" datetime="2020-11-28T20:37:26+08:00" content="2020-11-28">
+                  2020-11-28
                 </time>
               </span>
             
@@ -514,7 +514,7 @@
 <p>思路：开始想用set作切片来判断，同上题方法一，但是效率太低。故使用字典。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">containsNearbyDuplicate</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">    n = len(nums)</span><br><span class="line">    seen = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i, num <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">        <span class="keyword">if</span> num <span class="keyword">in</span> seen:</span><br><span class="line">            <span class="keyword">if</span> i-seen[num] &lt;= k:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        seen[num] = i</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
 <h3 id="220-Contains-Duplicate-III"><a href="#220-Contains-Duplicate-III" class="headerlink" title="220. Contains Duplicate III"></a>220. Contains Duplicate III</h3><h4 id="是否存在索引差k范围内的绝对值不大于t的两个值。原题"><a href="#是否存在索引差k范围内的绝对值不大于t的两个值。原题" class="headerlink" title="是否存在索引差k范围内的绝对值不大于t的两个值。原题"></a>是否存在索引差k范围内的绝对值不大于t的两个值。<a href="https://leetcode.com/problems/contains-duplicate-iii/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [1,2,3,1], k &#x3D; 3, t &#x3D; 0</span><br><span class="line">Output: true</span><br><span class="line">Input: nums &#x3D; [1,5,9,1,5,9], k &#x3D; 2, t &#x3D; 3</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
-<p>方法一：实际上是桶排序的原理，每个桶的size为t。两个差值为t的的数，只可能出现在同一个桶或者两边的桶中。</p>
+<p>方法一：实际上是桶排序的原理，每个桶的size为t。两个差值为t的的数，只可能出现在同一个桶或者两边的桶中。每个桶只维护一个值就行了，因为如果有两个值，那么肯定就返回了。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">containsNearbyAlmostDuplicate</span><span class="params">(self, nums: List[int], k: int, t: int)</span> -&gt; bool:</span></span><br><span class="line">    <span class="keyword">if</span> k &lt; <span class="number">1</span> <span class="keyword">or</span> t &lt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    dic = collections.OrderedDict()</span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> nums:</span><br><span class="line">        key = n <span class="keyword">if</span> <span class="keyword">not</span> t <span class="keyword">else</span> n // t</span><br><span class="line">        <span class="keyword">for</span> m <span class="keyword">in</span> (dic.get(key - <span class="number">1</span>), dic.get(key), dic.get(key + <span class="number">1</span>)):</span><br><span class="line">            <span class="keyword">if</span> m <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> abs(n - m) &lt;= t:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> len(dic) == k:</span><br><span class="line">            dic.popitem(<span class="literal">False</span>)</span><br><span class="line">        dic[key] = n</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
 <h3 id="283-Move-Zeroes"><a href="#283-Move-Zeroes" class="headerlink" title="283. Move Zeroes"></a>283. Move Zeroes</h3><h4 id="将数组0元素移动到末尾，保证其他元素顺序。原题"><a href="#将数组0元素移动到末尾，保证其他元素顺序。原题" class="headerlink" title="将数组0元素移动到末尾，保证其他元素顺序。原题"></a>将数组0元素移动到末尾，保证其他元素顺序。<a href="https://leetcode.com/problems/move-zeroes/description/" target="_blank" rel="noopener">原题</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [0,1,0,3,12]</span><br><span class="line">Output: [1,3,12,0,0]</span><br></pre></td></tr></table></figure>
 <p>方法一：two pointers</p>
@@ -1419,7 +1419,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共203.3k字</span>
+  <span class="post-count">博客全站共206.6k字</span>
 </div>
         
 
