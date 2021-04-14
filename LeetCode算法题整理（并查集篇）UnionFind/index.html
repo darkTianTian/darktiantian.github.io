@@ -111,7 +111,7 @@
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E5%B9%B6%E6%9F%A5%E9%9B%86%E7%AF%87%EF%BC%89UnionFind/1489q.png">
 <meta property="og:image" content="http://darktiantian.github.io.git/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E5%B9%B6%E6%9F%A5%E9%9B%86%E7%AF%87%EF%BC%89UnionFind/1579q.png">
 <meta property="article:published_time" content="2020-12-20T08:19:49.000Z">
-<meta property="article:modified_time" content="2021-01-27T14:42:44.167Z">
+<meta property="article:modified_time" content="2021-04-14T15:42:14.485Z">
 <meta property="article:author" content="xiaoliji">
 <meta property="article:tag" content="LeetCode">
 <meta property="article:tag" content="UnionFind">
@@ -367,8 +367,8 @@
             
               <span class="post-updated">
                 &nbsp; | &nbsp; Updated on
-                <time itemprop="dateUpdated" datetime="2021-01-27T22:42:44+08:00" content="2021-01-27">
-                  2021-01-27
+                <time itemprop="dateUpdated" datetime="2021-04-14T23:42:14+08:00" content="2021-04-14">
+                  2021-04-14
                 </time>
               </span>
             
@@ -450,7 +450,8 @@
       
 
       
-        <h3 id="1697-Checking-Existence-of-Edge-Length-Limited-Paths"><a href="#1697-Checking-Existence-of-Edge-Length-Limited-Paths" class="headerlink" title="1697. Checking Existence of Edge Length Limited Paths"></a><a href="https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/" target="_blank" rel="noopener">1697. Checking Existence of Edge Length Limited Paths</a></h3><h4 id="给你一个-n-个点组成的无向图边集-edgeList-，其中-edgeList-i-ui-vi-disi-表示点-ui-和点-vi-之间有一条长度为-disi-的边。请注意，两个点之间可能有-超过一条边-。给你一个查询数组queries-，其中-queries-j-pj-qj-limitj-，你的任务是对于每个查询-queries-j-，判断是否存在从-pj-到-qj-的路径，且这条路径上的每一条边都-严格小于-limitj-。请你返回一个-布尔数组-answer-，其中-answer-length-queries-length-，当-queries-j-的查询结果为-true-时，-answer-第-j-个值为-true-，否则为-false-。"><a href="#给你一个-n-个点组成的无向图边集-edgeList-，其中-edgeList-i-ui-vi-disi-表示点-ui-和点-vi-之间有一条长度为-disi-的边。请注意，两个点之间可能有-超过一条边-。给你一个查询数组queries-，其中-queries-j-pj-qj-limitj-，你的任务是对于每个查询-queries-j-，判断是否存在从-pj-到-qj-的路径，且这条路径上的每一条边都-严格小于-limitj-。请你返回一个-布尔数组-answer-，其中-answer-length-queries-length-，当-queries-j-的查询结果为-true-时，-answer-第-j-个值为-true-，否则为-false-。" class="headerlink" title="给你一个 n 个点组成的无向图边集 edgeList ，其中 edgeList[i] = [ui, vi, disi] 表示点 ui 和点 vi 之间有一条长度为 disi 的边。请注意，两个点之间可能有 超过一条边 。给你一个查询数组queries ，其中 queries[j] = [pj, qj, limitj] ，你的任务是对于每个查询 queries[j] ，判断是否存在从 pj 到 qj 的路径，且这条路径上的每一条边都 严格小于 limitj 。请你返回一个 布尔数组 answer ，其中 answer.length == queries.length ，当 queries[j] 的查询结果为 true 时， answer 第 j 个值为 true ，否则为 false 。"></a>给你一个 n 个点组成的无向图边集 edgeList ，其中 edgeList[i] = [ui, vi, disi] 表示点 ui 和点 vi 之间有一条长度为 disi 的边。请注意，两个点之间可能有 超过一条边 。给你一个查询数组queries ，其中 queries[j] = [pj, qj, limitj] ，你的任务是对于每个查询 queries[j] ，判断是否存在从 pj 到 qj 的路径，且这条路径上的每一条边都 严格小于 limitj 。请你返回一个 布尔数组 answer ，其中 answer.length == queries.length ，当 queries[j] 的查询结果为 true 时， answer 第 j 个值为 true ，否则为 false 。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：n &#x3D; 3, edgeList &#x3D; [[0,1,2],[1,2,4],[2,0,8],[1,0,16]], queries &#x3D; [[0,1,2],[0,2,5]]</span><br><span class="line">输出：[false,true]</span><br><span class="line">解释：上图为给定的输入数据。注意到 0 和 1 之间有两条重边，分别为 2 和 16 。</span><br><span class="line">对于第一个查询，0 和 1 之间没有小于 2 的边，所以我们返回 false 。</span><br><span class="line">对于第二个查询，有一条路径（0 -&gt; 1 -&gt; 2）两条边都小于 5 ，所以这个查询我们返回 true 。</span><br></pre></td></tr></table></figure>
+        <h3 id="1697-Checking-Existence-of-Edge-Length-Limited-Paths"><a href="#1697-Checking-Existence-of-Edge-Length-Limited-Paths" class="headerlink" title="1697. Checking Existence of Edge Length Limited Paths"></a><a href="https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/" target="_blank" rel="noopener">1697. Checking Existence of Edge Length Limited Paths</a></h3><h4 id="给你一个-n-个点组成的无向图边集-edgeList-，其中-edgeList-i-ui-vi-disi-表示点-ui-和点-vi-之间有一条长度为-disi-的边。请注意，两个点之间可能有-超过一条边-。给你一个查询数组queries-，其中-queries-j-pj-qj-limitj-，你的任务是对于每个查询-queries-j-，判断是否存在从-pj-到-qj-的路径，且这条路径上的每一条边都-严格小于-limitj-。请你返回一个-布尔数组-answer-，其中-answer-length-queries-length-，当-queries-j-的查询结果为-true-时，-answer-第-j-个值为-true-，否则为-false-。"><a href="#给你一个-n-个点组成的无向图边集-edgeList-，其中-edgeList-i-ui-vi-disi-表示点-ui-和点-vi-之间有一条长度为-disi-的边。请注意，两个点之间可能有-超过一条边-。给你一个查询数组queries-，其中-queries-j-pj-qj-limitj-，你的任务是对于每个查询-queries-j-，判断是否存在从-pj-到-qj-的路径，且这条路径上的每一条边都-严格小于-limitj-。请你返回一个-布尔数组-answer-，其中-answer-length-queries-length-，当-queries-j-的查询结果为-true-时，-answer-第-j-个值为-true-，否则为-false-。" class="headerlink" title="给你一个 n 个点组成的无向图边集 edgeList ，其中 edgeList[i] = [ui, vi, disi] 表示点 ui 和点 vi 之间有一条长度为 disi 的边。请注意，两个点之间可能有 超过一条边 。给你一个查询数组queries ，其中 queries[j] = [pj, qj, limitj] ，你的任务是对于每个查询 queries[j] ，判断是否存在从 pj 到 qj 的路径，且这条路径上的每一条边都 严格小于 limitj 。请你返回一个 布尔数组 answer ，其中 answer.length == queries.length ，当 queries[j] 的查询结果为 true 时， answer 第 j 个值为 true ，否则为 false 。"></a>给你一个 n 个点组成的无向图边集 edgeList ，其中 edgeList[i] = [ui, vi, disi] 表示点 ui 和点 vi 之间有一条长度为 disi 的边。请注意，两个点之间可能有 超过一条边 。给你一个查询数组queries ，其中 queries[j] = [pj, qj, limitj] ，你的任务是对于每个查询 queries[j] ，判断是否存在从 pj 到 qj 的路径，且这条路径上的每一条边都 严格小于 limitj 。请你返回一个 布尔数组 answer ，其中 answer.length == queries.length ，当 queries[j] 的查询结果为 true 时， answer 第 j 个值为 true ，否则为 false 。</h4><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：n &#x3D; 3, edgeList &#x3D; [[0,1,2],[1,2,4],[2,0,8],[1,0,16]], queries &#x3D; [[0,1,2],[0,2,5]]</span><br><span class="line">输出：[false,true]</span><br><span class="line">解释：上图为给定的输入数据。注意到 0 和 1 之间有两条重边，分别为 2 和 16 。</span><br><span class="line">对于第一个查询，0 和 1 之间没有小于 2 的边，所以我们返回 false 。</span><br><span class="line">对于第二个查询，有一条路径（0 -&gt; 1 -&gt; 2）两条边都小于 5 ，所以这个查询我们返回 true 。</span><br></pre></td></tr></table></figure>
 <p>方法一：离线算法+并查集。比赛中没时间做，此题要用并查集。</p>
 <blockquote>
 <p>在线算法，可以用来处理数据流。算法不需要一次性地把所有的 query 都收集到再处理。大家也可以想象成：把这个算法直接部署到线上，尽管在线上可能又产生了很多新的 query，也不影响，算法照常运行。</p>
@@ -762,7 +763,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共222.4k字</span>
+  <span class="post-count">博客全站共223.8k字</span>
 </div>
         
 
